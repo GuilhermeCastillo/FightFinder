@@ -1,0 +1,59 @@
+<app-header />
+
+<section id="fundo">
+
+    <section id="foto">
+        <img src="assets\logoRosaAzul.jpeg" alt="Você">
+    </section>
+
+    <section id="infoPessoal">
+        <ul>
+            <li>
+                <app-input-texto inputText="Nome" [disabled]="true" /> <app-botao-pequeno> </app-botao-pequeno>
+            </li>
+
+            <li>
+                <app-input-texto inputText="Esportista / Agente de lutas" [disabled]="true" /> <app-botao-pequeno> </app-botao-pequeno>
+            </li>
+
+            <li>
+                <app-input-texto  inputText="31 anos" [disabled]="true" /> <app-botao-pequeno> </app-botao-pequeno>
+            </li>
+
+            <li>   
+                <app-dropdown 
+                [options]="['Nenhuma', 'Judo', 'Karatê', 'Jiu-Jitsu', 'Boxe', 'Muay Thai', 'Taekwondo', 'Capoeira ', 'Kung Fu', 'Krav Maga']" 
+                value = 'Nenhuma'  
+                (optionSelected)="onOptionSelected($event)" 
+                 >
+                </app-dropdown>  <app-botao-pequeno />
+            </li>
+
+            <li>
+                <app-input-texto id="email" inputText="email" [disabled]="true" /> <app-botao-pequeno> </app-botao-pequeno>
+            </li>
+
+            <li>
+                <app-input-senha id="senha" placeholder="********"   [disabled]="true" /> <app-botao-pequeno> </app-botao-pequeno>
+            </li>
+ 
+        </ul> 
+    </section> 
+
+    <section id="botoes">
+        <ul>
+            <li> <app-button textoBtn="Salvar" backgroundColor="var(--azul)" /> </li>
+            <li> <app-button textoBtn="Cancelar" backgroundColor="var(--vermelho)" /></li>
+        </ul>
+    </section>
+
+
+    <!--     
+    ESPORTE 
+    DESCRIÇÃO
+    EXPERIENCIA
+    -->
+
+</section>
+
+<app-footer />
