@@ -4,7 +4,7 @@
 
 #foto {
     display: flex;
-    margin: 3rem 3rem 3rem 5rem;
+    margin: 2rem 3rem 0rem 5rem;
     font-size: 10rem; 
     text-align: center;  
     justify-content: center; 
@@ -29,13 +29,14 @@
  
 #infoPessoal {
     display: flex;
-    margin: 2rem; 
+    margin: 1rem 2rem; 
     justify-content: center;
     text-align: center; 
 }
   
 #infoPessoal ul {
     width: 26rem;
+    margin: 0 4rem;
 }
 
 #infoPessoal ul li { 
@@ -47,8 +48,7 @@
 
 #botoes { 
     text-align: center; 
-    padding: 1rem;
-    margin: 1rem; 
+    margin: 0.5rem; 
 }
 
 #botoes ul {
@@ -57,7 +57,7 @@
 }
 
 #botoes ul li { 
-    margin: 3rem;
+    margin: 2rem;
 }
 
 #idade {

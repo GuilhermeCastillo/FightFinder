@@ -46,6 +46,7 @@
 #menu ul li a:hover { 
     color: var(--azul);
     text-decoration: none;
+    text-decoration: underline;
 }
 
 span {

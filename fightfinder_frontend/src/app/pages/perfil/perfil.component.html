@@ -3,48 +3,97 @@
 <section id="fundo">
 
     <section id="foto">
-        <i *ngIf="semFoto == true" class="fa-solid fa-user"></i> <img else src="assets\teste2.jpeg"  />
-        <app-botao-pequeno> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
-    </section>
+        <i *ngIf="!imageUrl" class="fa-solid fa-user"></i> <img *ngIf="imageUrl" [src]="imageUrl" alt="Imagem Selecionada" src="assets\teste2.jpeg" />
+         
+        <input type="file"
+        #fileInput
+        (change)="escolherFotoPerfil($event)"
+        style="display: none"
+        /> 
+        
+        <app-botao-pequeno (click)="fileInput.click()">
+            <i style="width: 0.8rem; height: 0.8rem;" class="fa-regular fa-pen-to-square"></i>
+        </app-botao-pequeno>
+    </section> 
 
     <section id="infoPessoal">
         <ul>
             <li>
-                <app-input-texto inputText="Nome" [disabled]="true" /> <app-botao-pequeno> </app-botao-pequeno>
+                <app-input-texto 
+                id="inputNome" 
+                placeholder="Nome"
+                [disabled]="campoBloqueado" 
+                />
+                <app-botao-pequeno (click)="editarCampo('#inputNome')"> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
             </li>
 
             <li>
-                <app-input-texto inputText="Esportista / Agente de lutas" [disabled]="true" /> <app-botao-pequeno> </app-botao-pequeno>
+                <app-input-texto
+                placeholder="Esportista / Agente de lutas" 
+                [disabled]="campoBloqueado" 
+                />
+                <app-botao-pequeno (click)="editarCampo('#inputNome')"> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
             </li>
 
             <li>
-                <app-input-texto  inputText="31 anos" [disabled]="true" /> <app-botao-pequeno> </app-botao-pequeno>
+                <app-input-texto  
+                placeholder="Idade" 
+                [disabled]="true" 
+                />
+                <app-botao-pequeno> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
             </li>
 
             <li>   
                 <app-dropdown 
-                [options]="['Nenhuma', 'Judo', 'Karatê', 'Jiu-Jitsu', 'Boxe', 'Muay Thai', 'Taekwondo', 'Capoeira ', 'Kung Fu', 'Krav Maga']" 
-                value = 'Nenhuma'  
+                [options]="['Modalidade Favorita', 'Judo', 'Karatê', 'Jiu-Jitsu', 'Boxe', 'Muay Thai', 'Taekwondo', 'Capoeira ', 'Kung Fu', 'Krav Maga']" 
+                placeholder = 'Modalidade'  
                 (optionSelected)="onOptionSelected($event)" 
                  >
-                </app-dropdown>  <app-botao-pequeno> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
+                </app-dropdown>  
+                <app-botao-pequeno> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
             </li>
-             
+        </ul>
+        <ul>     
             <li>
-                <app-input-texto id="email" inputText="email" [disabled]="true" /> <app-botao-pequeno> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
+                <app-input-texto  
+                placeholder="Estado" 
+                [disabled]="true" 
+                />
+                <app-botao-pequeno> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
             </li>
 
             <li>
-                <app-input-senha id="senha" placeholder="********" [disabled]="true" /> <app-botao-pequeno> </app-botao-pequeno>
+                <app-input-texto  
+                placeholder="Telefone" 
+                [disabled]="true" 
+                />
+                <app-botao-pequeno> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
             </li>
- 
+            
+            <li>
+                <app-input-texto 
+                id="email" 
+                placeholder="email" 
+                [disabled]="true" 
+                />
+                <app-botao-pequeno> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
+            </li>
+
+            <li>
+                <app-input-senha 
+                id="senha" 
+                placeholder="********" 
+                [disabled]="true" 
+                />
+                <app-botao-pequeno> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
+            </li> 
         </ul> 
     </section> 
 
     <section id="botoes">
         <ul>
             <li> <app-button textoBtn="Salvar" backgroundColor="var(--azul)" /> </li>
-            <li> <app-button textoBtn="Cancelar" backgroundColor="var(--vermelho)" /></li>
+            <li> <app-button textoBtn="Cancelar" backgroundColor="var(--vermelho)" /> </li>
         </ul>
     </section>
 

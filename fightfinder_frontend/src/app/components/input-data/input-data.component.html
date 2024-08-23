@@ -1,1 +1,3 @@
-<input id="input" type="date" />
+<!-- <input id="input" [value]="dataFormatada" placeholder="dd/mm/yyyy" (input)="formatDate()" /> -->
+
+<input type="date" [ngModel]="formattedDate" (ngModelChange)="onDateChange($event)" />

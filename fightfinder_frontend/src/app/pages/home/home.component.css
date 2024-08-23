@@ -14,41 +14,53 @@ section ul {
 }
 
 .cards {
-    border: 2px solid var(--vermelho); 
+    position: relative;
+    display: inline-block; 
     border-radius: 5px;
     width: 27%;
     height: 30rem;
-    margin: 2rem;
+    margin: 3rem;
     text-align: center; 
     box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .cards:hover {
-    transform: scale(1.05); transition: transform 0.3s ease;
-}
-
+    transform: scale(1.05); 
+    transition: transform 0.3s ease;
+} 
 
 section ul li a {
     text-decoration: none;
 }
 
-section ul li a p { 
-    height: 14.5%; 
+section ul li a p {  
+    width: 16rem;
     font-size: 2rem;
     font-weight: bold;
     color: var(--vermelho);  
     line-height: 4.5rem;
     border-bottom: 2px solid var(--vermelho);
-}
- 
+} 
 
 section ul li a img { 
+    display: block;
     background-color: black; 
+}
+
+#img-button {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.7); /* Fundo semi-transparente */
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
 }
 
 #imgCard1 {
     width: 100%;
-    height: 85%;
+    height: 100%;
     margin: 0;
     padding: 0;
     border-radius: 2px;
@@ -56,7 +68,7 @@ section ul li a img {
 
 #imgCard2 {
     width: 100%;
-    height: 85%;
+    height: 100%;
     margin: 0;
     padding: 0;
     border-radius: 2px;
@@ -64,7 +76,7 @@ section ul li a img {
 
 #imgCard3 {
     width: 100%;
-    height: 85%;
+    height: 100%;
     margin: 0;
     padding: 0;
     border-radius: 2px;
