@@ -5,10 +5,14 @@ import { LoginComponent } from './pages/login/login.component';
 import { PaginaNaoEncontradaComponent } from './pages/pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { RankingComponent } from './pages/ranking/ranking.component';
+import { MatchLutaComponent } from './pages/match-luta/match-luta.component';
+import { MatchTreinoComponent } from './pages/match-treino/match-treino.component';
 
 
 export const routes: Routes = [
            
+    { path: 'match-luta', component: MatchLutaComponent },
+    { path: 'match-treino', component: MatchTreinoComponent },
     { path: 'ranking', component: RankingComponent },
     { path: 'cadastro', component: CadastroComponent },
     { path: 'login', component: LoginComponent }, 

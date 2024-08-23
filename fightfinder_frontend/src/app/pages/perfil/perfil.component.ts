@@ -19,8 +19,7 @@ export class PerfilComponent {
 
 
   onOptionSelected(option: string) {
-    console.log('Opção selecionada:', option);
-    // Outras ações que você deseja realizar com a opção selecionada
+    console.log('Opção selecionada:', option); 
   }
 
 }

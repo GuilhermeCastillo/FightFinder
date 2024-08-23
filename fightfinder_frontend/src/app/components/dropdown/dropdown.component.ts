@@ -15,6 +15,12 @@ export class DropdownComponent {
   @Output() optionSelected = new EventEmitter<string>(); // Evento para emitir a opção selecionada
    
 
+  ngOnInit() {
+    if (this.options.length > 0) {
+      this.selectedOption = this.options[0];
+    }
+  }
+
   onSelect(event: Event) {
     const target = event.target as HTMLSelectElement | null;
     const value = target?.value ?? null;

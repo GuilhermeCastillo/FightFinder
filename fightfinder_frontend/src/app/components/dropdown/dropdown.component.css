@@ -13,6 +13,6 @@ select:hover {
     border: 2px solid var(--azul);   
 }
 
-select:active { 
+select:focus {
     border: 2px solid var(--azul);   
 }

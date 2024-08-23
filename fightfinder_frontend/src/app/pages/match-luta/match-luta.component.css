@@ -1,0 +1,42 @@
+#cabecalhoMatch {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+#foto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem;
+}
+ 
+
+#foto img, #foto i { 
+    display: flex; 
+    width: 25rem;  
+    height: 25rem;  
+    border-radius: 50%; /* Faz a imagem ficar redonda */
+    object-fit: cover; /* Garante que a imagem preencha o círculo */ 
+    align-items: center;
+    margin: 1rem;
+ }
+
+ .fa-solid {
+    color: white; 
+    background-color: gray;
+ }
+
+ .descricaoAtleta {
+    display: flex;
+    flex-direction: column;
+    font-size: 2rem;
+    padding: 0rem 3rem;
+    text-align: center;
+ }
+
+ #main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+ }

@@ -1,0 +1,37 @@
+<app-header />
+
+<section>  
+    <div id="cabecalhoMatch">
+        <app-dropdown 
+        [options]="['Modalidade', 'Judo', 'Karatê', 'Jiu-Jitsu', 'Boxe', 'Muay Thai', 'Taekwondo', 'Capoeira ', 'Kung Fu', 'Krav Maga']" 
+        value = 'Nenhuma'  
+        (optionSelected)="onOptionSelected($event)" 
+        /> 
+    
+        <!-- <app-button textoBtn="Buscar" /> -->
+    </div>
+    
+    <div id="main">
+        <section id="foto">
+            <i *ngIf="semFoto == true" class="fa-solid fa-user"></i> <img else src="assets\teste7.jpeg"  />
+            <ul class="descricaoAtleta">
+               <li>Pedrinho Jumento</li>
+               <li>29 anos</li>
+               <li>77 kg</li>
+            </ul>
+        </section>
+    
+        <p style="font-size: 10rem; font-weight: bold;" *ngIf="modalidadeSelecionada"> X </p>
+    
+        <section id="foto" *ngIf="modalidadeSelecionada">
+            <i *ngIf="semFoto == true" class="fa-solid fa-user"></i> <img else src="assets\teste5.jpeg"  />
+            <ul class="descricaoAtleta">
+                <li>João Tromba Grossa</li>  
+                <li>32 anos</li>  
+                <li>81 kg</li>
+            </ul>
+        </section>
+    </div>
+</section> 
+
+<app-footer />

@@ -3,7 +3,8 @@
 <section id="fundo">
 
     <section id="foto">
-        <img src="assets\logoRosaAzul.jpeg" alt="Você">
+        <i *ngIf="semFoto == true" class="fa-solid fa-user"></i> <img else src="assets\teste2.jpeg"  />
+        <app-botao-pequeno> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
     </section>
 
     <section id="infoPessoal">
@@ -26,15 +27,15 @@
                 value = 'Nenhuma'  
                 (optionSelected)="onOptionSelected($event)" 
                  >
-                </app-dropdown>  <app-botao-pequeno />
+                </app-dropdown>  <app-botao-pequeno> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
+            </li>
+             
+            <li>
+                <app-input-texto id="email" inputText="email" [disabled]="true" /> <app-botao-pequeno> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
             </li>
 
             <li>
-                <app-input-texto id="email" inputText="email" [disabled]="true" /> <app-botao-pequeno> </app-botao-pequeno>
-            </li>
-
-            <li>
-                <app-input-senha id="senha" placeholder="********"   [disabled]="true" /> <app-botao-pequeno> </app-botao-pequeno>
+                <app-input-senha id="senha" placeholder="********" [disabled]="true" /> <app-botao-pequeno> </app-botao-pequeno>
             </li>
  
         </ul> 
