@@ -1,0 +1,56 @@
+#fundo {
+    margin: 0 0 10rem 0;
+}
+
+#foto {
+    display: flex;
+    margin: 2rem;
+    justify-content: center;
+}
+
+#foto img {  
+    width: 15rem;  
+    height: 15rem;  
+    border-radius: 50%; /* Faz a imagem ficar redonda */
+    object-fit: cover; /* Garante que a imagem preencha o círculo */
+ }
+
+
+
+#infoPessoal {
+    display: flex;
+    margin: 2rem; 
+    justify-content: center;
+    text-align: center; 
+}
+  
+#infoPessoal ul {
+    width: 26rem;
+}
+
+#infoPessoal ul li { 
+    display: flex;
+    margin-top: 1rem;
+    align-items: center; 
+    width: 40rem;  
+}
+
+#botoes { 
+    text-align: center; 
+    padding: 1rem;
+    margin: 1rem; 
+}
+
+#botoes ul {
+    display: flex;
+    justify-content: center;
+}
+
+#botoes ul li { 
+    margin: 3rem;
+}
+
+#idade {
+    width: 3rem;
+    height: 1rem;
+}

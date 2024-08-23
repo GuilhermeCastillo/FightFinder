@@ -1,0 +1,57 @@
+#fundo {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;  
+}
+
+#quadrado {
+    background-color: white;
+    display: flex; 
+    justify-content: center;
+    margin-top: 5rem;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+#ladoEsquerdo { 
+    width: 60%;   
+}
+
+#ladoDireito {
+    width: 40%; 
+}
+
+#boxCadastro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem;
+}
+
+#boxCadastro label {
+    font-size: 1.8rem;
+    margin-top: 1rem;
+    color: var(--vermelho); 
+}
+
+#tituloCadastro {
+    font-size: 3rem;
+    color: var(--azul); 
+    font-weight: 600;
+    width: 22rem;
+    margin: 1rem 0 1rem 0;
+    text-align: center;
+}
+
+app-button {
+    margin: 3rem;
+}
+
+#radiosGroup {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column; 
+    font-size: 1.2rem;
+}
+ 
+ 

@@ -1,0 +1,89 @@
+
+#tituloPrincipal {
+    font-size: 10rem;
+    font-weight: bold;
+    margin: 3rem 0 3rem 6rem;
+    text-decoration: underline;
+}
+
+
+section ul {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 7rem;
+}
+
+.cards {
+    border: 2px solid var(--vermelho); 
+    border-radius: 5px;
+    width: 27%;
+    height: 30rem;
+    margin: 2rem;
+    text-align: center; 
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.cards:hover {
+    transform: scale(1.05); transition: transform 0.3s ease;
+}
+
+
+section ul li a {
+    text-decoration: none;
+}
+
+section ul li a p { 
+    height: 14.5%; 
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--vermelho);  
+    line-height: 4.5rem;
+    border-bottom: 2px solid var(--vermelho);
+}
+ 
+
+section ul li a img { 
+    background-color: black; 
+}
+
+#imgCard1 {
+    width: 100%;
+    height: 85%;
+    margin: 0;
+    padding: 0;
+    border-radius: 2px;
+}
+
+#imgCard2 {
+    width: 100%;
+    height: 85%;
+    margin: 0;
+    padding: 0;
+    border-radius: 2px;
+}
+
+#imgCard3 {
+    width: 100%;
+    height: 85%;
+    margin: 0;
+    padding: 0;
+    border-radius: 2px;
+}
+
+#faixaAzul {
+    margin-top: 3rem;
+    height: 30rem;
+    background-color: var(--azul);
+    padding: 5rem;
+    /* background: linear-gradient(to bottom, #f0f0f0, var(--azul)); */
+    color: white; 
+}
+
+#faixaAzul h2 {
+    font-size: 3rem;
+}
+
+#faixaAzul p {
+    margin-top: 3rem;
+    font-size: 2rem;
+}
