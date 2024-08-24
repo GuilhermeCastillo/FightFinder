@@ -1,5 +1,5 @@
 from rest_framework import generics, views, response, status
-from athletes.models import Athlete, Cartel
+from athletes.models import Athlete
 from athletes.serializers import AthleteSerializer
 
 class AthleteCreateListView(generics.ListCreateAPIView):
