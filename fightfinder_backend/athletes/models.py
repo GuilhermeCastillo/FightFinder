@@ -14,8 +14,7 @@ MODALITIES_CHOICES = [
 
 
 class Athlete(models.Model):
-    id = models.AutoField(primary_key=True)
-    cpf = models.CharField(max_length=11)
+    cpf = models.CharField(primary_key=True, max_length=11)
     peso = models.FloatField()
     altura = models.FloatField()
     telefone = models.CharField(max_length=15, blank=True, null=True)
