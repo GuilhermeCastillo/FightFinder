@@ -37,9 +37,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "athletes",
     "rest_framework",
     "rest_framework_simplejwt",
+    "athletes",
+    "fights",
+    "cartel",
 ]
 
 MIDDLEWARE = [
@@ -82,6 +84,18 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "fightfinder",
+#         "USER": "postgres",
+#         "PASSWORD": "242628",
+#         "HOST": "localhost",
+#         "PORT": "5432",
+#     }
+# }
 
 
 # Password validation
