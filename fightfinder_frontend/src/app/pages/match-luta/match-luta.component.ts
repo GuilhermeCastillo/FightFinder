@@ -14,15 +14,25 @@ import { CommonModule } from '@angular/common';
   styleUrl: './match-luta.component.css'
 })
 export class MatchLutaComponent {
-  modalidadeSelecionada: boolean = false; 
-  semFoto: boolean = false; 
+  modalidadeSelecionada: boolean = false;
+  botaoDesabilitado: boolean = true;
+  semFoto: boolean = false;
+  valorPadrao: string = 'Modalidade';
 
-  onOptionSelected(option: string) {
-    console.log("ASHJKFDGSDJKFHD!!! ", option);
-    if (option != "Modalidade") {
-      this.modalidadeSelecionada = true;
+  onOptionSelected(option: string) {  
+    console.log('Opção: ', option);
+    if (option != this.valorPadrao) {
+      this.botaoDesabilitado = true;
     } else {
+      this.botaoDesabilitado = false;
+    }
+  }
+
+  buscarAdversarios() {
+    if (this.modalidadeSelecionada == true) {
       this.modalidadeSelecionada = false;
+    } else { 
+      this.modalidadeSelecionada = true;
     }
   }
   

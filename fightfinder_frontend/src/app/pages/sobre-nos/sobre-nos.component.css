@@ -1,0 +1,62 @@
+#desenvolvedores {
+    margin: 3rem 0;
+}
+
+#tituloPrincipal {
+    margin: 6rem 10rem 4rem 11rem;
+    font-size: 3rem;
+    font-weight: bold;
+    text-decoration: underline; 
+}
+
+#faixaAzul {
+    margin: 7rem 0;
+    height: 27rem;
+    background-color: var(--azul);
+    padding: 5rem;
+    /* background: linear-gradient(to bottom, #f0f0f0, var(--azul)); */
+    color: white; 
+}
+
+#faixaAzul h2 {
+    font-size: 3rem;
+}
+
+#faixaAzul p {
+    margin-top: 3rem;
+    font-size: 2rem;
+}
+
+.perfil { 
+    border: 3px solid var(--azul);
+    border-radius: 7rem;
+    margin: 3rem 10rem; 
+    padding: 0 0.5rem; 
+}
+ 
+.perfil hr {
+    background-color: var(--azul);
+    height: 1px;
+    border: none;
+}
+
+.nomeEFoto {
+    display: flex; 
+}
+ 
+
+.nome {
+    margin-top: 5rem;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.perfil img { 
+    display: flex; 
+    width: 10rem;  
+    height: 10rem;  
+    border-radius: 50%; /* Faz a imagem ficar redonda */
+    object-fit: cover; /* Garante que a imagem preencha o círculo */ 
+    align-items: center;
+    margin: 1rem;
+}

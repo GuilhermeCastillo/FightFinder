@@ -7,10 +7,12 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
 import { RankingComponent } from './pages/ranking/ranking.component';
 import { MatchLutaComponent } from './pages/match-luta/match-luta.component';
 import { MatchTreinoComponent } from './pages/match-treino/match-treino.component';
+import { SobreNosComponent } from './pages/sobre-nos/sobre-nos.component';
 
 
 export const routes: Routes = [
-           
+
+    { path: 'sobre-nos', component: SobreNosComponent },       
     { path: 'match-luta', component: MatchLutaComponent },
     { path: 'match-treino', component: MatchTreinoComponent },
     { path: 'ranking', component: RankingComponent },

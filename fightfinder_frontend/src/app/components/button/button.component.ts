@@ -11,7 +11,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ButtonComponent {
   @Input() textoBtn: string = '';   
   @Input() backgroundColor: string = 'var(--azul)';
-//  @Input() disabled: boolean = false;
+  @Input() disabled: boolean = false;
 
   @Output() valueChange = new EventEmitter<string>();
 
