@@ -1,5 +1,17 @@
 from django.db import models
 
+MODALITIES_CHOICES = [
+    ("BJJ", "Brazilian Jiu-Jitsu"),
+    ("MMA", "Mixed Martial Arts"),
+    ("BOX", "Boxing"),
+    ("MT", "Muay Thai"),
+    ("JUDO", "Judo"),
+    ("WREST", "Wrestling"),
+    ("KARATE", "Karate"),
+    ("TKD", "Taekwondo"),
+    ("INI", "Iniciante"),
+]
+
 
 class Athlete(models.Model):
     id = models.AutoField(primary_key=True)
@@ -19,5 +31,10 @@ class Athlete(models.Model):
     data_nascimento = models.DateField()
     nome = models.CharField(max_length=200)
     academia = models.CharField(max_length=200, null=True, blank=True)
-    # modalidade = models.ForeignKey()
+    modalidade = models.CharField(
+        max_length=10,
+        choices=MODALITIES_CHOICES,
+        default='INI',  # Definindo uma modalidade padrão, se necessário
+    )
+
     # cartel = models.ForeignKey()
