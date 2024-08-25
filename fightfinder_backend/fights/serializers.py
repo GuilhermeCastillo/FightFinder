@@ -11,9 +11,9 @@ class FightSerializer(serializers.ModelSerializer):
         
     def get_vencedor(self, obj):
         if obj.resultado == 1:
-            return f"Vitória do {obj.atleta1.nome}"
+            return f"Vitória para: {obj.atleta1.nome}"
         elif obj.resultado == 2:
-            return f"Vitória do {obj.atleta2.nome}"
+            return f"Vitória para: {obj.atleta2.nome}"
         else:
             return "Empate"        
 

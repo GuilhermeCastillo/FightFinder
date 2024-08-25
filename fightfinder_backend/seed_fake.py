@@ -99,15 +99,27 @@ def create_fights(athletes):
 
 def create_fight_historic(fights):
     for fight in fights:
-        for atleta in [fight.atleta1, fight.atleta2]:
-            detalhes = f"Detalhes da luta {fight.nome_luta}: {'Vitória Atleta 1' if fight.resultado == 1 else 'Vitória Atleta 2' if fight.resultado == 2 else 'Empate'}"
+        # Gera histórico para o atleta 1
+        FightHistoric.objects.create(
+            atleta=fight.atleta1,
+            luta=fight,
+            detalhes=generate_details(fight, fight.atleta1)
+        )
 
-            historic = FightHistoric(
-                atleta=atleta,
-                luta=fight,
-                detalhes=detalhes
-            )
-            historic.save()
+        # Gera histórico para o atleta 2
+        FightHistoric.objects.create(
+            atleta=fight.atleta2,
+            luta=fight,
+            detalhes=generate_details(fight, fight.atleta2)
+        )
+
+def generate_details(fight, atleta):
+    if fight.resultado == 1:
+        return f"Vitória sobre {fight.atleta2.nome}" if atleta == fight.atleta1 else f"Derrota para {fight.atleta1.nome}"
+    elif fight.resultado == 2:
+        return f"Vitória sobre {fight.atleta1.nome}" if atleta == fight.atleta2 else f"Derrota para {fight.atleta2.nome}"
+    else:
+        return f"Empate com {fight.atleta2.nome}" if atleta == fight.atleta1 else f"Empate com {fight.atleta1.nome}"
 
 def seed_database(n=10):
     athletes = create_athletes(n)
