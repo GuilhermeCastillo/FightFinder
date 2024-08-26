@@ -12,6 +12,7 @@ export class ButtonComponent {
   @Input() textoBtn: string = '';   
   @Input() backgroundColor: string = 'var(--azul)';
   @Input() disabled: boolean = false;
+  @Input() id: string = 'text';
 
   @Output() valueChange = new EventEmitter<string>();
 

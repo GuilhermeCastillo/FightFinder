@@ -1,6 +1,6 @@
 #cabecalhoMatch {
    display: flex;
-   margin: 4rem 0;
+   margin: 3rem 0 4rem 0;
    text-align: center;
    justify-content: center; 
    align-items: flex-end;
@@ -11,18 +11,26 @@
    display: flex;
    justify-content: center;
    align-items: center;
-   margin: 2rem; 
+   margin: 2rem 2rem 4rem 2rem; 
 }
 
 #voce {
    display: flex;
    flex-direction: row-reverse;
-   width: 40%;
+   width: 40%; 
 }
 
 #vs {
    width: 10%;
    text-align: center;
+   padding: 0;
+   margin: 0;
+   color: white; /* Cor do texto */
+  text-shadow: 
+    -1px -5px 0 var(--azul),  /* Borda superior esquerda */
+    5px -1px 0 var(--azul),   /* Borda superior direita */
+    -1px 5px 0 var(--vermelho),   /* Borda inferior esquerda */
+    5px 1px 0 var(--vermelho);    /* Borda inferior direita */
 }
 
 #adversario {
@@ -34,7 +42,7 @@
 #foto { 
    text-align: center; 
    align-items: center;
-   margin: 0 2rem 2rem 2rem;
+   margin: 0rem 1rem;
 }
   
 #foto img, #foto i { 
@@ -44,7 +52,7 @@
     border-radius: 50%; /* Faz a imagem ficar redonda */
     object-fit: cover; /* Garante que a imagem preencha o círculo */ 
     align-items: center;
-    margin: 1rem;
+    margin: 1rem; 
 }
 
 .fa-solid {
@@ -63,7 +71,8 @@
    flex-direction: column;
    justify-content: center;
    text-align: center;
-   font-size: 2rem; 
+   font-size: 1.5rem;
+   text-decoration: dotted;
 }
 
 .descricaoAtleta ul li {
@@ -78,5 +87,6 @@
    display: flex;
    text-align: center;
    justify-content: center;
-   gap: 5rem;
+   gap: 8.5rem;
+   margin-left: 20rem;
 }

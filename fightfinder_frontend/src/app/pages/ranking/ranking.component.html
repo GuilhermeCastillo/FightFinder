@@ -1,3 +1,26 @@
 <app-header />
+    <section id="main">
+
+        <div id="filtros"> 
+            <ul>
+                <li>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <app-input-texto id="inputText" placeholder="Pesquisar lutador(a)" /> 
+                </li>
+                <li>
+                    <app-dropdown 
+                    [options]="['Modalidade Favorita', 'Judo', 'Karatê', 'Jiu-Jitsu', 'Boxe', 'Muay Thai', 'Taekwondo', 'Capoeira ', 'Kung Fu', 'Krav Maga']" 
+                    placeholder = 'Modalidade'  
+                    /> 
+                </li>
+                <li> 
+                    <app-button textoBtn="Buscar"></app-button>
+                </li> 
+            </ul>
+        </div>
+            
+        <!-- TABELA
+         posição, nome, lutas, treinos, modalidade -->
+    </section>
 
 <app-footer />

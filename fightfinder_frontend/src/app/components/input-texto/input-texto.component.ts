@@ -1,9 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-input-texto',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './input-texto.component.html',
   styleUrl: './input-texto.component.css'
 })
@@ -13,6 +14,7 @@ export class InputTextoComponent {
   @Input() inputText: string = '';  
   @Input() placeholder: string = ''; // Placeholder para o input 
   @Input() disabled: boolean = false; // Define se o input está desabilitado
+  @Input() id: string = '';
 
   @Output() valueChange = new EventEmitter<string>();
 

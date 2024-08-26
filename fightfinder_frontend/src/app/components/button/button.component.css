@@ -1,4 +1,4 @@
-#botao {
+button {
     width: 11rem;
     height: 3.5rem; 
     max-height: 4.5rem;
@@ -13,7 +13,7 @@
     font-size: 1.2rem;
 }
 
-#botao:active { 
+button:active { 
     transform: scale(0.95); 
     background-color: rgb(150, 31, 78); 
 }

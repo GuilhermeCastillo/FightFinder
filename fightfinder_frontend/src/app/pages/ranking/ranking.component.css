@@ -1,0 +1,18 @@
+#filtros {
+    padding: 5rem;
+    position: relative;
+    display: inline-block;
+}
+
+#filtros i {
+    position: absolute;
+    top: 45%;
+    left: 22rem; /* Ajuste conforme necessário */
+    transform: translateY(-10%);
+    pointer-events: none; /* Para não interferir no clique do input */
+    color: #707575;
+}
+
+#inputText {
+    padding-left: 30px; /* Espaço para o ícone */
+}

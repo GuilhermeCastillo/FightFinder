@@ -12,6 +12,8 @@ export class DropdownComponent {
   @Input() options: string[] = []; // Lista de opções recebida como entrada  
   @Input() selectedOption: string | null = null; // Opção selecionada
   @Input() disabled: boolean = false;
+  @Input() id: string = "";
+
   @Output() optionSelected = new EventEmitter<string>(); // Evento para emitir a opção selecionada
    
 

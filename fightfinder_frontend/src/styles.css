@@ -79,7 +79,11 @@ body {
 
 :root {
 	--azul: #1976d2;
-	--vermelho: #b41818; /* #a81616; */
+	--vermelho: #b41818; 
+	--azul-escuro: #104e8d;
+	--vermelho-escuro: #7a1010; 
+	--cinza: #f0f0f0;
+
 	--background-color: #f5f5f5;
 	--text-color: #333333;
   }
