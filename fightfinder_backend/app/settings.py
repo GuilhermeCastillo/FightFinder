@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "athletes",
     "fights",
     "cartel",
+    "events"
 ]
 
 MIDDLEWARE = [

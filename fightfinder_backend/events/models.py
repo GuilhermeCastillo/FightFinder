@@ -1,6 +1,5 @@
 import uuid
 from django.db import models
-from cartel.models import Cartel
 
 MODALITIES_CHOICES = [
     ("BJJ", "Brazilian Jiu-Jitsu"),
@@ -15,12 +14,19 @@ MODALITIES_CHOICES = [
 ]
 
 
-class Athlete(models.Model):
+class Promoter(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     cpf = models.CharField(primary_key=True, max_length=11)
-    peso = models.FloatField()
-    altura = models.FloatField()
-    telefone = models.CharField(max_length=15, blank=True, null=True)
+    data_nascimento = models.DateField()
+    nome = models.CharField(max_length=200)
+
+
+class Event(models.Model):
+    promoter = models.ForeignKey(
+        Promoter, on_delete=models.CASCADE, related_name="eventos"
+    )
+    data_evento = models.DateField()
+    nome_evento = models.CharField(max_length=255)
     cidade = models.CharField(max_length=100)
     estado = models.CharField(max_length=100)
     pais = models.CharField(max_length=100)
@@ -30,15 +36,8 @@ class Athlete(models.Model):
     longitude = models.DecimalField(
         max_digits=9, decimal_places=6, null=True, blank=True
     )
-    data_nascimento = models.DateField()
-    nome = models.CharField(max_length=200)
-    academia = models.CharField(max_length=200, null=True, blank=True)
     modalidade = models.CharField(
         max_length=10,
         choices=MODALITIES_CHOICES,
-        default="INI",  # Definindo uma modalidade padrão, se necessário
-    )
-
-    cartel = models.OneToOneField(
-        Cartel, on_delete=models.PROTECT, related_name="athlete", null=True, blank=True
+        default="INI",
     )

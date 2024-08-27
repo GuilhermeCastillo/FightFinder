@@ -37,6 +37,7 @@ def create_athletes(n=10):
         academia = fake.company()
         modalidade = random.choice(modalities)
 
+        # Criar e salvar o atleta
         athlete = Athlete(
             cpf=cpf,
             peso=peso,
@@ -64,8 +65,8 @@ def create_cartel(athlete):
     lutas_disputadas = vitorias + derrotas + empates
     desistencia = random.randint(0, 2)
 
+    # Criar e salvar o cartel
     cartel = Cartel(
-        atleta=athlete,
         vitorias=vitorias,
         derrotas=derrotas,
         empates=empates,
@@ -73,6 +74,10 @@ def create_cartel(athlete):
         desistencia=desistencia
     )
     cartel.save()
+
+    # Associar o Cartel ao atleta
+    athlete.cartel = cartel
+    athlete.save()
 
 def create_fights(athletes):
     fights = []

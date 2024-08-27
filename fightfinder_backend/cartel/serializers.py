@@ -7,4 +7,3 @@ class CartelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cartel
         fields = "__all__"
-
