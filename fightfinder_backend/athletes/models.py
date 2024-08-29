@@ -1,6 +1,6 @@
 import uuid
 from django.db import models
-from cartel.models import Cartel
+# from cartel.models import Cartel
 
 MODALITIES_CHOICES = [
     ("BJJ", "Brazilian Jiu-Jitsu"),
@@ -39,6 +39,9 @@ class Athlete(models.Model):
         default="INI",  # Definindo uma modalidade padrão, se necessário
     )
 
-    cartel = models.OneToOneField(
-        Cartel, on_delete=models.PROTECT, related_name="athlete", null=True, blank=True
-    )
+    # cartel = models.OneToOneField(
+    #     Cartel, on_delete=models.PROTECT, related_name="athlete", null=True, blank=True
+    # )
+
+    def __str__(self):
+        return self.nome

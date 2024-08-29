@@ -1,5 +1,5 @@
 from django.db import models
-# from athletes.models import Athlete
+from athletes.models import Athlete
 
 
 class Cartel(models.Model):
@@ -9,4 +9,9 @@ class Cartel(models.Model):
     empates = models.IntegerField()
     lutas_disputadas = models.IntegerField()
     desistencia = models.IntegerField()
-    # atleta = models.ForeignKey(Athlete, on_delete=models.PROTECT, related_name="Cartel")
+    atleta = models.OneToOneField(
+        Athlete, on_delete=models.PROTECT, related_name="cartel"
+    )
+
+    def __str__(self):
+        return self.atleta.nome

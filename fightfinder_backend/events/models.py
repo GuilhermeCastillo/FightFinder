@@ -20,6 +20,9 @@ class Promoter(models.Model):
     data_nascimento = models.DateField()
     nome = models.CharField(max_length=200)
 
+    def __str__(self):
+        return self.nome
+
 
 class Event(models.Model):
     promoter = models.ForeignKey(
@@ -41,3 +44,6 @@ class Event(models.Model):
         choices=MODALITIES_CHOICES,
         default="INI",
     )
+
+    def __str__(self):
+        return self.nome_evento
