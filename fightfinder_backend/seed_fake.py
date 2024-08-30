@@ -108,4 +108,4 @@ def seed_database(num_athletes=10, num_fights=5, num_events=3):
 
 
 if __name__ == "__main__":
-    seed_database()
+    seed_database(num_athletes=1000, num_fights=900, num_events=100)
