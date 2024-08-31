@@ -1,31 +1,42 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { formatDate } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core'; 
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-input-data',
   standalone: true,
-  imports: [ FormsModule],
+  imports: [ FormsModule, ReactiveFormsModule],
   templateUrl: './input-data.component.html',
   styleUrl: './input-data.component.css'
 })
 export class InputDataComponent {
+  @Input() placeholder: string = 'dd/MM/yyyy';
+  @Input() date: string = '';
+  @Output() dateChange = new EventEmitter<string>();
 
-  date: string = '';  // data em formato yyyy-MM-dd
-  formattedDate: string = '';  // data em formato dd/MM/yyyy
+  dateControl: FormControl = new FormControl('');
 
   ngOnInit() {
-    this.formattedDate = this.formatDateToBrazilian(this.date);
+    if (this.date) { 
+      console.log('this.date[0]', this.date[0]);
+     
+      const parsedDate = this.parseDate(this.date);
+      this.dateControl.setValue(parsedDate);
+      console.log('AQUI');
+    }
+
+    this.dateControl.valueChanges.subscribe(value => {
+      const formattedDate = this.formatDate(value);
+      this.dateChange.emit(formattedDate);
+    });
   }
 
-  onDateChange(newDate: string) {
-    this.date = newDate;
-    this.formattedDate = this.formatDateToBrazilian(newDate);
+  private formatDate(date: string): string {
+    return formatDate(date, 'dd/MM/yyyy', 'en-GB');
   }
 
-  formatDateToBrazilian(date: string): string {
-    const [year, month, day] = date.split('-');
-    return `${day}/${month}/${year}`;
+  private parseDate(date: string): string {
+    const [day, month, year] = date.split('/');
+    return `${day}-${month}-${year}`; // Formato ISO para o input
   }
 }

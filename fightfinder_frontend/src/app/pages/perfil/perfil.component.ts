@@ -26,15 +26,27 @@ export class PerfilComponent {
     const fileInput = event.target as HTMLInputElement;
     if (fileInput.files && fileInput.files.length > 0) {
       const file = fileInput.files[0];
-      
-      const reader = new FileReader();
 
-      reader.onload = () => {
-        this.imageUrl = reader.result;
-      };
+      const maxSizeInMB = 5; // Limite de tamanho em MB
+      const maxSizeInBytes = maxSizeInMB * 1024 * 1024;
 
-      reader.readAsDataURL(file);
-    }
+      if (file.size > maxSizeInBytes) {
+        alert(`O arquivo é muito grande. O tamanho máximo permitido é ${maxSizeInMB} MB.`);
+        fileInput.value = ''; // Limpa o input
+        return;
+      } else {
+        // Continue com o processamento do arquivo
+
+        const reader = new FileReader();
+
+        reader.onload = () => {
+          this.imageUrl = reader.result;
+        };
+
+        reader.readAsDataURL(file);
+        console.log('Arquivo selecionado:', file);
+      } 
+    } 
   }
 
   onOptionSelected(option: string) {

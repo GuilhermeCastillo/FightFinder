@@ -11,14 +11,14 @@
                 <label for="inputText">Nome</label>
                 <app-input-texto
                 id="inputText" 
-                placeholder=""  
+                placeholder="" 
+                border-color="var(--azul)"
                 />
 
                 <label for="inputData">Data de nascimento</label>
-                <app-input-data
-                id="inputData"   
-                />
                 
+                <app-input-data [(date)]="selectedDate"></app-input-data> 
+
                 <label for="inputSenha">Senha</label>
                 <app-input-senha
                 id="inputSenha" 

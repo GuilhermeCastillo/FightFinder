@@ -14,11 +14,11 @@
 }
 
 #ladoEsquerdo { 
-    width: 55%;   
+    width: 50rem;   
 }
 
 #ladoDireito {
-    width: 45%; 
+    width: 40rem; 
 }
 
 #boxLogin {
@@ -41,6 +41,7 @@
     width: 22rem;
     margin: 4rem 0 6rem 0;
     text-align: center;
+    text-decoration: underline;
 }
 
 app-button {

@@ -2,8 +2,19 @@ input {
     font-size: 4.8rem; 
     margin: 0 0.5rem 1rem 0;
     transform: scale(1.5); 
+    color: var(--vermelho);
+    background-color: var(--vermelho);
+    background: var(--vermelho);
+    border: var(--vermelho);
 }
 
 input:hover { 
     border: 2px solid var(--azul);   
+}
+
+input:focus {
+    color: var(--vermelho);
+    background-color: var(--vermelho);
+    background: var(--vermelho);
+    border: var(--vermelho);
 }
