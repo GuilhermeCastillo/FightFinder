@@ -17,7 +17,7 @@ def calcular_idade(data_nascimento):
     )
 
 
-class AthleteCreateListView(generics.ListAPIView):
+class AthleteCreateListView(generics.ListCreateAPIView):
     # permission_classes = (IsAuthenticated, GlobalDefaultPermission,)
     queryset = Athlete.objects.all()
     serializer_class = AthleteSerializer
