@@ -15,10 +15,19 @@ MODALITIES_CHOICES = [
     ("INI", "Iniciante"),
 ]
 
+GENDER_CHOICES = [
+    ('M', 'Masculino'),
+    ('F', 'Feminino'),
+]
 
 class Athlete(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     cpf = models.CharField(primary_key=True, max_length=11)
+    genero = models.CharField(
+        max_length=1,
+        choices=GENDER_CHOICES,
+        default='M',
+    )
     peso = models.FloatField()
     altura = models.FloatField()
     telefone = models.CharField(max_length=15, blank=True, null=True)
