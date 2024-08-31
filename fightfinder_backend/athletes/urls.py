@@ -6,8 +6,9 @@ urlpatterns = [
         "athletes/", views.AthleteCreateListView.as_view(), name="athlete-create-list"
     ),
     path(
-        "athletes/<int:pk>/",
+        "athletes/<uuid:uuid>/",
         views.AthleteRetrieveUpdateDestroyView.as_view(),
         name="athlete-detail-view",
     ),
+    path('athletes/<str:cpf>/recommendations/', views.AthleteRecommendationsView.as_view(), name='athlete_recommendations'),
 ]

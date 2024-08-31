@@ -21,6 +21,8 @@ class Fight(models.Model):
     # TODO evento = models.ForeignKey()
     pontuacao = models.IntegerField()
 
+    def __str__(self):
+        return self.nome_luta
 
 class FightHistoric(models.Model):
     id = models.AutoField(primary_key=True)
@@ -43,3 +45,6 @@ class FightHistoric(models.Model):
             else:
                 self.detalhes = f"Empate com {self.luta.atleta2.nome if self.atleta == self.luta.atleta1 else self.luta.atleta1.nome}"
         super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.atleta.nome
