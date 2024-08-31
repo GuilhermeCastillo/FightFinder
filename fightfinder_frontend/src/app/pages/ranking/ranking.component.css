@@ -1,7 +1,14 @@
-#filtros {
+#filtros { 
+    display: flex;
     padding: 5rem;
     position: relative;
-    display: inline-block;
+    background-color: white;
+    border-radius: 25px;
+    margin: 3rem; 
+}
+
+#filtros ul {
+    display: flex;
 }
 
 #filtros i {

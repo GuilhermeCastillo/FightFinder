@@ -6,16 +6,17 @@ import { InputSenhaComponent } from '../../components/inputSenha/inputSenha.comp
 import { InputRadioComponent } from '../../components/input-radio/input-radio.component';
 import { InputDataComponent } from '../../components/input-data/input-data.component';
 import { Title } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-cadastro',
   standalone: true,
-  imports: [ButtonComponent, InputTextoComponent, InputSenhaComponent, InputRadioComponent, InputDataComponent],
+  imports: [ButtonComponent, InputTextoComponent, InputSenhaComponent, InputRadioComponent, InputDataComponent, ReactiveFormsModule],
   templateUrl: './cadastro.component.html',
   styleUrl: './cadastro.component.css'
 })
 export class CadastroComponent {
-
+  selectedDate: string = '';
   constructor(private router: Router, private title: Title) { }
   
   ngOnInit(): void {

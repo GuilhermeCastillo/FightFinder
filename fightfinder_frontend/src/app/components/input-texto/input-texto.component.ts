@@ -15,6 +15,7 @@ export class InputTextoComponent {
   @Input() placeholder: string = ''; // Placeholder para o input 
   @Input() disabled: boolean = false; // Define se o input está desabilitado
   @Input() id: string = '';
+  @Input() borderColor: string = 'var(--vermelho)';
 
   @Output() valueChange = new EventEmitter<string>();
 
