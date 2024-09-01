@@ -16,7 +16,7 @@ def recommend_athletes(df, atleta_idx, n_recommendations=5):
     encoded_df = pd.DataFrame(encoded_features, columns=encoder.get_feature_names_out(['modalidade', 'genero']))
 
     # Concatenando os dados codificados com o DataFrame original (exceto as colunas 'modalidade' e 'genero' originais)
-    df_encoded = pd.concat([df.drop(columns=['modalidade', 'genero', 'uuid', 'cpf', 'telefone', 'cidade', 'estado', 'pais', 'latitude', 'longitude', 'data_nascimento', 'academia']), encoded_df], axis=1)
+    df_encoded = pd.concat([df.drop(columns=['modalidade', 'genero', 'cpf', 'telefone', 'cidade', 'estado', 'pais', 'latitude', 'longitude', 'data_nascimento', 'academia']), encoded_df], axis=1)
 
     # Normalizando os dados numéricos
     scaler = StandardScaler()
@@ -127,10 +127,3 @@ def recommend_opponents(athlete, num_recommendations=5):
     # Retornar as top N recomendações
     return [rec[0] for rec in recommendations[:num_recommendations]]
 
-
-# Exemplo de uso
-
-if __name__ == "__main__":
-    recomendacoes = recommend_opponents(Athlete.objects.get(cpf=81907348694))
-    for recomendacao in recomendacoes:
-        print(recomendacao.nome)

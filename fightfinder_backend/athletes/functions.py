@@ -6,7 +6,6 @@ def convert_to_dataframe():
     athlete_data = []
     for athlete in athletes:
         athlete_data.append({
-            'uuid': athlete.uuid,
             'cpf': athlete.cpf,
             'genero': athlete.genero,
             'peso': athlete.peso,

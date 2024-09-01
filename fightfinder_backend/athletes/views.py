@@ -60,7 +60,6 @@ class AthleteRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     # permission_classes = (IsAuthenticated, GlobalDefaultPermission,)
     queryset = Athlete.objects.all()
     serializer_class = AthleteSerializer
-    lookup_field = "uuid"
 
 
 class AthleteRecommendationsView(APIView):
@@ -77,10 +76,10 @@ class AthleteRecommendationsView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 @cache_page(60 * 10)
-def recommend_view(request, cpf):
+def recommend_view(request, pk):
     try:
         # Obtenha o atleta pelo CPF
-        athlete = Athlete.objects.get(cpf=cpf)
+        athlete = Athlete.objects.get(id=pk)
         
         # Converta a base de dados para DataFrame
         df = convert_to_dataframe()

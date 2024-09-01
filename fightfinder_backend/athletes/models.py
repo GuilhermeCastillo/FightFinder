@@ -21,8 +21,8 @@ GENDER_CHOICES = [
 ]
 
 class Athlete(models.Model):
-    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-    cpf = models.CharField(primary_key=True, max_length=11)
+    id = models.AutoField(primary_key=True)
+    cpf = models.CharField(unique=True, max_length=11)
     genero = models.CharField(
         max_length=1,
         choices=GENDER_CHOICES,
@@ -52,10 +52,6 @@ class Athlete(models.Model):
     imagem = models.ImageField(
         upload_to="athletes/", null=True, blank=True
     )  # Adiciona o campo de imagem
-
-    # cartel = models.OneToOneField(
-    #     Cartel, on_delete=models.PROTECT, related_name="athlete", null=True, blank=True
-    # )
 
     def __str__(self):
         return self.nome
