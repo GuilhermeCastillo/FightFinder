@@ -1,10 +1,12 @@
 from rest_framework import generics, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .recommender import recommend_opponents
+from .recommender import recommend_opponents, recommend_athletes
 from athletes.models import Athlete
 from athletes.serializers import AthleteSerializer
-
+from django.http import JsonResponse
+from django.views.decorators.cache import cache_page
+from .functions import convert_to_dataframe
 from datetime import date
 
 
@@ -73,3 +75,57 @@ class AthleteRecommendationsView(APIView):
         recommendations = recommend_opponents(athlete)
         serializer = AthleteSerializer(recommendations, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+@cache_page(60 * 10)
+def recommend_view(request, cpf):
+    try:
+        # Obtenha o atleta pelo CPF
+        athlete = Athlete.objects.get(cpf=cpf)
+        
+        # Converta a base de dados para DataFrame
+        df = convert_to_dataframe()
+        
+        # Encontre o índice do atleta no DataFrame
+        atleta_idx = df.index[df['nome'] == athlete.nome].tolist()[0]
+        
+        # Gere as recomendações
+        recommended_athlete_names = recommend_athletes(df, atleta_idx, 5)
+        
+        # Obtenha os detalhes dos atletas recomendados
+        recommended_athletes = Athlete.objects.filter(nome__in=recommended_athlete_names)
+        
+        # Formate os dados dos atletas recomendados para o JSON
+        recommendations = []
+        for rec_athlete in recommended_athletes:
+            recommendations.append({
+                'nome': rec_athlete.nome,
+                'cpf': rec_athlete.cpf,
+                'genero': rec_athlete.genero,
+                'peso': rec_athlete.peso,
+                'altura': rec_athlete.altura,
+                'cidade': rec_athlete.cidade,
+                'estado': rec_athlete.estado,
+                'pais': rec_athlete.pais,
+                'modalidade': rec_athlete.modalidade,
+                # Adicione outros campos que desejar
+            })
+        
+        # Retorne as recomendações como JSON
+        return JsonResponse({
+            'athlete': {
+                'nome': athlete.nome,
+                'cpf': athlete.cpf,
+                'genero': athlete.genero,
+                'peso': athlete.peso,
+                'altura': athlete.altura,
+                'cidade': athlete.cidade,
+                'estado': athlete.estado,
+                'pais': athlete.pais,
+                'modalidade': athlete.modalidade,
+                # Adicione outros campos que desejar
+            },
+            'recommendations': recommendations
+        })
+        
+    except Athlete.DoesNotExist:
+        return JsonResponse({'error': 'Athlete not found'}, status=404)
