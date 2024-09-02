@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "fights",
     "cartel",
     "events",
+    "connections",
 ]
 
 MIDDLEWARE = [
