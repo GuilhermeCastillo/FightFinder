@@ -1,37 +1,39 @@
 #desenvolvedores {
-    margin: 3rem 0;
+    margin: 3rem 0; 
 }
 
 #tituloPrincipal {
-    margin: 6rem 10rem 4rem 11rem;
+    margin: 6rem 10rem 8rem 11rem;
     font-size: 3rem;
     font-weight: bold;
     text-decoration: underline; 
-}
-
-#faixaAzul {
-    margin: 9rem 0;
-    height: 27rem;
-    background-color: var(--azul);
-    padding: 8rem;
-    /* background: linear-gradient(to bottom, #f0f0f0, var(--azul)); */
-    color: white; 
-}
-
-#faixaAzul h2 {
-    font-size: 3rem;
-}
-
-#faixaAzul p {
-    margin-top: 3rem;
-    font-size: 2rem;
-}
+} 
 
 .perfil { 
+    display: flex;
+    flex-direction: column;
     border: 3px solid var(--azul);
-    border-radius: 2rem;
+    border-radius: 1rem;
     margin: 3rem 10rem; 
     padding: 0 0.5rem; 
+    justify-content: center;
+}
+
+.perfil:nth-child(1) { 
+    display: flex; 
+    width: 44%;  
+}
+
+.perfil:nth-child(2) {
+    display: flex; 
+    width: 45%;
+    margin-left: 25%;
+}
+
+.perfil:nth-child(3) {
+    display: flex; 
+    width: 45%;
+    margin-left: 50%;
 }
  
 .perfil hr {
@@ -42,12 +44,20 @@
 
 .nomeEFoto {
     display: flex; 
+    justify-content: center;
+    gap: 3rem;
+    align-items: center;
 } 
 
-.nome {
-    margin-top: 5rem;
+.nome { 
     font-weight: bold;
     font-size: 2rem;
+}
+
+.fa-chevron-down, .fa-chevron-up {
+    font-size: 3.5rem;
+    color: var(--azul);
+    cursor: pointer;
 }
 
 .perfil img { 
@@ -58,4 +68,61 @@
     object-fit: cover; /* Garante que a imagem preencha o círculo */ 
     align-items: center;
     margin: 1rem;
+}
+
+.hrDesc {
+    width: 92%; 
+    background-color: black;
+}
+
+.descricao {
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 2rem;
+}
+
+
+#faixaAzul {
+    margin:  9rem 0 4rem 0;
+    height: 27rem;
+    background-color: var(--azul);
+    padding: 8rem;
+    /* background: linear-gradient(to bottom, #f0f0f0, var(--azul)); */
+    color: white;  
+}
+
+#faixaAzul h2 {
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+#faixaAzul p {
+    margin-top: 3rem;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+#objetivosFuturos { 
+    text-align: center;
+    height: 27rem; 
+    padding: 8rem; 
+    color: rgb(0, 0, 0); 
+}
+
+#objetivosFuturos h2 {
+    font-size: 3rem;
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+#objetivosFuturos p {
+    margin-top: 3rem;
+    font-size: 2rem;
+}
+
+.listaObjetivos {
+    margin: 8rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 30rem;
 }

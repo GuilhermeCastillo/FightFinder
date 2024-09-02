@@ -2,56 +2,89 @@
 
 <section id="desenvolvedores">
     <h1 id="tituloPrincipal">Desenvolvedores do Fight Finder</h1>
-    <ul>
+    
+    <ul id="listaDevs">
         <li class="perfil">
             <div class="nomeEFoto">
                 <img src="assets/Danilo.png"> <h1 class="nome">Danilo Lugli dos Santos</h1> 
+                <i class="fa-solid fa-chevron-up" (click)="mostraDesc()" *ngIf="dropdown"></i>
+                <i class="fa-solid fa-chevron-down" (click)="mostraDesc()" *ngIf="!dropdown"></i>
             </div>
-            <hr />
-            <p class="descricao">   
-                aaaaaa <br>            
-                aaaaaa <br>         
-                aaaaaa <br>         
-                aaaaaa <br>         
-                aaaaaa <br>         
-                aaaaaa <br>         
-                aaaaaa <br>        
+            <hr *ngIf="dropdown" class="hrDesc" />
+            <p class="descricao" *ngIf="dropdown">  
+                Sou programador Java e, ironicamente, fiz o front-end do sistema.    
             </p>
         </li>
+
         <li class="perfil">
             <div class="nomeEFoto">
-                <h1 class="nome">Eduardo Felipe Calderoni</h1> <img src="assets/Eduardo.png">
+                <img src="assets/Eduardo.png"><h1 class="nome">Eduardo Felipe Calderoni</h1>
+                <i class="fa-solid fa-chevron-up" (click)="mostraDesc()" *ngIf="dropdown"></i>
+                <i class="fa-solid fa-chevron-down" (click)="mostraDesc()" *ngIf="!dropdown"></i>
             </div>
-            <hr />
-           
-            <p class="descricao">
-
+            <hr *ngIf="dropdown" class="hrDesc" />
+            <p class="descricao" *ngIf="dropdown">   
+                Neste projeto fui Designer e UX do sistema.       
             </p>
         </li>
+
         <li class="perfil">
             <div class="nomeEFoto">
-                <img src="assets/teste7.jpeg"> <h1 class="nome">Guilherme Castilho Feitosa</h1> 
+                <img src="assets/teste7.jpeg"> <h1 class="nome">Guilherme Castilho Feitosa</h1>
+                <i class="fa-solid fa-chevron-up" (click)="mostraDesc()" *ngIf="dropdown"></i>
+                <i class="fa-solid fa-chevron-down" (click)="mostraDesc()" *ngIf="!dropdown"></i>
             </div>
-            <hr />
-            <p class="descricao">
-
+            <hr *ngIf="dropdown" class="hrDesc" />
+            <p class="descricao" *ngIf="dropdown">  
+                Trabalho com dados e desenvolvi o back-end e banco de dados do projeto.     
             </p>
         </li>
     </ul>
 </section>
 
 <section id="faixaAzul">
-    <h2 style="font-weight: 500;">O que é o Fight Finder?</h2>
-<br>
+    <h2>O que é o Fight Finder?</h2> <br>
     <p>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        É um Sistema de Agendamento de Combates desenvolvido por três estudantes do curso de Ciência da Computação como trabalho de TCC em 2024. <br><br>
+        É um Sistema de Agendamento de Combates desenvolvido por três estudantes do curso de Ciência da Computação como Trabalho de Conclusão de Curso em 2024. <br><br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         O objetivo geral do projeto é incentivar a prática de esportes marciais e promovê-los para aumentar a visibilidade de atletas amadores e profissionais.
-        O Fight Finder aceita e incentiva a participação de iniciantes até esportistas experientes para a evolução do esporte. <br><br>
+        O Fight Finder aceita e encoraja a participação de todos visando a evolução do esporte e das pessoas.<br><br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         Em poucos cliques você consegue selecionar as pessoas que deseja treinar ou lutar e crescer no mundo das Artes Marciais!
     </p>
+</section>
+
+<section id="objetivosFuturos">  <!-- colocar ícones (4) e escrever objetivos para o futuro do projeto (dominio URl, escalabilidade, modo premium) -->
+    <h2>Objetivos para o Futuro</h2> <br>
+    <ul class="listaObjetivos">
+        <li>
+            <i class="fa-solid fa-chevron-up"></i>
+            <p>1</p>
+        </li>
+        <li>
+            <i class="fa-solid fa-chevron-up"></i>
+            <p>2</p>
+        </li> 
+        <li>
+            <i class="fa-solid fa-chevron-up"></i>
+            <p>3</p>
+        </li> 
+    </ul>
+    <ul class="listaObjetivos">
+        <li>
+            <i class="fa-solid fa-chevron-up"></i>
+            <p>4</p>
+        </li>
+        <li>
+            <i class="fa-solid fa-chevron-up"></i>
+            <p>5</p>
+        </li> 
+        <li>
+            <i class="fa-solid fa-chevron-up"></i>
+            <p>6</p>
+        </li> 
+    </ul>
 </section>
 
 <app-footer />
