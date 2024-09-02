@@ -13,7 +13,6 @@ class PromoterRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     # permission_classes = (IsAuthenticated, GlobalDefaultPermission,)
     queryset = Promoter.objects.all()
     serializer_class = PromoterSerializer
-    lookup_field = "uuid"
 
 
 class EventCreateListView(generics.ListCreateAPIView):

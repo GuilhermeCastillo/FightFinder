@@ -15,8 +15,8 @@ MODALITIES_CHOICES = [
 
 
 class Promoter(models.Model):
-    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-    cpf = models.CharField(primary_key=True, max_length=11)
+    id = models.AutoField(primary_key=True)
+    cpf = models.CharField(unique=True, max_length=11)
     data_nascimento = models.DateField()
     nome = models.CharField(max_length=200)
 

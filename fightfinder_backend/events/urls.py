@@ -8,7 +8,7 @@ urlpatterns = [
         name="promoters-create-list",
     ),
     path(
-        "promoters/<uuid:uuid>/",
+        "promoters/<int:pk>/",
         views.PromoterRetrieveUpdateDestroyView.as_view(),
         name="promoters-detail-view",
     ),

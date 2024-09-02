@@ -1,9 +1,64 @@
 from math import sqrt, radians, cos, sin, asin
-
-
 from athletes.models import Athlete
 from fights.models import Fight, FightHistoric
 from django.db.models import Q
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.neighbors import NearestNeighbors
+import pandas as pd
+
+
+
+# Função para recomendar atletas semelhantes
+def recommend_athletes(df, atleta_idx, n_recommendations=5):
+    # Convertendo os estilos de luta (coluna categórica) e gênero em variáveis binárias (One-Hot Encoding)
+    encoder = OneHotEncoder()
+    encoded_features = encoder.fit_transform(df[['modalidade', 'genero']]).toarray()
+    encoded_df = pd.DataFrame(encoded_features, columns=encoder.get_feature_names_out(['modalidade', 'genero']))
+
+    # Concatenando os dados codificados com o DataFrame original (exceto as colunas 'modalidade' e 'genero' originais)
+    df_encoded = pd.concat([df.drop(columns=['modalidade', 'genero', 'cpf', 'telefone', 'cidade', 'estado', 'pais', 'latitude', 'longitude', 'data_nascimento', 'academia']), encoded_df], axis=1)
+
+    # Normalizando os dados numéricos
+    scaler = StandardScaler()
+    df_scaled = pd.DataFrame(scaler.fit_transform(df_encoded.drop(columns=['nome'])), columns=df_encoded.columns[1:])
+
+    # Incluindo a coluna 'nome' para referência
+    df_scaled['nome'] = df_encoded['nome']
+
+    # Inicializando o modelo KNN
+    knn = NearestNeighbors(n_neighbors=5, algorithm='auto')
+
+    # Treinando o modelo com os dados escalados
+    knn.fit(df_scaled.drop(columns=['nome']))    
+        
+    
+    
+    # Pegando o gênero e modalidade do atleta para filtragem
+    atleta_gender = df.iloc[atleta_idx]['genero']
+    atleta_modalidade = df.iloc[atleta_idx]['modalidade']
+    
+    # Filtrando o DataFrame para incluir apenas atletas do mesmo gênero e modalidade
+    gender_filtered_df = df_scaled[
+        (df_encoded['genero_' + atleta_gender] == 1) &
+        (df_encoded['modalidade_' + atleta_modalidade] == 1)
+    ]
+    
+    # Pegando as características do atleta
+    atleta_data = df_scaled.drop(columns=['nome']).iloc[atleta_idx].values.reshape(1, -1)
+    
+    # Encontrando os n atletas mais próximos
+    distances, indices = knn.kneighbors(atleta_data, n_neighbors=n_recommendations+1)
+    
+    # Filtrando as recomendações pelo gênero e modalidade
+    recommendations = [
+        df_scaled['nome'].iloc[i] 
+        for i in indices.flatten() 
+        if i != atleta_idx and
+           df_encoded.iloc[i]['genero_' + atleta_gender] == 1 and
+           df_encoded.iloc[i]['modalidade_' + atleta_modalidade] == 1
+    ]
+    
+    return recommendations[:n_recommendations]
 
 
 # Função para coletar dados de um atleta específico
@@ -72,10 +127,3 @@ def recommend_opponents(athlete, num_recommendations=5):
     # Retornar as top N recomendações
     return [rec[0] for rec in recommendations[:num_recommendations]]
 
-
-# Exemplo de uso
-
-if __name__ == "__main__":
-    recomendacoes = recommend_opponents(Athlete.objects.get(cpf=81907348694))
-    for recomendacao in recomendacoes:
-        print(recomendacao.nome)
