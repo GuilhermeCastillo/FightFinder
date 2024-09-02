@@ -20,3 +20,22 @@ input:active {
 input:focus { 
     border: 2px solid var(--azul);   
 }
+
+.password-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  } 
+  
+  .password-input-container button {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  .password-input-container button:focus {
+    outline: none;
+  }

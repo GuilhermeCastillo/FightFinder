@@ -1,14 +1,24 @@
 #filtros { 
     display: flex;
-    padding: 5rem;
-    position: relative;
-    background-color: white;
-    border-radius: 25px;
-    margin: 3rem; 
+    margin: 3rem 0 1rem 0;
+    text-align: center;
+    justify-content: center; 
 }
 
 #filtros ul {
-    display: flex;
+    padding: 0.7rem 0.5rem 1rem 0.5rem;
+    width: 90%;
+    display: flex; 
+    text-align: center;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 2rem; 
+    border-radius: 15px;
+    background-color: white;
+}
+
+#filtros ul li {  
+    justify-content: center;
 }
 
 #filtros i {
@@ -21,5 +31,35 @@
 }
 
 #inputText {
-    padding-left: 30px; /* Espaço para o ícone */
+    position: relative;
+    display: flex;
+    align-items: center;
 }
+
+.fa-solid { 
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+} 
+
+#erroMsg {
+    font-size: 1rem;
+    color: red;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+#divTabela {
+    display: flex;
+    justify-content: center; 
+    margin: 2rem;
+}
+
+#tabelaRanking { 
+    display: flex;
+    border-radius: 15px; 
+    width: 100%; 
+} 

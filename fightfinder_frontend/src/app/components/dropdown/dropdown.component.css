@@ -6,7 +6,7 @@ select {
     font-size: 1.3rem;
     margin-top: 0.3rem; 
     text-align: center;
-    background-color: #f0f0f0;
+    background-color: white;    
 }
 
 select:hover { 
@@ -14,5 +14,5 @@ select:hover {
 }
 
 select:focus {
-    border: 2px solid var(--azul);   
+    border: 2px solid var(--azul);    
 }

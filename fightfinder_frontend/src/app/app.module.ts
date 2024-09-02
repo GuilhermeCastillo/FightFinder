@@ -25,7 +25,7 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
     InputTextoComponent,
     InputRadioComponent,
     InputDataComponent,
-    DropdownComponent
+    DropdownComponent,
   ],
   imports: [
     BrowserModule, // importar módulos 

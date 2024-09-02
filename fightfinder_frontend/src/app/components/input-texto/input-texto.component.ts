@@ -16,6 +16,8 @@ export class InputTextoComponent {
   @Input() disabled: boolean = false; // Define se o input está desabilitado
   @Input() id: string = '';
   @Input() borderColor: string = 'var(--vermelho)';
+  @Input() maxLength: number = 60;
+  // @Input() width: string = '100%';
 
   @Output() valueChange = new EventEmitter<string>();
 

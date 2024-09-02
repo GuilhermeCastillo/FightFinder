@@ -1,5 +1,10 @@
-<input  
-    type="password"
-    [placeholder]="placeholder" 
-    [disabled]="disabled"
-/>  
+<div class="password-input-container">
+    <input  
+        [type]="passwordVisible ? 'text' : 'password'"
+        [placeholder]="placeholder" 
+        [disabled]="disabled"
+    />  
+    <button type="button" (click)="togglePasswordVisibility()">
+        <i [ngClass]="passwordVisible ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+    </button>
+</div>
