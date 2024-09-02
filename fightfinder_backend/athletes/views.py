@@ -1,28 +1,21 @@
 from rest_framework import generics, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from .recommender import recommend_opponents, recommend_athletes
+from connections.models import Connection
+from connections.serializers import ConnectionSerializer
 from athletes.models import Athlete
 from athletes.serializers import AthleteSerializer
 from django.http import JsonResponse
 from django.views.decorators.cache import cache_page
-from .functions import convert_to_dataframe
+from .functions import convert_to_dataframe, calcular_idade
 from datetime import date
 
-
-def calcular_idade(data_nascimento):
-    today = date.today()
-    return (
-        today.year
-        - data_nascimento.year
-        - ((today.month, today.day) < (data_nascimento.month, data_nascimento.day))
-    )
-
-
 class AthleteCreateListView(generics.ListCreateAPIView):
-    # permission_classes = (IsAuthenticated, GlobalDefaultPermission,)
     queryset = Athlete.objects.all()
     serializer_class = AthleteSerializer
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -55,12 +48,10 @@ class AthleteCreateListView(generics.ListCreateAPIView):
 
         return queryset
 
-
 class AthleteRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
-    # permission_classes = (IsAuthenticated, GlobalDefaultPermission,)
     queryset = Athlete.objects.all()
     serializer_class = AthleteSerializer
-
+    permission_classes = [IsAuthenticated]
 
 class AthleteRecommendationsView(APIView):
     def get(self, request, cpf, format=None):
@@ -78,22 +69,12 @@ class AthleteRecommendationsView(APIView):
 @cache_page(60 * 10)
 def recommend_view(request, pk):
     try:
-        # Obtenha o atleta pelo CPF
         athlete = Athlete.objects.get(id=pk)
-        
-        # Converta a base de dados para DataFrame
         df = convert_to_dataframe()
-        
-        # Encontre o índice do atleta no DataFrame
         atleta_idx = df.index[df['nome'] == athlete.nome].tolist()[0]
-        
-        # Gere as recomendações
         recommended_athlete_names = recommend_athletes(df, atleta_idx, 5)
-        
-        # Obtenha os detalhes dos atletas recomendados
         recommended_athletes = Athlete.objects.filter(nome__in=recommended_athlete_names)
         
-        # Formate os dados dos atletas recomendados para o JSON
         recommendations = []
         for rec_athlete in recommended_athletes:
             recommendations.append({
@@ -106,10 +87,8 @@ def recommend_view(request, pk):
                 'estado': rec_athlete.estado,
                 'pais': rec_athlete.pais,
                 'modalidade': rec_athlete.modalidade,
-                # Adicione outros campos que desejar
             })
         
-        # Retorne as recomendações como JSON
         return JsonResponse({
             'athlete': {
                 'nome': athlete.nome,
@@ -121,10 +100,20 @@ def recommend_view(request, pk):
                 'estado': athlete.estado,
                 'pais': athlete.pais,
                 'modalidade': athlete.modalidade,
-                # Adicione outros campos que desejar
             },
             'recommendations': recommendations
         })
         
     except Athlete.DoesNotExist:
         return JsonResponse({'error': 'Athlete not found'}, status=404)
+
+# Nova View para Listar Conexões do Atleta Logado
+class AthleteConnectionsListView(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self, request, format=None):
+        user = request.user
+        print(user)
+        # connections = Connection.objects.filter(athlete_from=user) | Connection.objects.filter(athlete_to=user)
+        connections = Connection.objects.filter(athlete_from=user) | Connection.objects.filter(athlete_to=user)
+        serializer = ConnectionSerializer(connections, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)

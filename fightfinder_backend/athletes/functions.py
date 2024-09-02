@@ -1,5 +1,14 @@
 import pandas as pd
+from datetime import date
 from .models import Athlete
+
+def calcular_idade(data_nascimento):
+    today = date.today()
+    return (
+        today.year
+        - data_nascimento.year
+        - ((today.month, today.day) < (data_nascimento.month, data_nascimento.day))
+    )
 
 def convert_to_dataframe():
     athletes = Athlete.objects.all()
