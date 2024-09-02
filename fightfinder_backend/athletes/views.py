@@ -1,6 +1,7 @@
 from rest_framework import generics, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from .recommender import recommend_opponents, recommend_athletes
 from connections.models import Connection
 from connections.serializers import ConnectionSerializer
@@ -9,10 +10,12 @@ from athletes.serializers import AthleteSerializer
 from django.http import JsonResponse
 from django.views.decorators.cache import cache_page
 from .functions import convert_to_dataframe, calcular_idade
+from datetime import date
 
 class AthleteCreateListView(generics.ListCreateAPIView):
     queryset = Athlete.objects.all()
     serializer_class = AthleteSerializer
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -48,6 +51,7 @@ class AthleteCreateListView(generics.ListCreateAPIView):
 class AthleteRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Athlete.objects.all()
     serializer_class = AthleteSerializer
+    permission_classes = [IsAuthenticated]
 
 class AthleteRecommendationsView(APIView):
     def get(self, request, cpf, format=None):
@@ -105,6 +109,7 @@ def recommend_view(request, pk):
 
 # Nova View para Listar Conexões do Atleta Logado
 class AthleteConnectionsListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request, format=None):
         user = request.user
         print(user)
