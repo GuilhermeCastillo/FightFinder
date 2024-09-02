@@ -12,4 +12,6 @@ urlpatterns = [
     ),
     # path('athletes/<str:cpf>/recommendations/', views.AthleteRecommendationsView.as_view(), name='athlete_recommendations'),
     path('athletes/<int:pk>/recommendations/', views.recommend_view, name='athlete_recommendations'),
+    path('recommendations/<int:pk>/', views.recommend_view, name='recommend-view'),
+    path('athletes/connections/', views.AthleteConnectionsListView.as_view(), name='athlete-connections'),
 ]
