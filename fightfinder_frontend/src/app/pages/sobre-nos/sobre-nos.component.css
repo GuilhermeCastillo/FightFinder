@@ -7,6 +7,7 @@
     font-size: 3rem;
     font-weight: bold;
     text-decoration: underline; 
+    text-align: center;
 } 
 
 .perfil { 
@@ -103,6 +104,7 @@
 }
 
 #objetivosFuturos { 
+    margin: 5rem 0 15rem 0;
     text-align: center;
     height: 27rem; 
     padding: 8rem; 
@@ -113,16 +115,27 @@
     font-size: 3rem;
     font-weight: 500;
     text-decoration: underline;
-}
-
-#objetivosFuturos p {
-    margin-top: 3rem;
-    font-size: 2rem;
-}
+} 
 
 .listaObjetivos {
-    margin: 8rem 0;
+    margin: 5rem;
     display: flex;
-    justify-content: center;
-    gap: 30rem;
+    flex-wrap: wrap;
+    justify-content: center; 
+    height: 20rem;
 }
+
+.listaObjetivos li {
+    width: 20%;
+    margin: 4rem 5rem;
+}
+ 
+.listaObjetivos i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.listaObjetivos p {
+    font-size: 2rem;
+}
+ 

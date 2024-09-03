@@ -34,17 +34,14 @@ export class PerfilComponent {
         alert(`O arquivo é muito grande. O tamanho máximo permitido é ${maxSizeInMB} MB.`);
         fileInput.value = ''; // Limpa o input
         return;
-      } else {
-        // Continue com o processamento do arquivo
-
+      } else { // Continue com o processamento do arquivo
         const reader = new FileReader();
 
         reader.onload = () => {
           this.imageUrl = reader.result;
         };
 
-        reader.readAsDataURL(file);
-        console.log('Arquivo selecionado:', file);
+        reader.readAsDataURL(file); 
       } 
     } 
   }
@@ -53,10 +50,8 @@ export class PerfilComponent {
     console.log('Opção selecionada:', option); 
   }
 
-  editarCampo(idCampo: string) {
-    document.getElementById(idCampo);
-    this.campoBloqueado = !this.campoBloqueado;
-    console.log('ESTOU SENDO CHAMADO!');
+  editarCampo() {
+    this.campoBloqueado = !this.campoBloqueado; 
     console.log('campo bloqueado', this.campoBloqueado);
   }
 

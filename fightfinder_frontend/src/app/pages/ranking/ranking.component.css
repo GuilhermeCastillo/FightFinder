@@ -63,3 +63,24 @@
     border-radius: 15px; 
     width: 100%; 
 } 
+
+
+#inputTextPeso {
+    position: relative;
+    display: inline-block;
+}
+  
+#inputTextPeso input {
+    padding-right: 3rem; /* Espaço para o sufixo */
+}
+
+#inputTextPeso::after {
+    content: 'Kg';
+    position: absolute;
+    right: 120px;
+    top: 55%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #000000;  
+    font-size: 1.1rem;
+}

@@ -24,23 +24,23 @@
                 placeholder="Nome"
                 [disabled]="campoBloqueado" 
                 />
-                <app-botao-pequeno (click)="editarCampo('#inputNome')"> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
+                <app-botao-pequeno (click)="editarCampo()"> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
             </li>
 
             <li>
                 <app-input-texto
-                placeholder="Esportista / Agente de lutas" 
+                placeholder="Peso" 
                 [disabled]="campoBloqueado" 
                 />
-                <app-botao-pequeno (click)="editarCampo('#inputNome')"> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
+                <app-botao-pequeno (click)="editarCampo()"> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
             </li>
 
             <li>
                 <app-input-texto  
                 placeholder="Idade" 
-                [disabled]="true" 
+                [disabled]="campoBloqueado" 
                 />
-                <app-botao-pequeno> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
+                <app-botao-pequeno (click)="editarCampo()"> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
             </li>
 
             <li>   
@@ -48,43 +48,45 @@
                 [options]="['Modalidade Favorita', 'Judo', 'Karatê', 'Jiu-Jitsu', 'Boxe', 'Muay Thai', 'Taekwondo', 'Capoeira ', 'Kung Fu', 'Krav Maga']" 
                 placeholder = 'Modalidade'  
                 (optionSelected)="onOptionSelected($event)" 
+                [disabled]="campoBloqueado" 
                  />  
-                <app-botao-pequeno> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
+                <app-botao-pequeno (click)="editarCampo()"> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
             </li>
         </ul>
         <ul>     
             <li>
                 <app-input-texto  
                 placeholder="Estado" 
-                [disabled]="true" 
+                [disabled]="campoBloqueado" 
                 />
-                <app-botao-pequeno> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
+                <app-botao-pequeno (click)="editarCampo()"> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
             </li>
 
             <li>
                 <app-input-texto  
                 placeholder="Telefone" 
-                [disabled]="true" 
+                [disabled]="campoBloqueado" 
+                type="number"
                 />
-                <app-botao-pequeno> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
+                <app-botao-pequeno (click)="editarCampo()"> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
             </li>
             
             <li>
                 <app-input-texto 
                 id="email" 
                 placeholder="email" 
-                [disabled]="true" 
+                [disabled]="campoBloqueado"
                 />
-                <app-botao-pequeno> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
+                <app-botao-pequeno (click)="editarCampo()"> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
             </li>
 
             <li>
                 <app-input-senha 
                 id="senha" 
                 placeholder="********" 
-                [disabled]="true" 
+                [disabled]="campoBloqueado"
                 />
-                <app-botao-pequeno> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
+                <app-botao-pequeno (click)="editarCampo()"> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
             </li> 
         </ul> 
     </section> 

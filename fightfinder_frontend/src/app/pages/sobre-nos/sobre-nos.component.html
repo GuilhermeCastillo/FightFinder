@@ -7,36 +7,36 @@
         <li class="perfil">
             <div class="nomeEFoto">
                 <img src="assets/Danilo.png"> <h1 class="nome">Danilo Lugli dos Santos</h1> 
-                <i class="fa-solid fa-chevron-up" (click)="mostraDesc()" *ngIf="dropdown"></i>
-                <i class="fa-solid fa-chevron-down" (click)="mostraDesc()" *ngIf="!dropdown"></i>
+                <i class="fa-solid fa-chevron-up" (click)="mostraDesc(1)" *ngIf="dropdown1"></i>
+                <i class="fa-solid fa-chevron-down" (click)="mostraDesc(1)" *ngIf="!dropdown1"></i>
             </div>
-            <hr *ngIf="dropdown" class="hrDesc" />
-            <p class="descricao" *ngIf="dropdown">  
-                Sou programador Java e, ironicamente, fiz o front-end do sistema.    
+            <hr class="hrDesc" *ngIf="dropdown1" />
+            <p class="descricao" *ngIf="dropdown1">  
+                Sou programador Java e, ironicamente, fui responsável por desenvolver o Front-end do sistema.    
             </p>
         </li>
 
         <li class="perfil">
             <div class="nomeEFoto">
                 <img src="assets/Eduardo.png"><h1 class="nome">Eduardo Felipe Calderoni</h1>
-                <i class="fa-solid fa-chevron-up" (click)="mostraDesc()" *ngIf="dropdown"></i>
-                <i class="fa-solid fa-chevron-down" (click)="mostraDesc()" *ngIf="!dropdown"></i>
+                <i class="fa-solid fa-chevron-up" (click)="mostraDesc(2)" *ngIf="dropdown2"></i>
+                <i class="fa-solid fa-chevron-down" (click)="mostraDesc(2)" *ngIf="!dropdown2"></i>
             </div>
-            <hr *ngIf="dropdown" class="hrDesc" />
-            <p class="descricao" *ngIf="dropdown">   
-                Neste projeto fui Designer e UX do sistema.       
+            <hr class="hrDesc" *ngIf="dropdown2" />
+            <p class="descricao" *ngIf="dropdown2">    
+                Neste projeto atuei como Designer e UX do sistema, criei os protótipos das telas através do Webflow.       
             </p>
         </li>
 
         <li class="perfil">
             <div class="nomeEFoto">
                 <img src="assets/teste7.jpeg"> <h1 class="nome">Guilherme Castilho Feitosa</h1>
-                <i class="fa-solid fa-chevron-up" (click)="mostraDesc()" *ngIf="dropdown"></i>
-                <i class="fa-solid fa-chevron-down" (click)="mostraDesc()" *ngIf="!dropdown"></i>
+                <i class="fa-solid fa-chevron-up" (click)="mostraDesc(3)" *ngIf="dropdown3"></i>
+                <i class="fa-solid fa-chevron-down" (click)="mostraDesc(3)" *ngIf="!dropdown3"></i>
             </div>
-            <hr *ngIf="dropdown" class="hrDesc" />
-            <p class="descricao" *ngIf="dropdown">  
-                Trabalho com dados e desenvolvi o back-end e banco de dados do projeto.     
+            <hr class="hrDesc" *ngIf="dropdown3" />
+            <p class="descricao" *ngIf="dropdown3">  
+                Trabalho com dados e desenvolvi o Back-end e Banco de Dados do projeto.     
             </p>
         </li>
     </ul>
@@ -59,32 +59,31 @@
     <h2>Objetivos para o Futuro</h2> <br>
     <ul class="listaObjetivos">
         <li>
-            <i class="fa-solid fa-chevron-up"></i>
-            <p>1</p>
+            <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+            <p>Escalabilidade</p>
         </li>
         <li>
-            <i class="fa-solid fa-chevron-up"></i>
-            <p>2</p>
+            <i class="fa-solid fa-crown"></i>
+            <p>Modo Premium</p>
         </li> 
         <li>
-            <i class="fa-solid fa-chevron-up"></i>
-            <p>3</p>
+            <i class="fa-solid fa-chart-pie"></i> 
+            <p>Gráficos de Desempenho</p>
         </li> 
-    </ul>
-    <ul class="listaObjetivos">
+     
         <li>
-            <i class="fa-solid fa-chevron-up"></i>
-            <p>4</p>
+            <i class="fa-solid fa-mobile-button"></i>
+            <p>Versão Mobile</p>
         </li>
         <li>
-            <i class="fa-solid fa-chevron-up"></i>
-            <p>5</p>
+            <i class="fa-regular fa-comment"></i>
+            <p>Sistema de Feedback</p>
         </li> 
         <li>
-            <i class="fa-solid fa-chevron-up"></i>
-            <p>6</p>
+            <i class="fa-solid fa-bug-slash"></i>
+            <p>Melhorias nas Funcionalidades</p>
         </li> 
-    </ul>
+    </ul> 
 </section>
 
 <app-footer />

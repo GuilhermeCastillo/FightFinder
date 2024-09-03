@@ -10,11 +10,18 @@ import { CommonModule } from '@angular/common';
   templateUrl: './sobre-nos.component.html',
   styleUrl: './sobre-nos.component.css'
 })
-export class SobreNosComponent {
+export class SobreNosComponent { 
+  dropdown1: boolean = false;
+  dropdown2: boolean = false;
+  dropdown3: boolean = false;
 
-  dropdown: boolean = false;
-
-  mostraDesc(): void { 
-    this.dropdown = !this.dropdown;
+  mostraDesc(numero: number): void { 
+    if (numero === 1) { 
+      this.dropdown1 = !this.dropdown1;
+    } else if (numero === 2) { 
+      this.dropdown2 = !this.dropdown2;
+    } else if (numero === 3) {
+      this.dropdown3 = !this.dropdown3;
+    } 
   }
 }

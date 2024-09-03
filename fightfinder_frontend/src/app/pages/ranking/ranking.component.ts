@@ -21,16 +21,14 @@ export class RankingComponent implements OnInit {
   data: [] = [];
 
   constructor() { 
-    let data: { Rank: string; nome: string; Idade: number; Modalidade: string; Vitorias: number; }[];
   } 
   
   columns = [
     { header: 'Rank', field: 'Rank' },
-    { header: 'Nome', field: 'Nome' },
-    { header: 'Idade', field: 'Idade' },
+    { header: 'Nome', field: 'Nome' }, 
     { header: 'Peso (Kg)', field: 'Peso' },
     { header: 'Modalidade', field: 'Modalidade' },
-    { header: 'Vitorias', field: 'Vitorias' } 
+    { header: 'Vitórias', field: 'Vitorias' }  // ou lutas e treinos
   ]; 
 
   ngOnInit(): void { 
