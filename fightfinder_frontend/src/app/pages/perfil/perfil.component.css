@@ -21,11 +21,11 @@
     margin: 1rem;
  }
  
-
- .fa-solid {
+.fa-solid {
     color: white; 
-    background-color: gray;
- }
+    background-color: gray; 
+    font-size: 8rem;
+}
  
 #infoPessoal {
     display: flex;

@@ -1,27 +1,26 @@
 
 #tituloPrincipal {
-    font-size: 10rem;
+    font-size: 9rem;
     font-weight: bold;
-    margin: 3rem 0 3rem 6rem;
-    text-decoration: underline;
+    margin: 4.5rem 0 3.5rem 6rem;
+    text-decoration: underline; 
 }
 
 
 section ul {
     display: flex;
     justify-content: center;
-    margin-bottom: 7rem;
+    margin-bottom: 8rem;
 }
 
 .cards {
     position: relative;
-    display: inline-block; 
-    border-radius: 5px;
+    display: inline-block;  
     width: 27%;
     height: 30rem;
     margin: 3rem;
     text-align: center; 
-    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2); 
 }
 
 .cards:hover {
@@ -35,11 +34,12 @@ section ul li a {
 
 section ul li a p {  
     width: 16rem;
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: bold;
     color: var(--vermelho);  
-    line-height: 4.5rem;
+    line-height: 4rem;
     border-bottom: 2px solid var(--vermelho);
+    border-radius: 10px;  
 } 
 
 section ul li a img { 
@@ -52,7 +52,7 @@ section ul li a img {
   top: 80%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(255, 255, 255, 0.7); /* Fundo semi-transparente */
+  background-color: rgba(255, 255, 255, 0.74); /* Fundo semi-transparente */
   border: none;
   padding: 5px 5px;
   cursor: pointer;

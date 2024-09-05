@@ -17,7 +17,7 @@
     height: 6rem;
     margin: 0;
     padding: 0;
-    margin-left: 1rem;
+    margin-left: 2rem;
 } 
   
 #logo a img {
@@ -34,7 +34,7 @@
 }
 
 #menu ul li {
-    padding: 15px; 
+    padding: 1rem 1.5rem; 
 }
 
 #menu ul li a { 
@@ -95,3 +95,29 @@ span {
     margin: 0;
     height: 2px;
 }
+
+#foto {
+    display: flex; 
+    margin-right: 2rem;
+    font-size: 10rem; 
+    text-align: center;  
+    justify-content: center; 
+}
+
+#foto img, #foto i { 
+    display: flex; 
+    width: 4rem;  
+    height: 4rem;  
+    border-radius: 50%; /* Faz a imagem ficar redonda */
+    object-fit: cover; /* Garante que a imagem preencha o círculo */ 
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+ }
+ 
+
+ .fa-solid {
+    color: white; 
+    background-color: gray;
+    font-size: 1.5rem;
+ }

@@ -9,13 +9,19 @@
             <li><a href="/ranking">Ranking</a></li>
             <li><a href="/match-luta">Match</a></li> 
             <li><a href="/match-treino">Treinar</a></li> 
-            <li><a href="/sobre-nos">Sobre nós</a></li>
-            <li><a href="/perfil">Perfil*</a></li>
+            <li><a href="/sobre-nos">Sobre nós</a></li> 
         </ul>
     
-        <div id="login">
-            <a href="/login">Login</a> <!-- ngIf  PERFIL, CONFIGS, LOGOUT -->
+        <div *ngIf="!logado" id="login">
+            <a href="/login">Login</a> <!-- ngIf  PERFIL, CONFIGS, LOGOUT --> 
         </div>
+            
+        <div *ngIf="!logado" id="foto">  
+            <a *ngIf="!logado" href="/perfil">
+                <i *ngIf="semFoto" class="fa-solid fa-user"></i> 
+                <img *ngIf="!semFoto" alt="Imagem Selecionada" src="assets\teste2.jpeg" />
+            </a>
+        </div> 
     </div>
 
     <div id="linhaDupla">

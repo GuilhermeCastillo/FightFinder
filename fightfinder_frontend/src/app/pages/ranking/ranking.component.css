@@ -75,9 +75,9 @@
 }
 
 #inputTextPeso::after {
-    content: 'Kg';
+    content: '(Kg)';
     position: absolute;
-    right: 120px;
+    right: 110px;
     top: 55%;
     transform: translateY(-50%);
     pointer-events: none;
