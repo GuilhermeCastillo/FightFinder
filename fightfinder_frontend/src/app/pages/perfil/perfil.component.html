@@ -1,9 +1,10 @@
 <app-header />
 
-<section id="fundo">
+<section id="fundo"> <!--  LUTAS, VITORIAS, DERROTAS AUTOMATICO-->
 
     <section id="foto">
-        <i *ngIf="!imageUrl" class="fa-solid fa-user"></i> <img *ngIf="imageUrl" [src]="imageUrl" alt="Imagem Selecionada" src="assets\teste2.jpeg" />
+        <i *ngIf="!imageUrl" class="fa-solid fa-circle-user"></i> 
+        <img *ngIf="imageUrl" [src]="imageUrl" alt="Imagem Selecionada" src="assets\teste2.jpeg" />
          
         <input type="file"
         #fileInput
@@ -35,17 +36,26 @@
                 <app-botao-pequeno (click)="editarCampo()"> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
             </li>
 
-            <li>
+            <!-- <li>
                 <app-input-texto  
-                placeholder="Idade" 
+                placeholder="Idade *" 
                 [disabled]="campoBloqueado" 
                 />
                 <app-botao-pequeno (click)="editarCampo()"> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
-            </li>
+            </li> -->
 
             <li>   
                 <app-dropdown 
                 [options]="['Modalidade Favorita', 'Judo', 'Karatê', 'Jiu-Jitsu', 'Boxe', 'Muay Thai', 'Taekwondo', 'Capoeira ', 'Kung Fu', 'Krav Maga']" 
+                placeholder = 'Modalidade'  
+                (optionSelected)="onOptionSelected($event)" 
+                [disabled]="campoBloqueado" 
+                 />  
+                <app-botao-pequeno (click)="editarCampo()"> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
+            </li>
+            <li>   
+                <app-dropdown 
+                [options]="['Experiência', 'Nenhuma Experiência', 'Pouca Experiência', 'Experiência Média', 'Bem Experiente', 'Muito Experiente']" 
                 placeholder = 'Modalidade'  
                 (optionSelected)="onOptionSelected($event)" 
                 [disabled]="campoBloqueado" 

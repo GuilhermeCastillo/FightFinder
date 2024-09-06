@@ -17,7 +17,7 @@ export class InputTextoComponent {
   @Input() id: string = '';
   @Input() borderColor: string = 'var(--vermelho)';
   @Input() maxLength: number = 60;
-  // @Input() width: string = '100%';
+  @Input() width: string = '18rem';
 
   @Output() valueChange = new EventEmitter<string>();
 

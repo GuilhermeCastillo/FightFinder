@@ -1,0 +1,19 @@
+.loading-circle {
+    border: 6px solid rgba(0, 0, 0, 0.1); /* Borda do círculo */
+    border-top: 6px solid var(--azul); /* Cor da borda superior */
+    border-radius: 50%; /* Deixa o elemento redondo */
+    width: 1.5rem; /* Largura do círculo */
+    height: 1.5rem; /* Altura do círculo */
+    animation: spin 1s linear infinite; /* Animação de rotação */
+    align-items: center;
+    margin: 0 4.4rem;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg); /* Início da rotação */
+    }
+    100% {
+      transform: rotate(360deg); /* Fim da rotação */
+    }
+  }

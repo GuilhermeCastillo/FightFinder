@@ -1,12 +1,11 @@
 select {
-    width: 22.3rem;
-    height: 3.4rem;
+    width: 20.2rem;
+    height: 3.5rem;
     border: 2px solid var(--vermelho); 
     border-radius: 5px; 
     font-size: 1.3rem;
     margin-top: 0.3rem; 
-    text-align: center;
-    background-color: white;    
+    text-align: center;   
 }
 
 select:hover { 

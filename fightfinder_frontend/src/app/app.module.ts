@@ -12,6 +12,7 @@ import { InputDataComponent } from './components/input-data/input-data.component
 import { CommonModule } from '@angular/common';
 import { BotaoPequenoComponent } from './components/botao-pequeno/botao-pequeno.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
+import { LoadingCircleComponent } from './components/loading-circle/loading-circle.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
     InputRadioComponent,
     InputDataComponent,
     DropdownComponent,
+    LoadingCircleComponent,
   ],
   imports: [
     BrowserModule, // importar módulos 

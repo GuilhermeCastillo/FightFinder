@@ -46,6 +46,9 @@ table {
 	font-family: "Montserrat", sans-serif; /*Cinzel outra opção*/
 	/* font-family: "Reggae One", system-ui; */
 	font-optical-sizing: auto;  
+	a {
+		text-decoration: none;
+	}
 }  
 
 body {

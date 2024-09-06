@@ -5,11 +5,12 @@ import { DropdownComponent } from '../../components/dropdown/dropdown.component'
 import { ButtonComponent } from '../../components/button/button.component';
 import { BotaoPequenoComponent } from '../../components/botao-pequeno/botao-pequeno.component';
 import { CommonModule } from '@angular/common'; 
+import { LoadingCircleComponent } from '../../components/loading-circle/loading-circle.component';
 
 @Component({
   selector: 'app-match-luta',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, DropdownComponent, ButtonComponent, BotaoPequenoComponent, CommonModule],
+  imports: [HeaderComponent, FooterComponent, DropdownComponent, ButtonComponent, BotaoPequenoComponent, CommonModule, LoadingCircleComponent],
   templateUrl: './match-luta.component.html',
   styleUrl: './match-luta.component.css'
 })

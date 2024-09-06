@@ -116,8 +116,7 @@ span {
  }
  
 
- .fa-solid {
-    color: white; 
-    background-color: gray;
-    font-size: 1.5rem;
+ .fa-circle-user {
+    color: gray;
+    font-size: 3.5rem;
  }

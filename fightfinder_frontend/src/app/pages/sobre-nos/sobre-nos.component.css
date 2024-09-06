@@ -85,9 +85,9 @@
 
 #faixaAzul {
     margin:  9rem 0 4rem 0;
-    height: 27rem;
+    height: 30rem;
     background-color: var(--azul);
-    padding: 8rem;
+    padding: 12rem 8rem;
     /* background: linear-gradient(to bottom, #f0f0f0, var(--azul)); */
     color: white;  
 }

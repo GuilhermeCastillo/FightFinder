@@ -4,12 +4,12 @@
         <div id="filtros"> 
             <ul>
                 <li>
-                    <app-input-texto [maxLength]="50"  id="inputText" placeholder="Nome lutador(a)" /> 
+                    <app-input-texto [maxLength]="50" id="inputText" placeholder="Nome do(a) atleta" [width]="'22rem'"/> 
                     <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
                 </li> 
 
                 <li>
-                    <app-input-texto [maxLength]="3" id="inputTextPeso" placeholder="Peso" />  
+                    <app-input-texto [maxLength]="3" id="inputTextPeso" placeholder="Peso" [width]="'8rem'" />  
                 </li>
 
                 <li>
@@ -21,8 +21,8 @@
                     <!-- <p *ngIf="erroMsg" id="erroMsg">Selecione uma modalidade!</p> -->
                 </li>
                 <li> 
-                    <app-button backgroundColor="var(--vermelho)" textoBtn="Buscar" (click)="buscarLutadores()"></app-button>
-                    <app-loading *ngIf="loading"></app-loading>      
+                    <app-button  *ngIf="!loading" backgroundColor="var(--vermelho)" textoBtn="Buscar" (click)="buscarLutadores()" />  
+                    <app-loading-circle *ngIf="loading"></app-loading-circle>
                 </li> 
             </ul>
         </div>
