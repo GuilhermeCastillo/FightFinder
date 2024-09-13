@@ -9,6 +9,7 @@
     background-color: white;
     display: flex; 
     justify-content: center;
+    height: 50rem; 
     margin-top: 5rem;
     box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
 }
@@ -18,7 +19,10 @@
 }
 
 #ladoDireito {
-    width: 45rem;   
+    width: 45rem;     
+    height: 100%;       /* Altura do elemento */
+    overflow-y: scroll;  /* Barra de rolagem apenas no eixo Y (vertical) */
+    border: 1px solid #ccc;  /* Opcional: adicionar uma borda para melhor visualização */ 
 }
 
 #boxCadastro {

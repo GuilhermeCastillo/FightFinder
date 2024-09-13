@@ -7,11 +7,19 @@ import { InputRadioComponent } from '../../components/input-radio/input-radio.co
 import { InputDataComponent } from '../../components/input-data/input-data.component';
 import { Title } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DropdownComponent } from '../../components/dropdown/dropdown.component';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask'; 
 
 @Component({
   selector: 'app-cadastro',
   standalone: true,
-  imports: [ButtonComponent, InputTextoComponent, InputSenhaComponent, InputRadioComponent, InputDataComponent, ReactiveFormsModule],
+  imports: [ButtonComponent, InputTextoComponent, InputSenhaComponent, InputRadioComponent, InputDataComponent, ReactiveFormsModule, DropdownComponent,
+     NgxMaskDirective, ],
+  providers: [
+    provideNgxMask({
+      validation: false,  // Ou outras configurações que você quiser
+    }),
+  ],
   templateUrl: './cadastro.component.html',
   styleUrl: './cadastro.component.css'
 })

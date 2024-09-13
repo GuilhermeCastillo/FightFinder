@@ -1,4 +1,23 @@
-input {
+mat-form-field {
+    font-size: 1.3rem;
+    margin-top: 0.3rem;
+    text-align: center; 
+    width: 20rem;
+    padding: 0;
+    border: 2px solid var(--vermelho); 
+    border-radius: 5px;  
+    background-color: white;
+}
+
+mat-form-field:hover { 
+    border: 2px solid var(--azul);   
+}
+
+mat-form-field:focus {
+    border: 2px solid var(--azul);   
+}  
+
+/* input {
     font-size: 1.3rem;
     margin-top: 0.3rem;
     text-align: center;
@@ -14,4 +33,4 @@ input:hover {
 
 input:focus {
     border: 2px solid var(--azul);   
-}
+} */
