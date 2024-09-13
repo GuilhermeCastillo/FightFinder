@@ -1,10 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 @Component({
   selector: 'app-input-texto',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgxMaskDirective],
+  providers: [
+    provideNgxMask({
+      validation: false,  // Ou outras configurações que você quiser
+    }),
+  ],
   templateUrl: './input-texto.component.html',
   styleUrl: './input-texto.component.css'
 })

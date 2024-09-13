@@ -1,1 +1,7 @@
-<input placeholder="placeholder" [formControl]="dateControl" type="date" class="date-input"/>
+<mat-form-field appearance="fill"> <!-- appearance="fill"  placeholder="placeholder" [formControl]="dateControl" type="date" class="date-input" -->
+    <mat-label>Selecione uma data</mat-label>
+    <input matInput [matDatepicker]="picker" placeholder="DD/MM/YYYY">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+  

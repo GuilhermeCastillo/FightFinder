@@ -1,23 +1,39 @@
 <div id="fundo">    
     <div id="quadrado">
         <section id="ladoEsquerdo"> 
-            <img src="\assets\tituloFF.jpg" alt="logo cadastro" style="width: 100%; height: 100%;">  
+            <img src="\assets\imgCadastro.png" alt="logo cadastro" style="width: 100%; height: 100%;">  
         </section>
 
         <section id="ladoDireito">
             <div id="boxCadastro">
                 <h1 id="tituloCadastro">Criar conta</h1>
 
-                <label for="inputText">Nome</label>
+                <label for="inputText">Email</label>
                 <app-input-texto
                 id="inputText" 
-                placeholder="" 
+                placeholder="fightfinder@gmail.com" 
                 border-color="var(--azul)"
                 />
 
+                <!-- <label for="inputText">CPF</label>
+                <app-input-texto
+                mask="000.000.000-00"
+                id="inputText" 
+                placeholder="" 
+                border-color="var(--azul)"
+                /> -->
+
+                <label for="genero">Gênero</label>
+                <app-dropdown id="genero" [options]="['Masculino', 'Feminino', 'Outro']"> </app-dropdown>
+
                 <label for="inputData">Data de nascimento</label>
-                
                 <app-input-data [(date)]="selectedDate"></app-input-data> 
+                 
+
+                <div id="radiosGroup">    
+                    <app-input-radio value="perfil" name="esportista" textoRadio="Sou atleta" />  
+                    <app-input-radio value="perfil" name="agente" textoRadio="Sou agente de lutas" /> 
+                </div>
 
                 <label for="inputSenha">Senha</label>
                 <app-input-senha
@@ -30,11 +46,6 @@
                 id="inputConfirmarSenha" 
                 placeholder="" 
                 /> 
-
-                <div id="radiosGroup">    
-                    <app-input-radio value="perfil" name="esportista" textoRadio="Sou atleta" />  
-                    <app-input-radio value="perfil" name="agente" textoRadio="Sou agente de lutas" /> 
-                </div>
 
                 <app-button textoBtn="Criar conta" (click)="entrar()" />
  

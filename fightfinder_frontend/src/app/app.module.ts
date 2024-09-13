@@ -13,7 +13,22 @@ import { CommonModule } from '@angular/common';
 import { BotaoPequenoComponent } from './components/botao-pequeno/botao-pequeno.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { LoadingCircleComponent } from './components/loading-circle/loading-circle.component';
+import { NgxMaskDirective } from 'ngx-mask';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatDateFormats, MatNativeDateModule } from '@angular/material/core';
 
+export const MY_DATE_FORMATS: MatDateFormats = {
+  parse: {
+    dateInput: 'DD/MM/YYYY',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'DD/MM/YYYY',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 
 @NgModule({
   declarations: [ // declarar componentes 
@@ -28,14 +43,22 @@ import { LoadingCircleComponent } from './components/loading-circle/loading-circ
     InputDataComponent,
     DropdownComponent,
     LoadingCircleComponent,
+    NgxMaskDirective
   ],
-  imports: [
-    BrowserModule, // importar módulos 
+  imports: [ // importar módulos 
+    BrowserModule, 
     FormsModule,   
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDatepickerModule, 
+    MatInputModule,
+    MatNativeDateModule
+
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+  ],
   bootstrap: [AppComponent] // O componente principal que deve ser inicializado
 })
 export class AppModule { }
