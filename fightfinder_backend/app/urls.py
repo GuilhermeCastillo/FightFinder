@@ -12,6 +12,7 @@ urlpatterns = [
     path("api/v1/", include("cartel.urls")),
     path("api/v1/", include("events.urls")),
     path('api/v1/', include('connections.urls')),
+     path('api/v1/', include('users.urls')),
 ]
 
 if settings.DEBUG:

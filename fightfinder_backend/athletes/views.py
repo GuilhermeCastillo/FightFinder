@@ -107,13 +107,21 @@ def recommend_view(request, pk):
     except Athlete.DoesNotExist:
         return JsonResponse({'error': 'Athlete not found'}, status=404)
 
-# Nova View para Listar Conexões do Atleta Logado
+
 class AthleteConnectionsListView(APIView):
     permission_classes = [IsAuthenticated]
+
     def get(self, request, format=None):
         user = request.user
-        print(user)
-        # connections = Connection.objects.filter(athlete_from=user) | Connection.objects.filter(athlete_to=user)
-        connections = Connection.objects.filter(athlete_from=user) | Connection.objects.filter(athlete_to=user)
+
+        try:
+            # Obtenha a instância de Athlete associada ao User
+            athlete = Athlete.objects.get(user=user)
+        except Athlete.DoesNotExist:
+            return Response({"error": "Athlete not found for this user"}, status=status.HTTP_404_NOT_FOUND)
+
+        # Filtre as conexões usando a instância de Athlete
+        connections = Connection.objects.filter(athlete_from=athlete) | Connection.objects.filter(athlete_to=athlete)
         serializer = ConnectionSerializer(connections, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+

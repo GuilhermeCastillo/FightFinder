@@ -1,4 +1,4 @@
-import uuid
+from django.contrib.auth.models import User
 from django.db import models
 
 # from cartel.models import Cartel
@@ -22,6 +22,7 @@ GENDER_CHOICES = [
 
 class Athlete(models.Model):
     id = models.AutoField(primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     cpf = models.CharField(unique=True, max_length=11)
     genero = models.CharField(
         max_length=1,
