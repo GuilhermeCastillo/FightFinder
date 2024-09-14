@@ -1,4 +1,4 @@
-from rest_framework import generics, status
+from rest_framework import generics, status, serializers
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -6,11 +6,12 @@ from .recommender import recommend_opponents, recommend_athletes
 from connections.models import Connection
 from connections.serializers import ConnectionSerializer
 from athletes.models import Athlete
-from athletes.serializers import AthleteSerializer
+from athletes.serializers import AthleteSerializer, AthleteProfileSerializer
 from django.http import JsonResponse
 from django.views.decorators.cache import cache_page
 from .functions import convert_to_dataframe, calcular_idade
 from datetime import date
+
 
 class AthleteCreateListView(generics.ListCreateAPIView):
     queryset = Athlete.objects.all()
@@ -125,3 +126,37 @@ class AthleteConnectionsListView(APIView):
         serializer = ConnectionSerializer(connections, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+class AthleteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Athlete
+        fields = ['cpf', 'genero', 'peso', 'altura', 'telefone', 'cidade', 'estado', 'pais', 'latitude', 'longitude', 'data_nascimento', 'nome', 'academia', 'modalidade', 'imagem']
+
+class CompleteAthleteProfileView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        user = request.user
+        
+        # Verifique se o atleta já existe para o usuário autenticado
+        try:
+            athlete = Athlete.objects.get(user=user)
+        except Athlete.DoesNotExist:
+            # Se o perfil não existir, cria um novo
+            athlete = Athlete(user=user)
+        
+        # Atualize ou crie o perfil do atleta com os dados fornecidos
+        serializer = AthleteSerializer(athlete, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class CheckAthleteProfileView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        try:
+            athlete = request.user.athlete  # Verifica se o usuário tem um perfil de atleta
+            return Response({"athlete_profile_complete": True}, status=status.HTTP_200_OK)
+        except:
+            return Response({"athlete_profile_complete": False}, status=status.HTTP_200_OK)

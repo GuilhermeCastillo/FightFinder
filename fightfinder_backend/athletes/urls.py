@@ -14,4 +14,6 @@ urlpatterns = [
     path('athletes/<int:pk>/recommendations/', views.recommend_view, name='athlete_recommendations'),
     path('recommendations/<int:pk>/', views.recommend_view, name='recommend-view'),
     path('athletes/connections/', views.AthleteConnectionsListView.as_view(), name='athlete-connections'),
+    path('athlete-profile-status/', views.CheckAthleteProfileView.as_view(), name='athlete_profile_status'),
+    path('complete-athlete-profile/', views.CompleteAthleteProfileView.as_view(), name='complete_athlete_profile'),
 ]
