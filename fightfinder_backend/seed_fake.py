@@ -5,8 +5,8 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "app.settings")
 django.setup()
 
 import random
-from datetime import date, timedelta
 from faker import Faker
+from django.contrib.auth.models import User
 from athletes.models import Athlete
 from fights.models import Fight, FightHistoric
 from events.models import Event, Promoter
@@ -14,8 +14,17 @@ from cartel.models import Cartel
 
 fake = Faker()
 
+def create_user(athlete):
+    username = fake.user_name()
+    password = fake.password()
+    email = fake.email()
+    user = User.objects.create_user(username=username, email=email, password=password)
+    # Aqui você pode adicionar mais associações se necessário
+    # Exemplo: user.profile.athlete = athlete
+    return user, username, password
+
 def create_athlete():
-    return Athlete.objects.create(
+    athlete = Athlete.objects.create(
         cpf=fake.unique.random_number(digits=11, fix_len=True),
         genero=random.choice(['M', 'F']),  # Adicionando gênero
         peso=round(random.uniform(50.0, 120.0), 2),
@@ -33,6 +42,8 @@ def create_athlete():
             ["BJJ", "MMA", "BOX", "MT", "JUDO", "WREST", "KARATE", "TKD", "INI"]
         ),
     )
+    user, username, password = create_user(athlete)
+    return athlete, user, username, password
 
 def create_cartel(athlete):
     vitorias = random.randint(0, 10)
@@ -88,7 +99,14 @@ def create_fight(atleta1, atleta2):
     return fight
 
 def seed_database(num_athletes=10, num_fights=5, num_events=3):
-    athletes = [create_athlete() for _ in range(num_athletes)]
+    athletes = []
+    users_data = []
+
+    for _ in range(num_athletes):
+        athlete, user, username, password = create_athlete()
+        athletes.append(athlete)
+        users_data.append(f"Username: {username}, Password: {password}")
+
     promoters = [create_promoter() for _ in range(num_events)]
     events = [create_event(promoter) for promoter in promoters]
 
@@ -98,6 +116,11 @@ def seed_database(num_athletes=10, num_fights=5, num_events=3):
     for _ in range(num_fights):
         atleta1, atleta2 = random.sample(athletes, 2)
         create_fight(atleta1, atleta2)
+
+    # Salvar dados dos usuários em um arquivo txt
+    with open('user_credentials.txt', 'w') as f:
+        for data in users_data:
+            f.write(f"{data}\n")
 
 if __name__ == "__main__":
     seed_database(num_athletes=1000, num_fights=900, num_events=100)

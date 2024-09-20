@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "cartel",
     "events",
     "connections",
+    "users",
 ]
 
 MIDDLEWARE = [
