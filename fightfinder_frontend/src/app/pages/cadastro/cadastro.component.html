@@ -6,14 +6,11 @@
 
         <section id="ladoDireito">
             <div id="boxCadastro">
-                <h1 id="tituloCadastro">Criar conta</h1>
+                <h1 id="tituloCadastro">Cadastro</h1>
 
-                <label for="inputText">Email</label>
-                <app-input-texto
-                id="inputText" 
-                placeholder="fightfinder@gmail.com" 
-                border-color="var(--azul)"
-                />
+                <label for="inputData">Data de nascimento</label>
+                
+                <app-datepicker />
 
                 <!-- <label for="inputText">CPF</label>
                 <app-input-texto
@@ -21,31 +18,37 @@
                 id="inputText" 
                 placeholder="" 
                 border-color="var(--azul)"
-                /> -->
+                /> 
 
                 <label for="genero">Gênero</label>
                 <app-dropdown id="genero" [options]="['Masculino', 'Feminino', 'Outro']"> </app-dropdown>
+   
+                -->
 
-                <label for="inputData">Data de nascimento</label>
-                <app-input-data [(date)]="selectedDate"></app-input-data> 
-                 
+                <label for="inputText"></label>
+                <app-input-texto
+                id="inputText" 
+                placeholder="Email" 
+                border-color="var(--azul)"
+                />
+
+                <label for="inputSenha"></label>
+                <app-input-senha
+                id="inputSenha" 
+                placeholder="Senha" 
+                /> 
+
+                <label for="inputConfirmarSenha"></label>
+                <app-input-senha
+                id="inputConfirmarSenha" 
+                placeholder="Confirmar senha" 
+                /> 
 
                 <div id="radiosGroup">    
                     <app-input-radio value="perfil" name="esportista" textoRadio="Sou atleta" />  
                     <app-input-radio value="perfil" name="agente" textoRadio="Sou agente de lutas" /> 
-                </div>
-
-                <label for="inputSenha">Senha</label>
-                <app-input-senha
-                id="inputSenha" 
-                placeholder="" 
-                /> 
-
-                <label for="inputConfirmarSenha">Confirmar senha</label>
-                <app-input-senha
-                id="inputConfirmarSenha" 
-                placeholder="" 
-                /> 
+                </div> 
+ 
 
                 <app-button textoBtn="Criar conta" (click)="entrar()" />
  

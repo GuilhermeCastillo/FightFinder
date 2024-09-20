@@ -4,17 +4,17 @@ import { ButtonComponent } from '../../components/button/button.component';
 import { InputTextoComponent } from '../../components/input-texto/input-texto.component';
 import { InputSenhaComponent } from '../../components/inputSenha/inputSenha.component';
 import { InputRadioComponent } from '../../components/input-radio/input-radio.component';
-import { InputDataComponent } from '../../components/input-data/input-data.component';
 import { Title } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DropdownComponent } from '../../components/dropdown/dropdown.component';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask'; 
+import { DatepickerComponent } from '../../components/datepicker/datepicker.component';
 
 @Component({
   selector: 'app-cadastro',
   standalone: true,
-  imports: [ButtonComponent, InputTextoComponent, InputSenhaComponent, InputRadioComponent, InputDataComponent, ReactiveFormsModule, DropdownComponent,
-     NgxMaskDirective, ],
+  imports: [ButtonComponent, InputTextoComponent, InputSenhaComponent, InputRadioComponent, ReactiveFormsModule, DropdownComponent,
+     NgxMaskDirective, DatepickerComponent],
   providers: [
     provideNgxMask({
       validation: false,  // Ou outras configurações que você quiser

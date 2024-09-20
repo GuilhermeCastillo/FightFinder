@@ -21,8 +21,8 @@
 #ladoDireito {
     width: 45rem;     
     height: 100%;       /* Altura do elemento */
-    overflow-y: scroll;  /* Barra de rolagem apenas no eixo Y (vertical) */
-    border: 1px solid #ccc;  /* Opcional: adicionar uma borda para melhor visualização */ 
+    /*  overflow-y: scroll;  Barra de rolagem apenas no eixo Y (vertical) */
+    /*  border: 1px solid #ccc;  Opcional: adicionar uma borda para melhor visualização */ 
 }
 
 #boxCadastro {
@@ -43,7 +43,8 @@
     color: var(--azul); 
     font-weight: 600;
     width: 22rem;
-    margin: 2rem 0 3rem 0;
+    margin: 7rem 0 3rem 0;
+    padding-bottom: 5rem;
     text-align: center;
     text-decoration: underline;
 }
@@ -60,3 +61,52 @@ app-button {
 }
  
  
+#dataComponent .mat-form-field {
+    background-color: #f0f0f0;  
+    border-radius: 4px;
+    background-color: #ff0000; 
+    color: white;
+    border-color: white;
+  }
+  
+  .mat-datepicker-toggle {
+    background-color: #ff0000; 
+    color: white;
+    border-color: white;
+    color: #1976d2; /* Cor do ícone do datepicker */
+  }
+  
+  .mat-datepicker-toggle button {
+    background-color: #ff0000; 
+    color: white;
+    border-color: white; 
+  }
+  
+  .mat-calendar { 
+    background-color: #ff0000; 
+    color: white;
+    border-color: white;
+  }
+  
+  .mat-calendar-body-selected, 
+  .mat-calendar-body-active {
+    background-color: #ff0000; 
+    color: white;
+    border-color: white;
+  }
+
+  .mat-input-element {
+    background-color: white; /* Cor de fundo branca */
+    color: black; /* Cor do texto */
+  }
+  
+  /* Se você quiser personalizar o campo no modo 'fill' */
+.mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: white; /* Cor de fundo do contêiner */
+  }
+  
+  /* Para personalizar o estado quando o input está focado */
+  .mat-input-element:focus {
+    background-color: white; /* Cor de fundo ao focar */
+    color: black;
+}

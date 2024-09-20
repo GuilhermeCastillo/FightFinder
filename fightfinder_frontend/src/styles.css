@@ -87,6 +87,20 @@ p, h1, h2, h3, h4, h5, h6, span {
 }
   
 
+.mat-form-field-appearance-fill .mat-form-field-flex {
+	background-color: #e0e0e0; /* Alterar cor de fundo no modo fill */
+  }
+  
+  .mat-calendar-table-header {
+	background-color: #1976d2; /* Cabeçalho do calendário */
+	color: white;
+  }
+  
+  .mat-calendar-body-selected {
+	background-color: #ff4081 !important; /* Dia selecionado */
+  }
+  
+
 
 /* CORES */
 

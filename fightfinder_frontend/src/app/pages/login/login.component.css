@@ -9,6 +9,7 @@
     background-color: white;
     display: flex; 
     justify-content: center;
+    height: 50rem;
     margin-top: 5rem;
     box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
 }
@@ -38,14 +39,16 @@
     font-size: 3rem;
     color: var(--azul); 
     font-weight: 600;
-    width: 22rem;
-    margin: 4rem 0 6rem 0;
+    width: 27rem;
+    margin: 7rem 0 0 0;
+    padding-bottom: 6rem;
     text-align: center;
-    text-decoration: underline;
+    text-decoration: underline; 
+    display: inline-block;
 }
 
 app-button {
-    margin: 3rem;
+    margin: 4rem;
 }
 
 #linkCadastro {
