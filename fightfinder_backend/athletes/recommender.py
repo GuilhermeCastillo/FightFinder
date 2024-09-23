@@ -61,7 +61,7 @@ import pandas as pd
 #     return recommendations[:n_recommendations]
 
 # Função para recomendar atletas semelhantes
-def recommend_athletes(df, atleta_idx, n_recommendations=5):
+def recommend_athletes(df, atleta_idx, n_recommendations=2):
     # Convertendo os estilos de luta (coluna categórica) e gênero em variáveis binárias (One-Hot Encoding)
     encoder = OneHotEncoder()
     encoded_features = encoder.fit_transform(df[['modalidade', 'genero']]).toarray()
