@@ -1,7 +1,9 @@
+# connections/urls.py
 from django.urls import path
-from .views import ConnectionCreateView, ConnectionListView
+from .views import ListConnectionsView, AcceptConnectionView, CreateConnectionView
 
 urlpatterns = [
-    path('connectionscreate/', ConnectionCreateView.as_view(), name='connection-create'),
-    path('connectionslist/', ConnectionListView.as_view(), name='connection-list'),
+    path('connections/', ListConnectionsView.as_view(), name='list-connections'),
+    path('connections/accept/<int:connection_id>/', AcceptConnectionView.as_view(), name='accept-connection'),
+    path('connections/create/', CreateConnectionView.as_view(), name='create-connections'),
 ]

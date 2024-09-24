@@ -123,4 +123,4 @@ def seed_database(num_athletes=10, num_fights=5, num_events=3):
             f.write(f"{data}\n")
 
 if __name__ == "__main__":
-    seed_database(num_athletes=1000, num_fights=900, num_events=100)
+    seed_database(num_athletes=200, num_fights=200, num_events=100)

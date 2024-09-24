@@ -54,28 +54,113 @@ class AthleteRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AthleteSerializer
     permission_classes = [IsAuthenticated]
 
+# class AthleteRecommendationsView(APIView):
+#     def get(self, request, cpf, format=None):
+#         try:
+#             athlete = Athlete.objects.get(cpf=cpf)
+#         except Athlete.DoesNotExist:
+#             return Response(
+#                 {"error": "Atleta não encontrado"}, status=status.HTTP_404_NOT_FOUND
+#             )
+
+#         recommendations = recommend_opponents(athlete)
+#         serializer = AthleteSerializer(recommendations, many=True)
+#         return Response(serializer.data, status=status.HTTP_200_OK)
+    
 class AthleteRecommendationsView(APIView):
     def get(self, request, cpf, format=None):
         try:
+            # Verifica se o atleta com o CPF fornecido existe no banco de dados
             athlete = Athlete.objects.get(cpf=cpf)
         except Athlete.DoesNotExist:
             return Response(
                 {"error": "Atleta não encontrado"}, status=status.HTTP_404_NOT_FOUND
             )
 
+        # Função de recomendação que recebe o atleta
         recommendations = recommend_opponents(athlete)
+        
+        # Verifica se a função de recomendação retornou algo
+        if not recommendations:
+            return Response(
+                {"message": "Não há recomendações suficientes no momento"}, 
+                status=status.HTTP_200_OK
+            )
+
+        # Serializa as recomendações e retorna a resposta
         serializer = AthleteSerializer(recommendations, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-@cache_page(60 * 10)
-def recommend_view(request, pk):
-    try:
-        athlete = Athlete.objects.get(id=pk)
+
+
+# @cache_page(60 * 10)
+# def recommend_view(request, pk):
+#     try:
+#         athlete = Athlete.objects.get(id=pk)
+#         df = convert_to_dataframe()
+#         atleta_idx = df.index[df['nome'] == athlete.nome].tolist()[0]
+#         recommended_athlete_names = recommend_athletes(df, atleta_idx, 5)
+#         recommended_athletes = Athlete.objects.filter(nome__in=recommended_athlete_names)
+        
+#         recommendations = []
+#         for rec_athlete in recommended_athletes:
+#             recommendations.append({
+#                 'nome': rec_athlete.nome,
+#                 'cpf': rec_athlete.cpf,
+#                 'genero': rec_athlete.genero,
+#                 'peso': rec_athlete.peso,
+#                 'altura': rec_athlete.altura,
+#                 'cidade': rec_athlete.cidade,
+#                 'estado': rec_athlete.estado,
+#                 'pais': rec_athlete.pais,
+#                 'modalidade': rec_athlete.modalidade,
+#             })
+        
+#         return JsonResponse({
+#             'athlete': {
+#                 'nome': athlete.nome,
+#                 'cpf': athlete.cpf,
+#                 'genero': athlete.genero,
+#                 'peso': athlete.peso,
+#                 'altura': athlete.altura,
+#                 'cidade': athlete.cidade,
+#                 'estado': athlete.estado,
+#                 'pais': athlete.pais,
+#                 'modalidade': athlete.modalidade,
+#             },
+#             'recommendations': recommendations
+#         })
+        
+#     except Athlete.DoesNotExist:
+#         return JsonResponse({'error': 'Athlete not found'}, status=404)
+
+# @cache_page(60 * 10)
+class RecommendForAuthenticatedUserView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        try:
+            # Obtém o atleta associado ao usuário autenticado
+            athlete = Athlete.objects.get(user=request.user)
+        except Athlete.DoesNotExist:
+            return Response(
+                {"error": "Atleta não encontrado para este usuário"}, 
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        # Converte os dados para o DataFrame usado na recomendação
         df = convert_to_dataframe()
+
+        # Identifica o índice do atleta no DataFrame
         atleta_idx = df.index[df['nome'] == athlete.nome].tolist()[0]
+
+        # Faz a recomendação de atletas semelhantes
         recommended_athlete_names = recommend_athletes(df, atleta_idx, 5)
+
+        # Busca os atletas recomendados no banco de dados
         recommended_athletes = Athlete.objects.filter(nome__in=recommended_athlete_names)
         
+        # Cria uma lista de dicionários com os detalhes dos atletas recomendados
         recommendations = []
         for rec_athlete in recommended_athletes:
             recommendations.append({
@@ -90,6 +175,7 @@ def recommend_view(request, pk):
                 'modalidade': rec_athlete.modalidade,
             })
         
+        # Retorna os dados do atleta autenticado e as recomendações
         return JsonResponse({
             'athlete': {
                 'nome': athlete.nome,
@@ -104,9 +190,6 @@ def recommend_view(request, pk):
             },
             'recommendations': recommendations
         })
-        
-    except Athlete.DoesNotExist:
-        return JsonResponse({'error': 'Athlete not found'}, status=404)
 
 
 class AthleteConnectionsListView(APIView):
