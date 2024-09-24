@@ -1,7 +1,37 @@
 #footer {
+    display: flex;
     margin-top: 5rem;
     bottom: 0;
     background-color: black;
     width: 100%;
-    height: 30rem;
+    height: 30rem; 
+}
+
+.nomeIntegrante {
+    color: white;
+    font-size: 2rem;
+    padding-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.redes-sociais {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    text-align: center;
+    width: 30%;
+    margin: 10rem 5rem;
+    font-size: 1.2rem;
+    gap: 1rem;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.redes-sociais a {
+    color: inherit; 
+}
+
+.redes-sociais li:hover{
+    transform: scale(1.1); 
 }
