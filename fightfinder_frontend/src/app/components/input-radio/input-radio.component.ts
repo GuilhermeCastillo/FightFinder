@@ -1,10 +1,10 @@
 import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
-import { ControlValueAccessor, FormControl, FormGroup, FormsModule, NG_VALUE_ACCESSOR, Validators } from '@angular/forms'; 
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms'; 
 
 @Component({
   selector: 'app-input-radio',
   standalone: true,
-  imports: [FormsModule],
+  imports: [ FormsModule],
   templateUrl: './input-radio.component.html',
   styleUrl: './input-radio.component.css',
   providers: [

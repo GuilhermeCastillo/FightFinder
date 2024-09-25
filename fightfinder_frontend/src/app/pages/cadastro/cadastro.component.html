@@ -5,28 +5,30 @@
         </section>
 
         <section id="ladoDireito">
-            <form id="boxCadastro">
+            <form [formGroup]="form" id="boxCadastro" (ngSubmit)="onSubmit()">
                 <h1 id="tituloCadastro">Cadastro</h1> 
 
                 <ul id="radiosGroup">
                     <li>
-                        <app-input-radio [(ngModel)]="perfil" #atletaInput="ngModel" id="atletaRadio"
-                         value="perfil" name="atleta" textoRadio="Sou atleta" /> 
-                         <div *ngIf="!perfil">
-                            Selecione uma opção
-                        </div>
+                        <input type="radio" formControlName="escolha" id="atletaRadio"
+                         value="atleta" name="escolha" textoRadio="Sou atleta" /> 
                         <i class="fa-solid fa-circle-info"></i>
+                      
                     </li>
-                    <li>
-                        <app-input-radio [(ngModel)]="perfil" #agenteInput="ngModel" id="agenteRadio"
-                         value="perfil" name="agente" textoRadio="Sou agente de lutas" />
-                        <i class="fa-solid fa-circle-info"></i>
-                        <div *ngIf="!perfil">
-                            Selecione uma opção
-                        </div>
-                    </li>    
+                   <li>
+                        <input type="radio" formControlName="escolha"  id="agenteRadio"
+                         value="agente" name="escolha" textoRadio="Sou agente de lutas" />
+                        <i class="fa-solid fa-circle-info"></i> 
+                    </li>
                 </ul> 
 
+                <div *ngIf="form.get('escolha')?.invalid && form.get('escolha')?.touched">
+                    <p class="error">Por favor, selecione uma opção.</p>
+                </div>
+
+                <button id="app-button" textoBtn="Criar conta" type="submit" >Entrar</button>
+            </form>
+        </section>
 <!--
                 <label for="inputData">Data de nascimento</label> 
                 <app-datepicker />
@@ -74,10 +76,7 @@
                     </li> 
                 </ul> 
  -->
-                <app-button textoBtn="Criar conta" (click)="form.submitted = true" /> 
-            </form>
-        </section>
+            
         
     </div> 
-
 </div>

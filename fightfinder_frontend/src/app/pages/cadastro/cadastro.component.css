@@ -49,8 +49,11 @@
     text-decoration: underline;
 }
 
-app-button {
+#app-button {
     margin: 3rem;
+    width: 9rem;
+    height: 3rem;
+    background-color: var(--azul);
 }
 
 #radiosGroup {

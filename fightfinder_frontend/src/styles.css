@@ -67,15 +67,18 @@ p, h1, h2, h3, h4, h5, h6, span {
 
  
 ::-webkit-scrollbar {
+	overflow-y: auto;
 	width: 12px; /* Largura da barra de rolagem */
 }
 
 ::-webkit-scrollbar-track {
+	overflow-y: auto;
 	background: #f1f1f1; /* Cor do trilho */
 }
   
 /* Estiliza o "polegar" (thumb) da barra de rolagem */
 ::-webkit-scrollbar-thumb {
+	overflow-y: auto;
 	background-color: #888; /* Cor do polegar */
 	border-radius: 6px; /* Bordas arredondadas */
 	border: 3px solid #f1f1f1; /* Espaço ao redor do polegar */
@@ -83,6 +86,7 @@ p, h1, h2, h3, h4, h5, h6, span {
   
 /* Estiliza o polegar quando o usuário passa o mouse sobre ele */
 ::-webkit-scrollbar-thumb:hover {
+	overflow-y: auto;
 	background-color: #555; /* Cor mais escura ao passar o mouse */
 }
   
