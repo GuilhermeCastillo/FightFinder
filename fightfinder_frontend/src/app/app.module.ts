@@ -53,8 +53,7 @@ export const MY_DATE_FORMATS: MatDateFormats = {
     ReactiveFormsModule,
     MatDatepickerModule, 
     MatInputModule,
-    MatNativeDateModule
-
+    MatNativeDateModule,
   ],
   providers: [
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },

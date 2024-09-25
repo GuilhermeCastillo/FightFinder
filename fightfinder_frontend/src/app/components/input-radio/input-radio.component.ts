@@ -1,14 +1,31 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
+import { ControlValueAccessor, FormControl, FormGroup, FormsModule, NG_VALUE_ACCESSOR, Validators } from '@angular/forms'; 
 
 @Component({
   selector: 'app-input-radio',
   standalone: true,
-  imports: [FormsModule ],
+  imports: [FormsModule],
   templateUrl: './input-radio.component.html',
-  styleUrl: './input-radio.component.css'
+  styleUrl: './input-radio.component.css',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputRadioComponent),
+      multi: true
+    }
+  ]
 })
-export class InputRadioComponent {
+export class InputRadioComponent implements ControlValueAccessor { 
+  
+  writeValue(obj: any): void { 
+  }
+  registerOnChange(fn: any): void { 
+  }
+  registerOnTouched(fn: any): void { 
+  }
+  setDisabledState?(isDisabled: boolean): void {
+    console.log('MÉTODO NÃO IMPLEMENTADO');
+  }
   @Input() type: string = 'radio';  
   @Input() textoRadio: string = '';  
   @Input() value: string = ''; 

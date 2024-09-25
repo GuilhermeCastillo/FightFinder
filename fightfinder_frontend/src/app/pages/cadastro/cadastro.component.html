@@ -5,17 +5,26 @@
         </section>
 
         <section id="ladoDireito">
-            <div id="boxCadastro">
+            <form id="boxCadastro">
                 <h1 id="tituloCadastro">Cadastro</h1> 
 
                 <ul id="radiosGroup">
                     <li>
-                        <app-input-radio [(ngModel)]="atleta" #atletaInput="ngModel" id="atletaRadio" value="perfil" name="esportista" textoRadio="Sou atleta" />
+                        <app-input-radio [(ngModel)]="perfil" #atletaInput="ngModel" id="atletaRadio"
+                         value="perfil" name="atleta" textoRadio="Sou atleta" /> 
+                         <div *ngIf="!perfil">
+                            Selecione uma opção
+                        </div>
                         <i class="fa-solid fa-circle-info"></i>
                     </li>
                     <li>
-                        <app-input-radio id="agenteRadio" value="perfil" name="agente" textoRadio="Sou agente de lutas" />
-                        <i class="fa-solid fa-circle-info"></i></li>    
+                        <app-input-radio [(ngModel)]="perfil" #agenteInput="ngModel" id="agenteRadio"
+                         value="perfil" name="agente" textoRadio="Sou agente de lutas" />
+                        <i class="fa-solid fa-circle-info"></i>
+                        <div *ngIf="!perfil">
+                            Selecione uma opção
+                        </div>
+                    </li>    
                 </ul> 
 
 <!--
@@ -32,10 +41,10 @@
 
                 <label for="genero">Gênero</label>
                 <app-dropdown id="genero" [options]="['Masculino', 'Feminino', 'Outro']"> </app-dropdown>
- -->
+
 
                 <label for="inputText"></label>
-                <app-input-texto
+                <app-input-texto [(ngModel)]="email" #emailInput="ngModel"
                 id="inputEmail" 
                 placeholder="Email" 
                 border-color="var(--azul)"
@@ -43,24 +52,30 @@
                 />
 
                 <label for="inputSenha"></label>
-                <app-input-senha
+                <app-input-senha [(ngModel)]="senha" #senhaInput="ngModel"
                 id="inputSenha" 
                 placeholder="Senha" 
                 /> 
 
                 <label for="inputConfirmarSenha"></label>
-                <app-input-senha
+                <app-input-senha [(ngModel)]="confirmarSenha" #confirmarSenhaInput="ngModel"
                 id="inputConfirmarSenha" 
                 placeholder="Confirmar senha" 
                 />  
 
                 <ul id="termos">
-                    <li><input type="checkbox" id="termoIdade" /> Confirmo ter mais de 18 anos</li>
-                    <li><input type="checkbox" id="termoLGPD" /> Concordo com os termos da LGPD estabelecidos</li> 
+                    <li>
+                        <input type="checkbox" id="termoIdade" [(ngModel)]="termoIdade" #termoIdadeInput="ngModel" />
+                         Confirmo ter mais de 18 anos
+                    </li>
+                    <li>
+                        <input type="checkbox" id="termoLGPD" [(ngModel)]="termoLGPD" #termoLGPDInput="ngModel" />
+                         Concordo com os termos da LGPD estabelecidos
+                    </li> 
                 </ul> 
-
-                <app-button textoBtn="Criar conta" (click)="entrar()" /> 
-            </div>
+ -->
+                <app-button textoBtn="Criar conta" (click)="form.submitted = true" /> 
+            </form>
         </section>
         
     </div> 

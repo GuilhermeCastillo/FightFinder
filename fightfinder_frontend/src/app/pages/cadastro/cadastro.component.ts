@@ -5,16 +5,17 @@ import { InputTextoComponent } from '../../components/input-texto/input-texto.co
 import { InputSenhaComponent } from '../../components/inputSenha/inputSenha.component';
 import { InputRadioComponent } from '../../components/input-radio/input-radio.component';
 import { Title } from '@angular/platform-browser';
-import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DropdownComponent } from '../../components/dropdown/dropdown.component';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask'; 
 import { DatepickerComponent } from '../../components/datepicker/datepicker.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cadastro',
   standalone: true,
   imports: [ButtonComponent, InputTextoComponent, InputSenhaComponent, InputRadioComponent, ReactiveFormsModule, DropdownComponent,
-     NgxMaskDirective, DatepickerComponent, FormsModule],
+     NgxMaskDirective, DatepickerComponent, FormsModule, CommonModule],
   providers: [ 
       provideNgxMask({
         validation: false,
@@ -29,37 +30,59 @@ import { DatepickerComponent } from '../../components/datepicker/datepicker.comp
   styleUrl: './cadastro.component.css'
 })
 export class CadastroComponent { 
+  submitted: boolean = false;
+
+  perfil!: HTMLInputElement; 
+  // email!: HTMLInputElement;
+  // senha!: HTMLInputElement;
+  // confirmarSenha!: HTMLInputElement;
+  // termoIdade!: HTMLInputElement;
+  // termoLGPD!: HTMLInputElement;
+
   selectedDate: string = '';
-  constructor(private router: Router, private title: Title) { }
+  form: FormGroup;
+  constructor(private router: Router, private title: Title) { 
+
+      this.form = new FormGroup({
+          escolha: new FormControl('', Validators.required)
+      })
+  }
   
   ngOnInit(): void {
     this.title.setTitle('Cadastro');
   }
 
 
-  entrar(): void {
-    var atleta = (document.querySelector('#atletaRadio') as HTMLInputElement).value;
-    var agente = (document.querySelector('#agenteRadio') as HTMLInputElement).value;
-    var email = (document.querySelector('#inputEmail') as HTMLInputElement).value;
-    var senha = (document.querySelector('#inputSenha') as HTMLInputElement).value;
-    var confirmarSenha = (document.querySelector('#inputConfirmarSenha') as HTMLInputElement).value;
-    var termoIdade = (document.querySelector('#termoIdade') as HTMLInputElement).value;
-    var termoLGPD = (document.querySelector('#termoLGPD') as HTMLInputElement).value;
+ 
 
-    console.log("atleta: ", atleta);
-    console.log("agente: ", agente);
-    console.log("email: ", email);
-    console.log("senha: ", senha);
-    console.log("confirmarSenha: ", confirmarSenha);
-    console.log("termoIdade: ", termoIdade);
-    console.log("termoLGPD: ", termoLGPD);
 
-    if ( (atleta || agente) && email && senha && confirmarSenha && termoIdade && termoLGPD) { 
+  entrar(): void { 
+    // console.log("atleta: ", this.atleta);
+    // console.log("agente: ", this.agente);
+    // console.log("email: ", this.email);
+    // console.log("senha: ", this.senha);
+    // console.log("confirmarSenha: ", this.confirmarSenha);
+    // console.log("termoIdade: ", termoIdade);
+    // console.log("termoLGPD: ", termoLGPD);
+
+    // if ( (atleta || agente) && email && senha && confirmarSenha && termoIdade && termoLGPD) { 
+    //   this.router.navigate(['/home']);
+    //   return;
+    // } 
+    console.log('this.perfil: ', this.perfil);
+
+    if (this.perfil) {
       this.router.navigate(['/home']);
       return;
     } 
      
     console.log('PREENCHA TODOS OS CAMPOS!');
+  }
+
+  onSubmit() {
+    if (this.form.valid) {
+      console.log(this.form.value);
+    }
   }
 
 
