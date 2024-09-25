@@ -44,7 +44,7 @@
     font-weight: 600;
     width: 22rem;
     margin: 7rem 0 3rem 0;
-    padding-bottom: 5rem;
+    padding-bottom: 2rem;
     text-align: center;
     text-decoration: underline;
 }
@@ -57,10 +57,32 @@ app-button {
     margin-top: 2rem;
     display: flex;
     flex-direction: column; 
-    font-size: 1.2rem;
+    font-size: 1.2rem;  
 }
  
+#radiosGroup li i {
+  margin: 0 1rem;
+}
  
+#termos {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  font-size: 1.1rem;
+  margin-top: 2rem;
+} 
+
+#termos li {  
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+#termos input { 
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
 #dataComponent .mat-form-field {
     background-color: #f0f0f0;  
     border-radius: 4px;

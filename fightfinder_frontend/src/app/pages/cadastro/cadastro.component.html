@@ -6,13 +6,23 @@
 
         <section id="ladoDireito">
             <div id="boxCadastro">
-                <h1 id="tituloCadastro">Cadastro</h1>
+                <h1 id="tituloCadastro">Cadastro</h1> 
 
-                <label for="inputData">Data de nascimento</label>
-                
+                <ul id="radiosGroup">
+                    <li>
+                        <app-input-radio [(ngModel)]="atleta" #atletaInput="ngModel" id="atletaRadio" value="perfil" name="esportista" textoRadio="Sou atleta" />
+                        <i class="fa-solid fa-circle-info"></i>
+                    </li>
+                    <li>
+                        <app-input-radio id="agenteRadio" value="perfil" name="agente" textoRadio="Sou agente de lutas" />
+                        <i class="fa-solid fa-circle-info"></i></li>    
+                </ul> 
+
+<!--
+                <label for="inputData">Data de nascimento</label> 
                 <app-datepicker />
 
-                <!-- <label for="inputText">CPF</label>
+                 <label for="inputText">CPF</label>
                 <app-input-texto
                 mask="000.000.000-00"
                 id="inputText" 
@@ -22,14 +32,14 @@
 
                 <label for="genero">Gênero</label>
                 <app-dropdown id="genero" [options]="['Masculino', 'Feminino', 'Outro']"> </app-dropdown>
-   
-                -->
+ -->
 
                 <label for="inputText"></label>
                 <app-input-texto
-                id="inputText" 
+                id="inputEmail" 
                 placeholder="Email" 
                 border-color="var(--azul)"
+                value=""
                 />
 
                 <label for="inputSenha"></label>
@@ -42,16 +52,14 @@
                 <app-input-senha
                 id="inputConfirmarSenha" 
                 placeholder="Confirmar senha" 
-                /> 
+                />  
 
-                <div id="radiosGroup">    
-                    <app-input-radio value="perfil" name="esportista" textoRadio="Sou atleta" />  
-                    <app-input-radio value="perfil" name="agente" textoRadio="Sou agente de lutas" /> 
-                </div> 
- 
+                <ul id="termos">
+                    <li><input type="checkbox" id="termoIdade" /> Confirmo ter mais de 18 anos</li>
+                    <li><input type="checkbox" id="termoLGPD" /> Concordo com os termos da LGPD estabelecidos</li> 
+                </ul> 
 
-                <app-button textoBtn="Criar conta" (click)="entrar()" />
- 
+                <app-button textoBtn="Criar conta" (click)="entrar()" /> 
             </div>
         </section>
         

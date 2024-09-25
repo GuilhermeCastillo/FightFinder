@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-input-radio',
   standalone: true,
-  imports: [],
+  imports: [FormsModule ],
   templateUrl: './input-radio.component.html',
   styleUrl: './input-radio.component.css'
 })

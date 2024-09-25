@@ -22,8 +22,12 @@
                 placeholder="Senha" 
                 [password]="userPassword"
                 /> 
-   
-                <app-button textoBtn="Confirmar" (click)="entrar()" />
+
+                <span id="esqueci-a-senha">
+                    <a href="/#">Esqueci a senha</a>
+                </span>
+
+                <app-button textoBtn="Entrar" (click)="entrar()" />
 
                 <span id="linkCadastro">
                     <a href="/cadastro">Não possui conta? Crie uma agora!</a>

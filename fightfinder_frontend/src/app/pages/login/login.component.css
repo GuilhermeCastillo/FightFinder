@@ -48,20 +48,20 @@
 }
 
 app-button {
-    margin: 4rem;
+    margin: 3rem;
 }
 
-#linkCadastro {
+#linkCadastro, #esqueci-a-senha {
     margin-top: 1rem;
     font-weight: bold;
 }
 
-#linkCadastro a {
+#linkCadastro a, #esqueci-a-senha a {
     text-decoration: none;
     text-align: center;
     color: var(--azul); 
 }
 
-#linkCadastro a:hover {
+#linkCadastro a:hover, #esqueci-a-senha a:hover {
     text-decoration: underline;
 }
