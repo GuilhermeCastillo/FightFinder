@@ -4,7 +4,7 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
 @Component({
   selector: 'app-input-radio',
   standalone: true,
-  imports: [ FormsModule],
+  imports: [FormsModule],
   templateUrl: './input-radio.component.html',
   styleUrl: './input-radio.component.css',
   providers: [
@@ -17,28 +17,45 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
 })
 export class InputRadioComponent implements ControlValueAccessor { 
   
-  writeValue(obj: any): void { 
-  }
-  registerOnChange(fn: any): void { 
-  }
-  registerOnTouched(fn: any): void { 
-  }
-  setDisabledState?(isDisabled: boolean): void {
-    console.log('MÉTODO NÃO IMPLEMENTADO');
-  }
   @Input() type: string = 'radio';  
   @Input() textoRadio: string = '';  
   @Input() value: string = ''; 
-  @Input() name: string = ''; 
-
+  @Input() name: string = '';  
   @Output() valueChange = new EventEmitter<string>();
 
-  ngOnInit(): void {
-     
+  ngOnInit(): void {   }
+  
+  selectedValue: string | null = null;
+  isDisabled: boolean = false;
+
+  // Função que será chamada quando o valor mudar
+  private onChange: any = () => {};
+  // Função que será chamada quando o controle for tocado
+  private onTouched: any = () => {};
+
+  // Método obrigatório para escrever o valor no componente
+  writeValue(value: string): void {
+    this.selectedValue = value;
   }
 
-  onInputChange(event: Event) {
-    const inputElement = (event.target as HTMLInputElement).value;
-    this.valueChange.emit(inputElement);
+  // Método para registrar quando o valor mudar
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  // Método para registrar quando o controle é tocado
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
+
+  // Método para desabilitar o componente
+  setDisabledState?(isDisabled: boolean): void {
+    this.isDisabled = isDisabled;
+  }
+
+  // Método chamado quando o usuário seleciona uma opção
+  onSelect(): void {
+    this.onChange(this.value); // Propaga o valor selecionado
+    this.onTouched(); // Marca o campo como tocado
   }
 }

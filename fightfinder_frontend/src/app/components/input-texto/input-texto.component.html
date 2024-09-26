@@ -1,11 +1,12 @@
 <input 
     type="text"
-    [value]="inputText"
+    [id]="id"
+    [value]="value"
     [placeholder]="placeholder" 
     [disabled]="disabled"
-    [id]="id"
-    [ngStyle]="{'border-color': borderColor}" 
     [attr.maxlength]="maxLength"
+    [ngStyle]="{'border-color': borderColor}" 
     [ngStyle]="{ 'width': width }"
+    (input)="onInputChange($event)"
 />  
 <!-- [style.width]="width" -->

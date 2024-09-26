@@ -37,7 +37,9 @@ export class CadastroComponent {
   constructor(private router: Router, private title: Title, private fb: FormBuilder) { 
 
     this.form = this.fb.group({
-      escolha: ['', Validators.required], // Validação de campo obrigatório 
+      radio: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      senha: ['', [Validators.required, Validators.minLength(8), Validators.pattern('^[a-zA-Z0-9]*$')]]
     });
   }
   
@@ -45,7 +47,8 @@ export class CadastroComponent {
     this.title.setTitle('Cadastro');
   }
   
-  onSubmit() { 
+  onSubmit() {
+    console.log('form: ', this.form);
     if (this.form.valid) {
       console.log("Formulário válido", this.form.value);
     } else {

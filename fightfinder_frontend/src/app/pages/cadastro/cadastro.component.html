@@ -10,25 +10,20 @@
 
                 <ul id="radiosGroup">
                     <li>
-                        <input type="radio" formControlName="escolha" id="atletaRadio"
-                         value="atleta" name="escolha" textoRadio="Sou atleta" /> 
-                        <i class="fa-solid fa-circle-info"></i>
-                      
-                    </li>
-                   <li>
-                        <input type="radio" formControlName="escolha"  id="agenteRadio"
-                         value="agente" name="escolha" textoRadio="Sou agente de lutas" />
+                        <app-input-radio formControlName="radio" id="atletaRadio"
+                        name="escolha" value="atleta" textoRadio="Sou atleta" /> 
                         <i class="fa-solid fa-circle-info"></i> 
                     </li>
-                </ul> 
-
-                <div *ngIf="form.get('escolha')?.invalid && form.get('escolha')?.touched">
+                   <li>
+                        <app-input-radio formControlName="radio" id="agenteRadio"
+                        name="escolha" value="agente" textoRadio="Sou agente de lutas" />
+                        <i class="fa-solid fa-circle-info"></i> 
+                    </li>
+                </ul>  
+                <div *ngIf="form.get('radio')?.invalid && !form.get('radio')?.touched">
                     <p class="error">Por favor, selecione uma opção.</p>
                 </div>
-
-                <button id="app-button" textoBtn="Criar conta" type="submit" >Entrar</button>
-            </form>
-        </section>
+    
 <!--
                 <label for="inputData">Data de nascimento</label> 
                 <app-datepicker />
@@ -43,40 +38,39 @@
 
                 <label for="genero">Gênero</label>
                 <app-dropdown id="genero" [options]="['Masculino', 'Feminino', 'Outro']"> </app-dropdown>
-
+ -->
 
                 <label for="inputText"></label>
-                <app-input-texto [(ngModel)]="email" #emailInput="ngModel"
+                <app-input-texto formControlName="email"
                 id="inputEmail" 
-                placeholder="Email" 
-                border-color="var(--azul)"
-                value=""
+                placeholder="Email"   
                 />
 
                 <label for="inputSenha"></label>
-                <app-input-senha [(ngModel)]="senha" #senhaInput="ngModel"
+                <app-input-senha 
                 id="inputSenha" 
                 placeholder="Senha" 
                 /> 
 
                 <label for="inputConfirmarSenha"></label>
-                <app-input-senha [(ngModel)]="confirmarSenha" #confirmarSenhaInput="ngModel"
+                <app-input-senha 
                 id="inputConfirmarSenha" 
                 placeholder="Confirmar senha" 
                 />  
 
                 <ul id="termos">
                     <li>
-                        <input type="checkbox" id="termoIdade" [(ngModel)]="termoIdade" #termoIdadeInput="ngModel" />
+                        <input type="checkbox" id="termoIdade" />
                          Confirmo ter mais de 18 anos
                     </li>
                     <li>
-                        <input type="checkbox" id="termoLGPD" [(ngModel)]="termoLGPD" #termoLGPDInput="ngModel" />
+                        <input type="checkbox" id="termoLGPD" />
                          Concordo com os termos da LGPD estabelecidos
                     </li> 
-                </ul> 
- -->
-            
-        
+                </ul>    
+
+                <button id="app-button" textoBtn="Criar conta" type="submit" >Entrar</button>
+            </form>
+        </section>
     </div> 
 </div>

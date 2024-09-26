@@ -1,4 +1,8 @@
 <input 
-type="radio"
-value="valor"
-name="nome"> {{ textoRadio }}
+type="radio"  
+[value]="value"
+[name]="name" 
+[checked]="value === selectedValue"
+[disabled]="isDisabled"
+(change)="onSelect()"
+> {{ textoRadio }}

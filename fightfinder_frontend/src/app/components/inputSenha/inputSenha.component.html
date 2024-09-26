@@ -3,6 +3,7 @@
         [type]="passwordVisible ? 'text' : 'password'"
         [placeholder]="placeholder" 
         [disabled]="disabled"
+        (input)="onInputChange($event)"
     />  
     <button type="button" (click)="togglePasswordVisibility()">
         <i [ngClass]="passwordVisible ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
