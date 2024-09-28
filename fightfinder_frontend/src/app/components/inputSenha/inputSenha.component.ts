@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { InputTextoComponent } from '../input-texto/input-texto.component';
+import { NG_VALUE_ACCESSOR } from '@angular/forms'; 
 
 @Component({
   selector: 'app-input-senha',
@@ -10,7 +9,7 @@ import { InputTextoComponent } from '../input-texto/input-texto.component';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => InputTextoComponent),
+      useExisting: forwardRef(() => InputSenhaComponent),
       multi: true
     }
   ],

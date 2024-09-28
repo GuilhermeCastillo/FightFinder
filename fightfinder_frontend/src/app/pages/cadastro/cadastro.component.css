@@ -43,17 +43,15 @@
     color: var(--azul); 
     font-weight: 600;
     width: 22rem;
-    margin: 7rem 0 3rem 0;
+    margin: 5rem 0 3rem 0;
     padding-bottom: 2rem;
     text-align: center;
     text-decoration: underline;
 }
 
-#app-button {
-    margin: 3rem;
-    width: 9rem;
-    height: 3rem;
-    background-color: var(--azul);
+app-button {
+    margin: 2rem;  
+    text-align: center;
 }
 
 #radiosGroup {
@@ -84,6 +82,10 @@
 #termos input { 
   height: 1.5rem;
   width: 1.5rem;
+}
+
+.erro {
+  color: #ff0000;
 }
 
 #dataComponent .mat-form-field {

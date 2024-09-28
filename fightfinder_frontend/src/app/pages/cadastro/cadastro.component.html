@@ -20,10 +20,63 @@
                         <i class="fa-solid fa-circle-info"></i> 
                     </li>
                 </ul>  
-                <div *ngIf="form.get('radio')?.invalid && !form.get('radio')?.touched">
-                    <p class="error">Por favor, selecione uma opção.</p>
+                <div *ngIf="erroRadio">
+                    <p class="erro">Por favor, selecione uma opção</p>
                 </div>
     
+                
+                <label for="inputText"></label>
+                <app-input-texto formControlName="email"
+                id="inputEmail" 
+                placeholder="Email"   
+                />
+                <div *ngIf="erroEmail">
+                    <p class="erro">Email inválido!</p>
+                </div>
+
+
+                <label for="inputSenha"></label>
+                <app-input-senha formControlName="senha1"
+                id="inputSenha" 
+                placeholder="Senha" 
+                /> 
+                <div *ngIf="erroSenha1">
+                    <p class="erro">mín. 8 caracteres com letras e números</p>
+                </div>
+                
+
+                <label for="inputConfirmarSenha"></label>
+                <app-input-senha formControlName="senha2"
+                id="inputConfirmarSenha" 
+                placeholder="Confirmar senha" 
+                />   
+                <div *ngIf="erroSenha2">
+                    <p class="erro">mín. 8 caracteres com letras e números</p>
+                </div>
+                <div *ngIf="erroSenhasDiferentes">
+                    <p class="erro">as senhas não coincidem!</p>
+                </div>
+
+
+                <ul id="termos">
+                    <li>
+                        <app-checkbox id="termoIdade" formControlName="termo1" />
+                         Confirmo ter mais de 18 anos
+                         <div class="erro"> * </div>
+                    </li>
+                    <li>
+                        <app-checkbox id="termoLGPD" formControlName="termo2" />
+                         Concordo com os termos da LGPD estabelecidos
+                         <div class="erro"> * </div>
+                    </li> 
+                </ul>    
+
+                <app-button textoBtn="Criar conta" type="submit">Criar conta</app-button>
+            </form>
+        </section>
+    </div> 
+</div>
+
 <!--
                 <label for="inputData">Data de nascimento</label> 
                 <app-datepicker />
@@ -39,38 +92,3 @@
                 <label for="genero">Gênero</label>
                 <app-dropdown id="genero" [options]="['Masculino', 'Feminino', 'Outro']"> </app-dropdown>
  -->
-
-                <label for="inputText"></label>
-                <app-input-texto formControlName="email"
-                id="inputEmail" 
-                placeholder="Email"   
-                />
-
-                <label for="inputSenha"></label>
-                <app-input-senha 
-                id="inputSenha" 
-                placeholder="Senha" 
-                /> 
-
-                <label for="inputConfirmarSenha"></label>
-                <app-input-senha 
-                id="inputConfirmarSenha" 
-                placeholder="Confirmar senha" 
-                />  
-
-                <ul id="termos">
-                    <li>
-                        <input type="checkbox" id="termoIdade" />
-                         Confirmo ter mais de 18 anos
-                    </li>
-                    <li>
-                        <input type="checkbox" id="termoLGPD" />
-                         Concordo com os termos da LGPD estabelecidos
-                    </li> 
-                </ul>    
-
-                <button id="app-button" textoBtn="Criar conta" type="submit" >Entrar</button>
-            </form>
-        </section>
-    </div> 
-</div>
