@@ -28,6 +28,11 @@ SECRET_KEY = "django-insecure-#dyco4#%u$ug2j4t#lo*(te07c3@kipa6da89enpsfmo$f_sb3
 DEBUG = True
 
 ALLOWED_HOSTS = []
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:4200",  # Domínio do Angular
+]
+
+CORS_ALLOW_CREDENTIALS = True
 
 
 # Application definition
@@ -48,9 +53,11 @@ INSTALLED_APPS = [
     "events",
     "connections",
     "users",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",  # Coloque no topo da lista
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
