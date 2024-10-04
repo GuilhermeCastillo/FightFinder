@@ -11,12 +11,13 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { DatepickerComponent } from '../../components/datepicker/datepicker.component';
 import { CommonModule } from '@angular/common';
 import { CheckboxComponent } from '../../components/checkbox/checkbox.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-cadastro',
   standalone: true,
   imports: [ButtonComponent, InputTextoComponent, InputSenhaComponent, InputRadioComponent, ReactiveFormsModule, DropdownComponent,
-     NgxMaskDirective, DatepickerComponent, FormsModule, CommonModule, CheckboxComponent],
+     NgxMaskDirective, DatepickerComponent, FormsModule, CommonModule, CheckboxComponent, HttpClientModule],
   providers: [ 
       provideNgxMask({
         validation: false,
@@ -33,6 +34,7 @@ import { CheckboxComponent } from '../../components/checkbox/checkbox.component'
 
 export class CadastroComponent {
   erroRadio: boolean = false; 
+  erroNomeUser: boolean = false;
   erroEmail: boolean = false;
   erroSenha1: boolean = false; 
   erroSenha2: boolean = false; 
@@ -41,10 +43,12 @@ export class CadastroComponent {
   erroTermo2: boolean = false;  
   selectedDate: string = '';
   form: FormGroup;
+  respostaApi: any;
 
-  constructor(private router: Router, private title: Title, private fb: FormBuilder) { 
+  constructor(private router: Router, private title: Title, private fb: FormBuilder, private http: HttpClient) { 
     this.form = this.fb.group({
-      radio: ['', Validators.required],
+      // radio: ['', Validators.required],
+      nomeUser: ['', [Validators.required, Validators.maxLength(30), Validators.pattern('^[a-zA-Z]+$')]], // apenas letras   
       email: ['', [Validators.required, Validators.email]],
       senha1: ['', [Validators.required, Validators.minLength(8), Validators.pattern('^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]*$')]],
       senha2: ['', [Validators.required, Validators.minLength(8), Validators.pattern('^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]*$')]],
@@ -57,25 +61,24 @@ export class CadastroComponent {
     this.title.setTitle('Cadastro');
   }
   
-  onSubmit() {
-    console.log('form: ', this.form);
-
+  onSubmit() { 
     if (this.form.valid 
       && this.form.controls['senha1'].value === this.form.controls['senha2'].value
       && this.form.controls['termo1'].value == true 
-      && this.form.controls['termo2'].value == true) {
+      && this.form.controls['termo2'].value == true) { 
 
-      console.log("Formulário válido!"); 
-      this.erroRadio = false;
-      this.erroEmail = false;
-      this.erroSenha1 = false;
-      this.erroSenha2 = false;
-      this.erroSenhasDiferentes = false;  
-      this.router.navigate(['/home']);
-    } else {
+        this.erroRadio = false;
+        this.erroEmail = false;
+        this.erroSenha1 = false;
+        this.erroSenha2 = false;
+        this.erroSenhasDiferentes = false;  
 
+        this.enviarDados();
+
+    } else { 
       console.log("Formulário inválido"); 
-      this.form.controls['radio'].invalid ? this.erroRadio = true : this.erroRadio = false;
+      // this.form.controls['radio'].invalid ? this.erroRadio = true : this.erroRadio = false;
+      this.form.controls['nomeUser'].invalid ? this.erroNomeUser = true : this.erroNomeUser = false;
       this.form.controls['email'].invalid ? this.erroEmail = true : this.erroEmail = false;
       this.form.controls['senha1'].invalid ? this.erroSenha1 = true : this.erroSenha1 = false;
       this.form.controls['senha2'].invalid ? this.erroSenha2 = true : this.erroSenha2 = false;
@@ -83,6 +86,28 @@ export class CadastroComponent {
       this.form.controls['termo1'].invalid ? this.erroTermo1 = true : this.erroTermo1 = false; // não dá p confiar nisso aq nao
       this.form.controls['termo2'].invalid ? this.erroTermo2 = true : this.erroTermo2 = false; // não dá p confiar nisso aq nao
     }
+  }
+
+  enviarDados(): void { 
+    const dados = {
+      username: this.form.controls['nomeUser'].value,
+      password: this.form.controls['senha1'].value,
+      password2: this.form.controls['senha2'].value,
+      email: this.form.controls['email'].value
+    };
+
+    const url: string = "http://127.0.0.1:8000/api/v1/register/"; 
+
+    this.http.post<any>(url, dados).subscribe({
+      next: (response) => {
+        this.respostaApi = response; // Processa a resposta da API
+        console.log(this.respostaApi);
+        this.router.navigate(['/home']);  
+      },
+      error: (err) => {
+        console.error('Erro ao enviar dados', err); // Lida com erros
+      }
+    });
   }
       
 }

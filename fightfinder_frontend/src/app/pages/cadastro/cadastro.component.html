@@ -8,7 +8,7 @@
             <form [formGroup]="form" id="boxCadastro" (ngSubmit)="onSubmit()">
                 <h1 id="tituloCadastro">Cadastro</h1> 
 
-                <ul id="radiosGroup">
+                <!-- <ul id="radiosGroup">
                     <li>
                         <app-input-radio formControlName="radio" id="atletaRadio"
                         name="escolha" value="atleta" textoRadio="Sou atleta" /> 
@@ -22,8 +22,16 @@
                 </ul>  
                 <div *ngIf="erroRadio">
                     <p class="erro">Por favor, selecione uma opção</p>
-                </div>
+                </div> -->
     
+                <label for="inputText"></label>
+                <app-input-texto formControlName="nomeUser"
+                id="inputNomeUser" 
+                placeholder="Nome de usuário"
+                />
+                <div *ngIf="erroNomeUser">
+                    <p class="erro">Nome não pode ter números e espaços!</p>
+                </div>
                 
                 <label for="inputText"></label>
                 <app-input-texto formControlName="email"
