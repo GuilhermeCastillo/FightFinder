@@ -226,12 +226,14 @@ class CompleteAthleteProfileView(APIView):
         except Athlete.DoesNotExist:
             # Se o perfil não existir, cria um novo
             athlete = Athlete(user=user)
-        
+
         # Atualize ou crie o perfil do atleta com os dados fornecidos
-        serializer = AthleteSerializer(athlete, data=request.data, partial=True)
+        serializer = AthleteProfileSerializer(athlete, data=request.data, partial=True, context={'request': request})
+        
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
+        
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class CheckAthleteProfileView(APIView):
