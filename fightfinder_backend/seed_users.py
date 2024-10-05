@@ -2,6 +2,7 @@ import requests
 from faker import Faker
 import json
 import unidecode  # Biblioteca para remover acentuação
+import re
 
 # Crie uma instância do Faker para dados brasileiros
 fake = Faker("pt_BR")  # Definindo localidade como Brasil
@@ -51,7 +52,8 @@ def complete_user_profile(token):
     genero = fake.random_element(elements=("M", "F"))
 
     # Gerar telefone sem acentuação e com no máximo 15 caracteres
-    telefone = unidecode.unidecode(fake.phone_number())[:15]
+    telefone = re.sub(r'\D', '', fake.phone_number())[:15] 
+    print(telefone)
 
     # Dados fictícios do perfil do atleta
     athlete_data = {
