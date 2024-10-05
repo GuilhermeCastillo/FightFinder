@@ -5,34 +5,42 @@
         </section>
 
         <section id="ladoDireito">
-            <div id="boxLogin">
+            <form id="boxLogin"  [formGroup]="form" (ngSubmit)="onSubmit()">
                 <h1 id="tituloLogin">Login</h1>
 
                 <label for="inputText"></label>
-                <app-input-texto
+                <app-input-texto formControlName="email"
                 id="inputText"
                 type="text"
-                placeholder="Usuário"  
+                placeholder="Email"  
                 />
-                
+                <div *ngIf="erroEmail">
+                    <p class="erro">Email inválido!</p>
+                </div>
+
+
                 <label for="inputSenha"></label>
-                <app-input-senha
+                <app-input-senha formControlName="senha1"
                 id="inputSenha"
                 type="password"
                 placeholder="Senha" 
                 [password]="userPassword"
                 /> 
+                <div *ngIf="erroSenha1">
+                    <p class="erro">mín. 8 caracteres com letras e números</p>
+                </div>
+
 
                 <span id="esqueci-a-senha">
                     <a href="/#">Esqueceu a senha?</a>
                 </span>
 
-                <app-button textoBtn="Entrar" (click)="enviarDados()" />
+                <app-button textoBtn="Entrar"  type="submit" />
 
                 <span id="linkCadastro">
                     <a href="/cadastro">Não possui conta? Crie uma agora!</a>
                 </span>
-            </div>
+            </form>
         </section>
         
     </div> 

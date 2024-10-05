@@ -18,7 +18,7 @@
     </section> 
 
     <section id="infoPessoal">
-        <ul>
+        <ul> <!-- LISTA 1 -->
             <li>
                 <app-input-texto 
                 id="inputNome" 
@@ -27,23 +27,91 @@
                 />
                 <app-botao-pequeno (click)="editarCampo()"> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
             </li>
-
+            <li>
+                <app-input-texto 
+                id="inputCPF" 
+                placeholder="CPF"
+                [disabled]="campoBloqueado" 
+                />
+                <app-botao-pequeno (click)="editarCampo()"> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
+            </li>
+            <li>   
+                <app-dropdown 
+                [options]="['Gênero', 'Masculino', 'Feminino', 'Outro']" 
+                placeholder = 'Gênero'  
+                (optionSelected)="onOptionSelected($event)" 
+                [disabled]="campoBloqueado" 
+                 />  
+                <app-botao-pequeno (click)="editarCampo()"> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
+            </li> 
             <li>
                 <app-input-texto
                 placeholder="Peso" 
                 [disabled]="campoBloqueado" 
                 />
                 <app-botao-pequeno (click)="editarCampo()"> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
-            </li>
-
-            <!-- <li>
-                <app-input-texto  
-                placeholder="Idade *" 
+            </li> 
+            <li>
+                <app-input-texto 
+                id="inputAltura" 
+                placeholder="Altura"
                 [disabled]="campoBloqueado" 
                 />
                 <app-botao-pequeno (click)="editarCampo()"> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
-            </li> -->
-
+            </li>
+        </ul>
+        <ul>  <!-- LISTA 2 -->
+            <li>
+                <app-input-texto 
+                id="inputTelefone" 
+                placeholder="Telefone"
+                [disabled]="campoBloqueado" 
+                /> 
+                <p> * </p>
+                <app-botao-pequeno (click)="editarCampo()"> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
+            </li>
+            <li>
+                <app-input-texto 
+                id="inputDataNascimento" 
+                placeholder="Data de Nascimento"
+                [disabled]="campoBloqueado" 
+                />
+                <app-botao-pequeno (click)="editarCampo()"> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
+            </li> 
+            <li>
+                <app-input-texto 
+                id="inputCidade" 
+                placeholder="Cidade"
+                [disabled]="campoBloqueado" 
+                />
+                <app-botao-pequeno (click)="editarCampo()"> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
+            </li>
+            <li>
+                <app-input-texto 
+                id="inputEstado" 
+                placeholder="Estado"
+                [disabled]="campoBloqueado" 
+                />
+                <app-botao-pequeno (click)="editarCampo()"> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
+            </li>
+            <li>
+                <app-input-texto 
+                id="inputPais" 
+                placeholder="País"
+                [disabled]="campoBloqueado" 
+                />
+                <app-botao-pequeno (click)="editarCampo()"> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
+            </li> 
+        </ul>
+        <ul> <!-- LISTA 3 -->   
+            <li>
+                <app-input-texto 
+                id="inputAcademia" 
+                placeholder="Academia"
+                [disabled]="campoBloqueado" 
+                />
+                <app-botao-pequeno (click)="editarCampo()"> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
+            </li>
             <li>   
                 <app-dropdown 
                 [options]="['Modalidade Favorita', 'Judo', 'Karatê', 'Jiu-Jitsu', 'Boxe', 'Muay Thai', 'Taekwondo', 'Capoeira ', 'Kung Fu', 'Krav Maga']" 
@@ -62,25 +130,6 @@
                  />  
                 <app-botao-pequeno (click)="editarCampo()"> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
             </li>
-        </ul>
-        <ul>     
-            <li>
-                <app-input-texto  
-                placeholder="Estado" 
-                [disabled]="campoBloqueado" 
-                />
-                <app-botao-pequeno (click)="editarCampo()"> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
-            </li>
-
-            <li>
-                <app-input-texto  
-                placeholder="Telefone" 
-                [disabled]="campoBloqueado" 
-                type="number"
-                />
-                <app-botao-pequeno (click)="editarCampo()"> <i class="fa-regular fa-pen-to-square"></i> </app-botao-pequeno>
-            </li>
-            
             <li>
                 <app-input-texto 
                 id="email" 

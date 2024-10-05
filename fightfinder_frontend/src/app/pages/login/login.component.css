@@ -65,3 +65,7 @@ app-button {
 #linkCadastro a:hover, #esqueci-a-senha a:hover {
     text-decoration: underline;
 }
+
+.erro {
+    color: #ff0000;
+}

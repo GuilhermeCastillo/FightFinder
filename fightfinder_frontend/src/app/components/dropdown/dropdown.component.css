@@ -5,7 +5,12 @@ select {
     border-radius: 5px; 
     font-size: 1.3rem;
     margin-top: 0.3rem; 
-    text-align: center;   
+    text-align: center;    
+    color: black;
+}
+
+select:disabled {
+    background-color: var(--cinza);
 }
 
 select:hover { 

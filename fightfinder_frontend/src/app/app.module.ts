@@ -18,6 +18,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatDateFormats, MatNativeDateModule } from '@angular/material/core';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 export const MY_DATE_FORMATS: MatDateFormats = {
@@ -55,7 +56,8 @@ export const MY_DATE_FORMATS: MatDateFormats = {
     MatDatepickerModule, 
     MatInputModule,
     MatNativeDateModule,
-    HttpClientModule
+    HttpClientModule,
+    SweetAlert2Module.forRoot(),
   ],
   providers: [
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },

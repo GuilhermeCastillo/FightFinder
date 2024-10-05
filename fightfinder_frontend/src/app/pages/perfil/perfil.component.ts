@@ -55,4 +55,37 @@ export class PerfilComponent {
     console.log('campo bloqueado', this.campoBloqueado);
   }
 
+
+//   {
+//     "cpf": "12345678900",
+//     "genero": "M",
+//     "peso": 80,
+//     "altura": 1.75,
+//     "telefone": "(11) 98765-4321", NÃO OBGTORIO
+//     "cidade": "São Paulo",
+//     "estado": "SP",
+//     "pais": "Brasil",
+//     "data_nascimento": "1990-05-15",
+//     "nome": "João Silva",
+//     "academia": "Academia de Lutas São Paulo", NÃO OBGTORIO
+//     "modalidade": "BJJ"
+//      "imagem" NÃO OBGTORIO
+// } 
+
+// MODALITIES_CHOICES = [
+//   ("BJJ", "Brazilian Jiu-Jitsu"),
+//   ("MMA", "Mixed Martial Arts"),
+//   ("BOX", "Boxing"),
+//   ("MT", "Muay Thai"),
+//   ("JUDO", "Judo"),
+//   ("WREST", "Wrestling"),
+//   ("KARATE", "Karate"),
+//   ("TKD", "Taekwondo"),
+//   ("INI", "Iniciante"),
+// ]
+
+// GENDER_CHOICES = [
+//   ('M', 'Masculino'),
+//   ('F', 'Feminino'),
+// ] 
 }

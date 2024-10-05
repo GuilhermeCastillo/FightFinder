@@ -5,7 +5,7 @@ import { InputTextoComponent } from '../../components/input-texto/input-texto.co
 import { InputSenhaComponent } from '../../components/inputSenha/inputSenha.component';
 import { InputRadioComponent } from '../../components/input-radio/input-radio.component';
 import { Title } from '@angular/platform-browser';
-import { FormBuilder, FormControl, FormGroup, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DropdownComponent } from '../../components/dropdown/dropdown.component';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask'; 
 import { DatepickerComponent } from '../../components/datepicker/datepicker.component';
@@ -41,9 +41,11 @@ export class CadastroComponent {
   erroSenhasDiferentes: boolean = false; 
   erroTermo1: boolean = false; 
   erroTermo2: boolean = false;  
-  selectedDate: string = '';
+  nomeJaExiste: boolean = false;
+  textoNomeJaExistente: string = "Um usuário com este nome de usuário já existe.";
   form: FormGroup;
   respostaApi: any;
+  selectedDate: string = '';
 
   constructor(private router: Router, private title: Title, private fb: FormBuilder, private http: HttpClient) { 
     this.form = this.fb.group({
@@ -62,6 +64,7 @@ export class CadastroComponent {
   }
   
   onSubmit() { 
+    this.nomeJaExiste = false;
     if (this.form.valid 
       && this.form.controls['senha1'].value === this.form.controls['senha2'].value
       && this.form.controls['termo1'].value == true 
@@ -73,7 +76,7 @@ export class CadastroComponent {
         this.erroSenha2 = false;
         this.erroSenhasDiferentes = false;  
 
-        this.enviarDados();
+        this.enviarDadosCadastro();
 
     } else { 
       console.log("Formulário inválido"); 
@@ -88,7 +91,7 @@ export class CadastroComponent {
     }
   }
 
-  enviarDados(): void { 
+  enviarDadosCadastro(): void {
     const dados = {
       username: this.form.controls['nomeUser'].value,
       password: this.form.controls['senha1'].value,
@@ -96,16 +99,17 @@ export class CadastroComponent {
       email: this.form.controls['email'].value
     };
 
-    const url: string = "http://127.0.0.1:8000/api/v1/register/"; 
+    const url: string = "http://127.0.0.1:8000/api/v1/register/";
 
     this.http.post<any>(url, dados).subscribe({
       next: (response) => {
-        this.respostaApi = response; // Processa a resposta da API
-        console.log(this.respostaApi);
-        this.router.navigate(['/home']);  
+        this.respostaApi = response;   
+        // console.log(this.respostaApi);
+        this.router.navigate(['/home']);
       },
       error: (err) => {
-        console.error('Erro ao enviar dados', err); // Lida com erros
+        // console.error('Erro ao enviar dados', err);
+        err.error.username[0] === this.textoNomeJaExistente ? this.nomeJaExiste = true : this.nomeJaExiste = false;
       }
     });
   }
