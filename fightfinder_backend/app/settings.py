@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     "connections",
     "users",
     "corsheaders",
-    "django_seed"
 ]
 
 MIDDLEWARE = [
