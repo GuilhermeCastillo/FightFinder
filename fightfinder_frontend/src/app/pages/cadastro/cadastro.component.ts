@@ -12,6 +12,7 @@ import { DatepickerComponent } from '../../components/datepicker/datepicker.comp
 import { CommonModule } from '@angular/common';
 import { CheckboxComponent } from '../../components/checkbox/checkbox.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { TokenService } from '../../services/token/token.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -47,7 +48,8 @@ export class CadastroComponent {
   respostaApi: any;
   selectedDate: string = '';
 
-  constructor(private router: Router, private title: Title, private fb: FormBuilder, private http: HttpClient) { 
+  constructor(private router: Router, private title: Title, private fb: FormBuilder, private http: HttpClient,
+     private tokenService: TokenService) { 
     this.form = this.fb.group({
       // radio: ['', Validators.required],
       nomeUser: ['', [Validators.required, Validators.maxLength(30), Validators.pattern('^[a-zA-Z]+$')]], // apenas letras   
@@ -104,8 +106,9 @@ export class CadastroComponent {
     this.http.post<any>(url, dados).subscribe({
       next: (response) => {
         this.respostaApi = response;   
-        // console.log(this.respostaApi);
+        console.log('TOKEN: ', this.respostaApi);
         this.router.navigate(['/home']);
+        this.tokenService.setToken(this.respostaApi);
       },
       error: (err) => {
         // console.error('Erro ao enviar dados', err);
