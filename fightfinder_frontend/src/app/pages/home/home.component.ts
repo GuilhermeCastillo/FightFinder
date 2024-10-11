@@ -22,7 +22,7 @@ export class HomeComponent {
   ngOnInit(): void {
     this.title.setTitle('Home'); 
 
-    this.verificaSeCompletouCadastro();
+    // this.verificaSeCompletouCadastro();
   }
 
   verificaSeCompletouCadastro() {

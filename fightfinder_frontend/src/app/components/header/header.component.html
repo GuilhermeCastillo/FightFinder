@@ -12,12 +12,12 @@
             <li><a href="/sobre-nos">Sobre nós</a></li> 
         </ul>
     
-        <div *ngIf="!logado" id="login">
+        <div *ngIf="!usuarioLogado" id="login">
             <a href="/login">Login</a> <!-- ngIf  PERFIL, CONFIGS, LOGOUT --> 
         </div>
             
-        <div *ngIf="!logado" id="foto"> 
-            <a *ngIf="!logado" href="/perfil">
+        <div *ngIf="usuarioLogado" id="foto"> 
+            <a *ngIf="usuarioLogado" href="/perfil">
                 <i *ngIf="semFoto" class="fa-solid fa-circle-user"></i>
                 <img *ngIf="!semFoto" alt="Imagem Selecionada" src="assets\teste5.jpeg" />
             </a>
