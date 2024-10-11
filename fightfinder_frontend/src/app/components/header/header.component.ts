@@ -11,7 +11,8 @@ import { TokenService } from '../../services/token/token.service';
 })
 export class HeaderComponent {
   usuarioLogado: boolean = false;
-  semFoto: boolean = true; 
+  semFoto: boolean = true;
+  mostraLista: boolean = false;
 
   constructor(private tokenService: TokenService) {}
 
@@ -19,6 +20,10 @@ export class HeaderComponent {
     if (this.tokenService.hasToken()) {
       this.usuarioLogado = true;
     }
+  }
+
+  abrirLista() {
+    this.mostraLista = !this.mostraLista;
   }
 
 }

@@ -26,7 +26,7 @@
     height: 100%;
 }
 
-#menu ul { 
+#menu #listaLinks { 
     display: flex; 
     list-style-type: none;
     justify-content: center; 
@@ -35,17 +35,17 @@
     padding: 1rem 0;
 }
 
-#menu ul li {
+#menu #listaLinks li {
     padding: 1rem 1.5rem; 
 }
 
-#menu ul li a { 
+#menu #listaLinks li a { 
     color: black;
     text-decoration: none;
     font-weight: 600; 
 }
 
-#menu ul li a:hover { 
+#menu #listaLinks li a:hover { 
     color: var(--azul);
     text-decoration: none;
     text-decoration: underline;
@@ -117,8 +117,25 @@ span {
     margin: 1rem;
  }
  
-
  .fa-circle-user {
     color: gray;
     font-size: 3.5rem;
+ }
+
+ #listaHeader {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    font-size: 1.8rem;
+    background-color: white;
+    margin-top: 5rem;
+    margin-right: 12rem;
+    text-decoration: none;
+    border: 1px solid var(--cinza);
+    border-radius: 5px;
+ }
+
+ #listaHeader li {
+    width: 14rem;
+    margin: 1rem;
  }

@@ -20,7 +20,7 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent }, 
     { path: 'perfil', component: PerfilComponent }, 
     { path: 'home', component: HomeComponent },
-    { path: '', redirectTo: '/home', pathMatch: 'full' }, // Rota padrão
+    { path: '', redirectTo: '/cadastro', pathMatch: 'full' }, // Rota padrão
     { path: '**', component: PaginaNaoEncontradaComponent }, // Rota para URLs desconhecidas
 
 ];

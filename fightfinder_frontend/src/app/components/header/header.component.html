@@ -4,7 +4,7 @@
             <a href="/home"><img src="assets\logoFundoBranco.jpg"></a>  
         </section>
 
-        <ul> 
+        <ul id="listaLinks"> 
             <li><a href="#">Eventos</a></li>
             <li><a href="/ranking">Ranking</a></li>
             <li><a href="/match-luta">Match</a></li> 
@@ -17,10 +17,21 @@
         </div>
             
         <div *ngIf="usuarioLogado" id="foto"> 
-            <a *ngIf="usuarioLogado" href="/perfil">
+            <a *ngIf="usuarioLogado" (click)="abrirLista();">
                 <i *ngIf="semFoto" class="fa-solid fa-circle-user"></i>
                 <img *ngIf="!semFoto" alt="Imagem Selecionada" src="assets\teste5.jpeg" />
-            </a>
+            </a> 
+            <ul id="listaHeader" *ngIf="mostraLista">
+                <li>
+                    <a href="/perfil">Perfil</a>
+                </li> 
+                <li>
+                    <a href="#">Configurações</a>
+                </li> 
+                <li>
+                    <a href="login">Sair</a>
+                </li>
+            </ul>
         </div> 
     </div>
 

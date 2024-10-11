@@ -105,35 +105,14 @@ export class CadastroComponent {
 
     this.http.post<any>(url, dados).subscribe({
       next: (response) => {
-        this.respostaApi = response;    
+        this.respostaApi = response;   
+        this.tokenService.setToken(this.respostaApi['access']);
         this.router.navigate(['/home']); 
-        this.pegarToken();
       },
       error: (err) => {
         console.error('Erro ao enviar dados', err);
         err.error.username[0] === this.textoNomeJaExistente ? this.nomeJaExiste = true : this.nomeJaExiste = false;
       }
-    });
-  }
-
-  pegarToken(): void {
-    const urlToken: string = "http://127.0.0.1:8000/api/v1/authentication/token/";
-
-    const dados = {
-      username: this.form.controls['nomeUser'].value,
-      password: this.form.controls['senha1'].value 
-    };
-
-    this.http.post<any>(urlToken, dados).subscribe({
-      next: (response) => {
-        this.respostaApi = response;    
-        this.router.navigate(['/home']);
-        this.tokenService.setToken(this.respostaApi['access']);
-      },
-      error: (err) => {
-        console.error('Erro ao enviar dados', err);
-        err.error.username[0] === this.textoNomeJaExistente ? this.nomeJaExiste = true : this.nomeJaExiste = false;
-      }      
     });
   }
       
