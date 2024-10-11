@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { TokenService } from '../../services/token/token.service';
+import { TokenService } from '../../services/token/token.service'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,7 @@ export class HeaderComponent {
   semFoto: boolean = true;
   mostraLista: boolean = false;
 
-  constructor(private tokenService: TokenService) {}
+  constructor(private tokenService: TokenService, private router: Router) {}
 
   ngOnInit() {
     if (this.tokenService.hasToken()) {
@@ -24,6 +25,11 @@ export class HeaderComponent {
 
   abrirLista() {
     this.mostraLista = !this.mostraLista;
+  }
+
+  logout() {
+    this.tokenService.clearToken();
+    this.router.navigate(['/login']);
   }
 
 }

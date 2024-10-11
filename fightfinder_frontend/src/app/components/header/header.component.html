@@ -13,7 +13,7 @@
         </ul>
     
         <div *ngIf="!usuarioLogado" id="login">
-            <a href="/login">Login</a> <!-- ngIf  PERFIL, CONFIGS, LOGOUT --> 
+            <a href="/login">Login</a>
         </div>
             
         <div *ngIf="usuarioLogado" id="foto"> 
@@ -21,7 +21,7 @@
                 <i *ngIf="semFoto" class="fa-solid fa-circle-user"></i>
                 <img *ngIf="!semFoto" alt="Imagem Selecionada" src="assets\teste5.jpeg" />
             </a> 
-            <ul id="listaHeader" *ngIf="mostraLista">
+            <ul id="listaOpcoes" *ngIf="mostraLista">
                 <li>
                     <a href="/perfil">Perfil</a>
                 </li> 
@@ -29,14 +29,14 @@
                     <a href="#">Configurações</a>
                 </li> 
                 <li>
-                    <a href="login">Sair</a>
+                    <label (click)="logout()">Sair</label>
                 </li>
             </ul>
         </div> 
     </div>
 
     <div id="linhaDupla">
-        <hr style="background-color: var(--azul); height: 7px; border: 0px;" />  
-        <hr style="background-color: var(--vermelho); height: 5px; border: 0px;" /> 
+        <hr id="linhaAzul" />  
+        <hr id="linhaVermelha" /> 
     </div>
 </header> 

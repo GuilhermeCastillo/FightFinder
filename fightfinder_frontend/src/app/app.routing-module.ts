@@ -8,19 +8,20 @@ import { RankingComponent } from './pages/ranking/ranking.component';
 import { MatchLutaComponent } from './pages/match-luta/match-luta.component';
 import { MatchTreinoComponent } from './pages/match-treino/match-treino.component';
 import { SobreNosComponent } from './pages/sobre-nos/sobre-nos.component';
+import { AuthGuard } from './guard/auth.guard';
 
 
 export const routes: Routes = [
 
-    { path: 'sobre-nos', component: SobreNosComponent },       
-    { path: 'match-luta', component: MatchLutaComponent },
-    { path: 'match-treino', component: MatchTreinoComponent },
-    { path: 'ranking', component: RankingComponent },
+    { path: 'sobre-nos', component: SobreNosComponent, canActivate: [AuthGuard] },       
+    { path: 'match-luta', component: MatchLutaComponent, canActivate: [AuthGuard] },
+    { path: 'match-treino', component: MatchTreinoComponent, canActivate: [AuthGuard] },
+    { path: 'ranking', component: RankingComponent, canActivate: [AuthGuard] },
     { path: 'cadastro', component: CadastroComponent },
     { path: 'login', component: LoginComponent }, 
-    { path: 'perfil', component: PerfilComponent }, 
-    { path: 'home', component: HomeComponent },
+    { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard] }, 
+    { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
     { path: '', redirectTo: '/cadastro', pathMatch: 'full' }, // Rota padrão
-    { path: '**', component: PaginaNaoEncontradaComponent }, // Rota para URLs desconhecidas
+    { path: '**', component: PaginaNaoEncontradaComponent, canActivate: [AuthGuard] }, // Rota para URLs desconhecidas
 
 ];

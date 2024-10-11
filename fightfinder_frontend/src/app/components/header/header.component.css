@@ -81,22 +81,6 @@ span {
     text-decoration: none;
     transform: scale(0.15); 
 }
- 
-
-#linhaDupla {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-}
-
-#linhaDupla hr {
-    width: 100%; 
-    padding: 0;
-    margin: 0;
-    height: 2px;
-}
 
 #foto {
     display: flex; 
@@ -115,14 +99,15 @@ span {
     justify-content: center;
     align-items: center;
     margin: 1rem;
- }
+    cursor: pointer;
+}
  
- .fa-circle-user {
+.fa-circle-user {
     color: gray;
     font-size: 3.5rem;
- }
+}
 
- #listaHeader {
+#listaOpcoes {
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -130,12 +115,49 @@ span {
     background-color: white;
     margin-top: 5rem;
     margin-right: 12rem;
-    text-decoration: none;
     border: 1px solid var(--cinza);
     border-radius: 5px;
- }
+}
 
- #listaHeader li {
+#listaOpcoes li {
     width: 14rem;
     margin: 1rem;
- }
+}
+
+#listaOpcoes li a {
+    text-decoration: none;
+    list-style-type: none;
+    color: black;
+    cursor: pointer;
+}
+
+#listaOpcoes li label {
+    color: red;
+    cursor: pointer;
+}
+
+#linhaDupla {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+#linhaDupla #linhaAzul, #linhaDupla #linhaVermelha {
+    width: 100%; 
+    padding: 0;
+    margin: 0; 
+}
+
+#linhaAzul {
+    background-color: var(--azul);
+    height: 7px;
+    border: 0px;
+}
+
+#linhaVermelha {
+    background-color: var(--vermelho);
+    height: 5px;
+    border: 0px;
+}
