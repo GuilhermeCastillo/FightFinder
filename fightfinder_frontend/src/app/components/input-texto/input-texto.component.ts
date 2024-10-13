@@ -23,6 +23,8 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 export class InputTextoComponent {
   @Input() type: string = 'text'; // Tipo de input (text, checkbox, password, etc.)
+  @Input() isEditable: boolean = false;
+  @Input() value: string = '';
   @Input() inputText: string = '';  
   @Input() placeholder: string = ''; // Placeholder para o input 
   @Input() disabled: boolean = false; // Define se o input está desabilitado
@@ -30,8 +32,7 @@ export class InputTextoComponent {
   @Input() borderColor: string = 'var(--vermelho)';
   @Input() maxLength: number = 60;
   @Input() width: string = '18rem'; 
-  @Output() valueChange = new EventEmitter<string>();
-  value: string = '';
+  @Output() valueChange = new EventEmitter<string>(); 
 
   ngOnInit(): void {  }
 

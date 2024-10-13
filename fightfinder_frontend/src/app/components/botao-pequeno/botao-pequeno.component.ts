@@ -11,6 +11,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class BotaoPequenoComponent {
   @Input() textoBtn: string = '';   
   @Input() backgroundColor: string = 'var(--azul)';
+  @Input() isEditable: boolean = false;
+  @Input() value: string = '';
   @Input() disabled: boolean = false;
 
   @Output() valueChange = new EventEmitter<string>();

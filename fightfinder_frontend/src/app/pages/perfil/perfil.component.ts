@@ -8,16 +8,17 @@ import { ButtonComponent } from '../../components/button/button.component';
 import { BotaoPequenoComponent } from '../../components/botao-pequeno/botao-pequeno.component';
 import { DropdownComponent } from '../../components/dropdown/dropdown.component';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-perfil',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, FooterComponent, InputSenhaComponent, InputTextoComponent, InputRadioComponent, ButtonComponent, BotaoPequenoComponent, DropdownComponent],
+  imports: [CommonModule, HeaderComponent, FooterComponent, InputSenhaComponent, InputTextoComponent, InputRadioComponent,
+    ButtonComponent, BotaoPequenoComponent, DropdownComponent, FormsModule],
   templateUrl: './perfil.component.html',
   styleUrl: './perfil.component.css'
 })
 export class PerfilComponent {
-
   semFoto: boolean = false;
   campoBloqueado: boolean = true;
   imageUrl: string | ArrayBuffer | null = null;
@@ -50,42 +51,47 @@ export class PerfilComponent {
     console.log('Opção selecionada:', option); 
   }
 
-  editarCampo() {
-    this.campoBloqueado = !this.campoBloqueado; 
-    console.log('campo bloqueado', this.campoBloqueado);
+  editarCampo(index: number): void {
+  }
+ 
+  loadUserData() {
+    // Simulando uma chamada de API que retorna os dados do perfil do usuário
+    const dadosUsuario = {
+      nome: 'João da Silva',
+      email: 'joao.silva@email.com',
+      telefone: '11999999999',
+      dataNascimento: '01/01/1990',
+      endereco: 'Rua Exemplo, 123',
+      cidade: 'São Paulo',
+      estado: 'SP',
+      cep: '12345-678',
+      pais: 'Brasil',
+      cpf: '123.456.789-00',
+      rg: '12.345.678-9',
+      estadoCivil: 'Solteiro',
+      profissao: 'Desenvolvedor',
+      nacionalidade: 'Brasileiro',
+      dependentes: '2'
+    };
+  
+    // Preenche os campos com os dados do usuário
+    // this.campos = [
+    //   { value: dadosUsuario.nome, isEditable: false },
+    //   { value: dadosUsuario.email, isEditable: false },
+    //   { value: dadosUsuario.telefone, isEditable: false },
+    //   { value: dadosUsuario.dataNascimento, isEditable: false },
+    //   { value: dadosUsuario.endereco, isEditable: false },
+    //   { value: dadosUsuario.cidade, isEditable: false },
+    //   { value: dadosUsuario.estado, isEditable: false },
+    //   { value: dadosUsuario.cep, isEditable: false },
+    //   { value: dadosUsuario.pais, isEditable: false },
+    //   { value: dadosUsuario.cpf, isEditable: false },
+    //   { value: dadosUsuario.rg, isEditable: false },
+    //   { value: dadosUsuario.estadoCivil, isEditable: false },
+    //   { value: dadosUsuario.profissao, isEditable: false },
+    //   { value: dadosUsuario.nacionalidade, isEditable: false },
+    //   { value: dadosUsuario.dependentes, isEditable: false }
+    // ];
   }
 
-
-//   {
-//     "cpf": "12345678900",
-//     "genero": "M",
-//     "peso": 80,
-//     "altura": 1.75,
-//     "telefone": "(11) 98765-4321", NÃO OBGTORIO
-//     "cidade": "São Paulo",
-//     "estado": "SP",
-//     "pais": "Brasil",
-//     "data_nascimento": "1990-05-15",
-//     "nome": "João Silva",
-//     "academia": "Academia de Lutas São Paulo", NÃO OBGTORIO
-//     "modalidade": "BJJ"
-//      "imagem" NÃO OBGTORIO
-// } 
-
-// MODALITIES_CHOICES = [
-//   ("BJJ", "Brazilian Jiu-Jitsu"),
-//   ("MMA", "Mixed Martial Arts"),
-//   ("BOX", "Boxing"),
-//   ("MT", "Muay Thai"),
-//   ("JUDO", "Judo"),
-//   ("WREST", "Wrestling"),
-//   ("KARATE", "Karate"),
-//   ("TKD", "Taekwondo"),
-//   ("INI", "Iniciante"),
-// ]
-
-// GENDER_CHOICES = [
-//   ('M', 'Masculino'),
-//   ('F', 'Feminino'),
-// ] 
 }

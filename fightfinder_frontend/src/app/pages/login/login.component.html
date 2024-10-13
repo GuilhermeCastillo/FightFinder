@@ -9,13 +9,13 @@
                 <h1 id="tituloLogin">Login</h1>
 
                 <label for="inputText"></label>
-                <app-input-texto formControlName="email"
+                <app-input-texto formControlName="nomeUser"
                 id="inputText"
                 type="text"
-                placeholder="Email"  
+                placeholder="Usuário"  
                 />
-                <div *ngIf="erroEmail">
-                    <p class="erro">Email inválido!</p>
+                <div *ngIf="erroNomeUser">
+                    <p class="erro">Nome inválido!</p>
                 </div>
 
 

@@ -5,9 +5,9 @@
 #foto {
     display: flex;
     margin: 2rem 3rem 0rem 5rem;
-    font-size: 10rem; 
-    text-align: center;  
+    font-size: 10rem;
     justify-content: center; 
+    align-items: center;
 }
 
 #foto img, #foto i { 
@@ -16,14 +16,18 @@
     height: 15rem;  
     border-radius: 50%; /* Faz a imagem ficar redonda */
     object-fit: cover; /* Garante que a imagem preencha o círculo */ 
-    justify-content: center;
     align-items: center;
     margin: 1rem;
  }
  
-.fa-solid {
+.fa-circle-user {
     color: gray; 
     font-size: 15rem;
+}
+
+.fa-file-arrow-up {
+    color: rgb(255, 255, 255); 
+    font-size: 1.5rem;
 }
  
 #infoPessoal {
@@ -43,6 +47,12 @@
     margin-top: 1rem;
     align-items: center; 
     width: 40rem;  
+}
+
+#infoPessoal ul li p {
+    color: red;
+    font-size: 1.5rem;
+    margin-left: 0.5rem;
 }
 
 #botoes { 
