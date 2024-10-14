@@ -24,7 +24,7 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 export class InputTextoComponent {
   @Input() type: string = 'text'; // Tipo de input (text, checkbox, password, etc.)
   @Input() isEditable: boolean = false;
-  @Input() value: string = '';
+   value: string = '';
   @Input() inputText: string = '';  
   @Input() placeholder: string = ''; // Placeholder para o input 
   @Input() disabled: boolean = false; // Define se o input está desabilitado

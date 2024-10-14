@@ -24,10 +24,10 @@
                 id="inputNome"
                 placeholder="Nome" 
                 /> 
+                <p> * </p>
             <li>
                 <app-input-texto
-                formControlName="cpf"
-                id="inputCPF" 
+                formControlName="cpf" 
                 placeholder="CPF"
                 />
                 <p> * </p>
@@ -37,7 +37,8 @@
                 formControlName="genero"
                 id="selectGenero" 
                 [options]="['Gênero', 'Masculino', 'Feminino', 'Outro']" 
-                placeholder = 'Gênero'  
+                placeholder = 'Gênero'
+                (optionSelected)="onOptionSelected($event)"
                 />  
                 <p> * </p>
             </li> 
@@ -74,6 +75,18 @@
                 placeholder="Telefone"
                 /> 
             </li>
+            <li>   
+                <app-dropdown
+                formControlName="modalidade"
+                id="selectModalidade" 
+                [options]="['Modalidade', 'Judo', 'Karatê', 'Jiu-Jitsu', 'Boxe', 'Muay Thai', 'Taekwondo', 'Capoeira ', 'Kung Fu', 'Krav Maga']" 
+                placeholder = 'Modalidade'                
+                (optionSelected)="onOptionSelected($event)"
+                />
+                <p> * </p>
+            </li>
+        </ul>
+        <ul> <!-- LISTA 3 -->
             <li>
                 <app-input-texto
                 formControlName="pais" 
@@ -82,8 +95,6 @@
                 />
                 <p> * </p>
             </li> 
-        </ul>
-        <ul> <!-- LISTA 3 -->
             <li>
                 <app-input-texto 
                 formControlName="estado"
@@ -106,15 +117,6 @@
                 id="inputAcademia" 
                 placeholder="Academia"
                 />
-            </li>
-            <li>   
-                <app-dropdown
-                formControlName="modalidade"
-                id="selectModalidade" 
-                [options]="['Modalidade Favorita', 'Judo', 'Karatê', 'Jiu-Jitsu', 'Boxe', 'Muay Thai', 'Taekwondo', 'Capoeira ', 'Kung Fu', 'Krav Maga']" 
-                placeholder = 'Modalidade'  
-                />
-                <p> * </p>
             </li>
             <!-- <li>   
                 <app-dropdown

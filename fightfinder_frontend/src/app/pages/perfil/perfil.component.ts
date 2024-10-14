@@ -129,7 +129,7 @@ export class PerfilComponent {
 
     const dados = {
       // photoUser: this.form.controls['fotoUser'].value,
-      cpf: this.form.controls['CPF'].value,
+      cpf: this.form.controls['cpf'].value,
       genero: this.form.controls['genero'].value,
       peso: this.form.controls['peso'].value,
       altura: this.form.controls['altura'].value,
@@ -142,6 +142,8 @@ export class PerfilComponent {
       academia: this.form.controls['academia'].value,
       modalidade: this.form.controls['modalidade'].value
     };
+
+    console.log('DADOS ', dados);
 
     this.http.post<any>(url, dados).subscribe({
       next: (response) => {
