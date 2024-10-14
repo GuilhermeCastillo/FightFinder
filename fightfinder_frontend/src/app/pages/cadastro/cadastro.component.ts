@@ -25,7 +25,7 @@ import { TokenService } from '../../services/token/token.service';
       }), 
     { 
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => InputRadioComponent),
+      useExisting: forwardRef(() => CadastroComponent),
       multi: true
     }
   ],

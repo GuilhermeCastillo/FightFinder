@@ -1,7 +1,6 @@
 <app-header />
 
-<section id="fundo"> <!--  LUTAS, VITORIAS, DERROTAS AUTOMATICO-->
-
+<form id="fundo" [formGroup]="form" (ngSubmit)="atualizarDados()"> 
     <section id="foto">
         <i *ngIf="!imageUrl" class="fa-solid fa-circle-user"></i> 
         <img *ngIf="imageUrl" [src]="imageUrl" alt="Imagem Selecionada" src="assets\teste2.jpeg" />
@@ -10,23 +9,24 @@
         #fileInput
         (change)="escolherFotoPerfil($event)"
         style="display: none"
+        
         /> 
         
         <app-botao-pequeno (click)="fileInput.click()">
             <i style="width: 0.8rem; height: 0.8rem;" class="fa-solid fa-file-arrow-up"></i>
         </app-botao-pequeno>
     </section> 
-
     <section id="infoPessoal">
         <ul> <!-- LISTA 1 -->
             <li>
                 <app-input-texto
+                formControlName="nomeUser"
                 id="inputNome"
-                placeholder="Nome"
-                [disabled]="true"
+                placeholder="Nome" 
                 /> 
             <li>
                 <app-input-texto
+                formControlName="cpf"
                 id="inputCPF" 
                 placeholder="CPF"
                 />
@@ -34,6 +34,7 @@
             </li>
             <li>   
                 <app-dropdown 
+                formControlName="genero"
                 id="selectGenero" 
                 [options]="['Gênero', 'Masculino', 'Feminino', 'Outro']" 
                 placeholder = 'Gênero'  
@@ -42,15 +43,17 @@
             </li> 
             <li>
                 <app-input-texto 
+                formControlName="dataNascimento"
                 id="inputDataNascimento" 
                 placeholder="Data de Nascimento"
                 />
                 <p> * </p>
             </li> 
         </ul>
-        <ul>  <!-- LISTA 2 -->
+        <ul> <!-- LISTA 2 -->
             <li>
                 <app-input-texto
+                formControlName="peso"
                 id="selectPeso" 
                 placeholder="Peso"
                 />
@@ -58,6 +61,7 @@
             </li> 
             <li>
                 <app-input-texto 
+                formControlName="altura"
                 id="inputAltura" 
                 placeholder="Altura"
                 />
@@ -65,12 +69,14 @@
             </li>
             <li>
                 <app-input-texto 
+                formControlName="telefone"
                 id="inputTelefone" 
                 placeholder="Telefone"
                 /> 
             </li>
             <li>
-                <app-input-texto 
+                <app-input-texto
+                formControlName="pais" 
                 id="inputPais" 
                 placeholder="País"
                 />
@@ -80,6 +86,7 @@
         <ul> <!-- LISTA 3 -->
             <li>
                 <app-input-texto 
+                formControlName="estado"
                 id="inputEstado" 
                 placeholder="Estado"
                 />
@@ -87,6 +94,7 @@
             </li>
             <li>
                 <app-input-texto 
+                formControlName="cidade"
                 id="inputCidade" 
                 placeholder="Cidade"
                 />
@@ -94,12 +102,14 @@
             </li>
             <li>
                 <app-input-texto
+                formControlName="academia"
                 id="inputAcademia" 
                 placeholder="Academia"
                 />
             </li>
             <li>   
                 <app-dropdown
+                formControlName="modalidade"
                 id="selectModalidade" 
                 [options]="['Modalidade Favorita', 'Judo', 'Karatê', 'Jiu-Jitsu', 'Boxe', 'Muay Thai', 'Taekwondo', 'Capoeira ', 'Kung Fu', 'Krav Maga']" 
                 placeholder = 'Modalidade'  
@@ -123,7 +133,7 @@
                 id="inputSenha" 
                 placeholder="********" 
                 />
-            </li>    -->
+            </li>  -->
         </ul> 
     </section> 
 
@@ -134,13 +144,11 @@
         </ul>
     </section>
 
-
     <!--     
-    ESPORTE 
     DESCRIÇÃO
     EXPERIENCIA
     -->
 
-</section>
+</form>
 
 <app-footer />
