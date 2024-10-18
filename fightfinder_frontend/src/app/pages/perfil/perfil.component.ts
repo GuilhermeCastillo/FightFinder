@@ -140,7 +140,8 @@ export class PerfilComponent {
       data_nascimento: this.form.controls['dataNascimento'].value,
       nome: this.form.controls['nomeUser'].value,
       academia: this.form.controls['academia'].value,
-      modalidade: this.form.controls['modalidade'].value
+      modalidade: this.form.controls['modalidade'].value,
+      // acesstoken: this.tokenService.getToken()
     };
 
     console.log('DADOS ', dados);

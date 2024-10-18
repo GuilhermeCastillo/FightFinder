@@ -19,7 +19,7 @@ import { MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatDateFormats, MatNativeDateModule 
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 export const MY_DATE_FORMATS: MatDateFormats = {
   parse: {
@@ -62,6 +62,7 @@ export const MY_DATE_FORMATS: MatDateFormats = {
   providers: [
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+    provideHttpClient(withFetch()) 
   ],
   bootstrap: [AppComponent] // O componente principal que deve ser inicializado
 })
