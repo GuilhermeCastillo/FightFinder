@@ -12,7 +12,7 @@ import { DatepickerComponent } from '../../components/datepicker/datepicker.comp
 import { CommonModule } from '@angular/common';
 import { CheckboxComponent } from '../../components/checkbox/checkbox.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { TokenService } from '../../services/token/token.service';
+import { TokenService } from '../../services/token/token.service'; 
 
 @Component({
   selector: 'app-cadastro',
@@ -102,10 +102,9 @@ export class CadastroComponent {
     };
 
     const url: string = "http://127.0.0.1:8000/api/v1/register/";
-
     this.http.post<any>(url, dados).subscribe({
       next: (response) => {
-        this.respostaApi = response;   
+        this.respostaApi = response;
         this.tokenService.setToken(this.respostaApi['access']);
         this.router.navigate(['/home']); 
       },

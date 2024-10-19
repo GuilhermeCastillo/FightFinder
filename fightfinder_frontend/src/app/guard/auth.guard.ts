@@ -11,7 +11,6 @@ export class AuthGuard {
   constructor(private tokenService: TokenService, private router: Router, private authService: AuthService) {}
 
   canActivate(): boolean { 
-
     if (this.authService.isAuthenticated()) {  
       return true;
     } else {

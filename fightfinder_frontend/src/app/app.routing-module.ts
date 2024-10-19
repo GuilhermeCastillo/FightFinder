@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router'; 
+import { RouterModule, Routes } from '@angular/router'; 
 import { HomeComponent } from './pages/home/home.component';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -9,7 +9,7 @@ import { MatchLutaComponent } from './pages/match-luta/match-luta.component';
 import { MatchTreinoComponent } from './pages/match-treino/match-treino.component';
 import { SobreNosComponent } from './pages/sobre-nos/sobre-nos.component';
 import { AuthGuard } from './guard/auth.guard';
-
+import { NgModule } from '@angular/core'; 
 
 export const routes: Routes = [
 
@@ -25,3 +25,9 @@ export const routes: Routes = [
     { path: '**', component: PaginaNaoEncontradaComponent, canActivate: [AuthGuard] }, // Rota para URLs desconhecidas
 
 ];
+
+@NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+  })
+  export class AppRoutingModule { }

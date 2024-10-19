@@ -17,12 +17,6 @@ export class HeaderComponent {
 
   constructor(private tokenService: TokenService, private router: Router) {}
 
-  ngOnInit() {
-    if (this.tokenService.hasToken()) {
-      this.usuarioLogado = true;
-    }
-  }
-
   abrirLista() {
     this.mostraLista = !this.mostraLista;
   }
