@@ -1,21 +1,23 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { TokenService } from '../services/token/token.service';
+import { CanActivate, Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard {
+export class AuthGuard implements CanActivate {
+  constructor(private authService: AuthService, private router: Router) {}
 
-  constructor(private tokenService: TokenService, private router: Router, private authService: AuthService) {}
+  canActivate(): Observable<boolean> | Promise<boolean> | boolean {
+    if (typeof localStorage !== 'undefined') { //se estiver no navegador
 
-  canActivate(): boolean { 
-    if (this.authService.isAuthenticated()) {  
-      return true;
-    } else {
-      this.router.navigate(['/login']); 
-      return false;
+      if (this.authService.isAuthenticated()) {
+        return true;
+      }
     }
+    
+    this.router.navigate(['/login']);
+    return false; // ou alguma lógica de fallback para SSR ou ambientes sem localStorage
   }
-}
+} 

@@ -17,11 +17,11 @@ export const routes: Routes = [
     { path: 'match-luta', component: MatchLutaComponent, canActivate: [AuthGuard] },
     { path: 'match-treino', component: MatchTreinoComponent, canActivate: [AuthGuard] },
     { path: 'ranking', component: RankingComponent, canActivate: [AuthGuard] },
-    { path: 'cadastro', component: CadastroComponent },
-    { path: 'login', component: LoginComponent }, 
     { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard] }, 
     { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-    { path: '', redirectTo: '/cadastro', pathMatch: 'full' }, // Rota padrão
+    { path: 'cadastro', component: CadastroComponent },
+    { path: 'login', component: LoginComponent }, 
+    { path: '', redirectTo: '/home', pathMatch: 'full' }, // Rota padrão
     { path: '**', component: PaginaNaoEncontradaComponent, canActivate: [AuthGuard] }, // Rota para URLs desconhecidas
 
 ];

@@ -12,26 +12,8 @@ import { CommonModule } from '@angular/common';
 import { BotaoPequenoComponent } from './components/botao-pequeno/botao-pequeno.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { LoadingCircleComponent } from './components/loading-circle/loading-circle.component';
-import { NgxMaskDirective } from 'ngx-mask';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatInputModule } from '@angular/material/input';
-import { MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatDateFormats, MatNativeDateModule } from '@angular/material/core';
-import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import { provideHttpClient, withFetch } from '@angular/common/http';
-
-export const MY_DATE_FORMATS: MatDateFormats = {
-  parse: {
-    dateInput: 'DD/MM/YYYY',
-  },
-  display: {
-    dateInput: 'DD/MM/YYYY',
-    monthYearLabel: 'MMM YYYY',
-    dateA11yLabel: 'DD/MM/YYYY',
-    monthYearA11yLabel: 'MMMM YYYY',
-  },
-};
 
 @NgModule({
   declarations: [ // declarar componentes 
@@ -45,25 +27,17 @@ export const MY_DATE_FORMATS: MatDateFormats = {
     InputRadioComponent, 
     DropdownComponent,
     LoadingCircleComponent,
-    NgxMaskDirective,
-    DatepickerComponent
   ],
   imports: [ // importar módulos 
     BrowserModule, 
     FormsModule,   
     CommonModule,
     ReactiveFormsModule,
-    MatDatepickerModule, 
-    MatInputModule,
-    MatNativeDateModule,
     HttpClientModule,
     SweetAlert2Module.forRoot(),
   ],
   providers: [
-    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },
-    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
-    provideHttpClient(withFetch()) 
   ],
-  bootstrap: [AppComponent] // O componente principal que deve ser inicializado
+  bootstrap: [AppComponent] // componente principal que deve ser inicializado
 })
 export class AppModule { }
