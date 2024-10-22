@@ -1,23 +1,24 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
-import { AuthService } from '../services/auth/auth.service';
-import { Observable } from 'rxjs';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { TokenService } from '../services/token/token.service'; // Certifique-se de importar corretamente o TokenService
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private tokenService: TokenService, private router: Router) {}
 
-  canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-    if (typeof localStorage !== 'undefined') { //se estiver no navegador
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): boolean {
+    const hasToken = this.tokenService.hasToken(); // Verifica se o token existe
 
-      if (this.authService.isAuthenticated()) {
-        return true;
-      }
+    if (!hasToken) {
+      this.router.navigate(['/login']); // Redireciona para a tela de login se não houver token
+      return false; // Bloqueia o acesso à rota
     }
-    
-    this.router.navigate(['/login']);
-    return false; // ou alguma lógica de fallback para SSR ou ambientes sem localStorage
+
+    return true; // Permite o acesso à rota
   }
-} 
+}

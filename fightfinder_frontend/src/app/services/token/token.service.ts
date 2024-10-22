@@ -1,44 +1,41 @@
-import { isPlatformBrowser } from '@angular/common';
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { Router } from '@angular/router';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokenService {  
-
   private authTokenKey = 'authToken';
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, private router: Router) {}
-
-  private isBrowser(): boolean {
-    return isPlatformBrowser(this.platformId);
+  private isLocalStorageAvailable(): boolean {
+    return typeof localStorage !== 'undefined';
   }
 
   hasToken(): boolean {
-    if (this.isBrowser()) {
-      console.log("AUTH TOKENKEY: " , localStorage.getItem(this.authTokenKey));
-      return !!localStorage.getItem(this.authTokenKey);
+    if (this.isLocalStorageAvailable()) {
+      if (localStorage.getItem(this.authTokenKey)) {
+        return true
+      }
+       
     }
     return false;
   }
 
   getToken(): string | null {
-    if (this.isBrowser()) {
+    if (this.isLocalStorageAvailable()) {
       return localStorage.getItem(this.authTokenKey);
     }
     return null;
   }
 
   setToken(token: string): void {
-    if (this.isBrowser()) {
+    if (this.isLocalStorageAvailable()) {
       localStorage.setItem(this.authTokenKey, token);
     }
   }
 
   clearToken(): void {
-    if (this.isBrowser()) {
+    if (this.isLocalStorageAvailable()) {
       localStorage.removeItem(this.authTokenKey);
     }
-  } 
+  }
 }

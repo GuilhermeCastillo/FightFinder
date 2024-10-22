@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { TokenService } from '../../services/token/token.service'; 
-import { ActivatedRouteSnapshot, CanActivate, GuardResult, MaybeAsync, Router, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs/internal/Observable';
-import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-header',
@@ -12,29 +11,19 @@ import { AuthService } from '../../services/auth/auth.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent implements CanActivate {
+export class HeaderComponent {
   usuarioLogado: boolean = false;
   semFoto: boolean = true;
   mostraLista: boolean = false;
 
-  constructor(private tokenService: TokenService, private router: Router, private authService: AuthService) {}
-  canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-    if (typeof localStorage !== 'undefined') { //se estiver no navegador
-
-      if (this.authService.isAuthenticated()) {
-        return true;
-      }
-    }
-    
-    this.router.navigate(['/login']);
-    return false; // ou alguma lógica de fallback para SSR ou ambientes sem localStorage
-  }
+  constructor(private router: Router, private tokenService: TokenService) {}
 
   ngOnInit() {
-    if (this.canActivate()) {
+    if (this.tokenService.hasToken()) {
       this.usuarioLogado = true;
     }
   }
+
 
   abrirLista() {
     this.mostraLista = !this.mostraLista;

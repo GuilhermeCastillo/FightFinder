@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TokenService } from '../token/token.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -9,5 +10,4 @@ export class AuthService {
   isAuthenticated(): boolean {
     return this.tokenService.hasToken();
   }
-  
 }

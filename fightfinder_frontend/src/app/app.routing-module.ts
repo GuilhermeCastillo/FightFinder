@@ -12,7 +12,6 @@ import { AuthGuard } from './guard/auth.guard';
 import { NgModule } from '@angular/core'; 
 
 export const routes: Routes = [
-
     { path: 'sobre-nos', component: SobreNosComponent, canActivate: [AuthGuard] },       
     { path: 'match-luta', component: MatchLutaComponent, canActivate: [AuthGuard] },
     { path: 'match-treino', component: MatchTreinoComponent, canActivate: [AuthGuard] },
@@ -23,7 +22,7 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent }, 
     { path: '', redirectTo: '/home', pathMatch: 'full' }, // Rota padrão
     { path: '**', component: PaginaNaoEncontradaComponent, canActivate: [AuthGuard] }, // Rota para URLs desconhecidas
-
+//adicionar headerComponent 
 ];
 
 @NgModule({

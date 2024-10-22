@@ -14,6 +14,7 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { LoadingCircleComponent } from './components/loading-circle/loading-circle.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 @NgModule({
   declarations: [ // declarar componentes 
@@ -37,6 +38,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     SweetAlert2Module.forRoot(),
   ],
   providers: [
+    provideHttpClient(withFetch())
   ],
   bootstrap: [AppComponent] // componente principal que deve ser inicializado
 })

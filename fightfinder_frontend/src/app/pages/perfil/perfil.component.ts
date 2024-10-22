@@ -9,7 +9,7 @@ import { BotaoPequenoComponent } from '../../components/botao-pequeno/botao-pequ
 import { DropdownComponent } from '../../components/dropdown/dropdown.component';
 import { CommonModule } from '@angular/common';
 import { ControlValueAccessor, FormBuilder, FormGroup, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import { title } from 'process';
 import { TokenService } from '../../services/token/token.service';
@@ -126,27 +126,32 @@ export class PerfilComponent {
 
   atualizarDados() {
     const url = 'http://127.0.0.1:8000/api/v1/complete-athlete-profile/';
+    
+    let token = this.tokenService.getToken();
 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}` // ou 'Token ${token}' dependendo da sua API
+    });
+ 
     const dados = {
       // photoUser: this.form.controls['fotoUser'].value,
       cpf: this.form.controls['cpf'].value,
-      genero: this.form.controls['genero'].value,
+      genero: 'M', //this.form.controls['genero'].value,
       peso: this.form.controls['peso'].value,
       altura: this.form.controls['altura'].value,
       telefone: this.form.controls['telefone'].value,
       cidade: this.form.controls['cidade'].value,
       estado: this.form.controls['estado'].value,
       pais: this.form.controls['pais'].value,
-      data_nascimento: this.form.controls['dataNascimento'].value,
+      data_nascimento: '2000-11-11', // this.form.controls['dataNascimento'].value,
       nome: this.form.controls['nomeUser'].value,
       academia: this.form.controls['academia'].value,
-      modalidade: this.form.controls['modalidade'].value,
-      // acesstoken: this.tokenService.getToken()
+      modalidade:  'BJJ', //this.form.controls['modalidade'].value
     };
 
     console.log('DADOS ', dados);
 
-    this.http.post<any>(url, dados).subscribe({
+    this.http.post<any>(url, dados, { headers }).subscribe({
       next: (response) => {
         this.respostaApi = response;   
         this.tokenService.setToken(this.respostaApi['access']);
@@ -156,5 +161,4 @@ export class PerfilComponent {
       }
     });
   }
-
 }
