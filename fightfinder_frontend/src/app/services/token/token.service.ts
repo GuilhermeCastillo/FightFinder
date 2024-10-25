@@ -11,12 +11,10 @@ export class TokenService {
   }
 
   hasToken(): boolean {
-    if (this.isLocalStorageAvailable()) {
       if (localStorage.getItem(this.authTokenKey)) {
         return true
       }
-       
-    }
+    
     return false;
   }
 

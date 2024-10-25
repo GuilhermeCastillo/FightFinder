@@ -15,6 +15,7 @@ import { LoadingCircleComponent } from './components/loading-circle/loading-circ
 import { HttpClientModule } from '@angular/common/http';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 @NgModule({
   declarations: [ // declarar componentes 
@@ -36,9 +37,11 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule,
     SweetAlert2Module.forRoot(),
+    NgxMaskDirective
   ],
   providers: [
-    provideHttpClient(withFetch())
+    provideHttpClient(withFetch()),
+    provideNgxMask()
   ],
   bootstrap: [AppComponent] // componente principal que deve ser inicializado
 })

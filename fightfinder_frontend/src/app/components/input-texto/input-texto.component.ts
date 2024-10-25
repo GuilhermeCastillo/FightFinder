@@ -8,9 +8,7 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
   standalone: true,
   imports: [CommonModule, NgxMaskDirective],
   providers: [
-    provideNgxMask({
-      validation: false,  // Ou outras configurações que você quiser
-    }),
+    provideNgxMask(),
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputTextoComponent),
@@ -31,7 +29,7 @@ export class InputTextoComponent {
   @Input() id: string = '';
   @Input() borderColor: string = 'var(--vermelho)';
   @Input() maxLength: number = 60;
-  @Input() width: string = '18rem'; 
+  @Input() width: string = '18rem';
   @Output() valueChange = new EventEmitter<string>(); 
 
   ngOnInit(): void {  }

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
-import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-dropdown',
@@ -16,7 +16,7 @@ import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
     }
   ]
 })
-export class DropdownComponent {
+export class DropdownComponent implements ControlValueAccessor {
   @Input() options: string[] = []; // Lista de opções recebida como entrada  
   @Input() selectedOption: string | null = null; // Opção selecionada
   @Input() disabled: boolean = false;
@@ -38,17 +38,12 @@ export class DropdownComponent {
     if (value) {
       this.selectedOption = value;
       this.optionSelected.emit(value);
+      this.onChange(value);
     }
   }
 
   onChange = (value: string) => {};
   onTouched = () => {};
-
-  onInputChange(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    this.value = input.value;
-    this.onChange(this.value);  // Notifica o Angular que o valor mudou
-  } 
 
   // Métodos obrigatórios da interface ControlValueAccessor
   writeValue(value: string): void {
