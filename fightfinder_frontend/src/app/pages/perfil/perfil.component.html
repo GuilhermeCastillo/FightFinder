@@ -8,11 +8,10 @@
         <input type="file"
         #fileInput
         (change)="escolherFotoPerfil($event)"
-        style="display: none"
-        
+        style="display: none"    
         /> 
         
-        <app-botao-pequeno (click)="fileInput.click()">
+        <app-botao-pequeno (click)="fileInput.click()" id="uploadFoto">
             <i style="width: 0.8rem; height: 0.8rem;" class="fa-solid fa-file-arrow-up"></i>
         </app-botao-pequeno>
     </section> 
@@ -36,7 +35,7 @@
                 <app-dropdown 
                 formControlName="genero"
                 id="selectGenero" 
-                [options]="['Gênero', 'Masculino', 'Feminino', 'Outro']" 
+                [options]="['Gênero', 'Masculino', 'Feminino']" 
                 placeholder = 'Gênero'
                 (optionSelected)="onOptionSelected($event)"
                 />  
@@ -73,13 +72,15 @@
                 formControlName="telefone"
                 id="inputTelefone" 
                 placeholder="Telefone"
+                mask="(00) 00000-0000"
                 /> 
+                <input type="text" mask="(00) 00000-0000" />
             </li>
             <li>   
                 <app-dropdown
                 formControlName="modalidade"
                 id="selectModalidade" 
-                [options]="['Modalidade', 'Judo', 'Karatê', 'Jiu-Jitsu', 'Boxe', 'Muay Thai', 'Taekwondo', 'Capoeira ', 'Kung Fu', 'Krav Maga']" 
+                [options]="['Modalidade', 'Brazilian Jiu-Jitsu', 'Mixed Martial Arts', 'Boxing', 'Muay Thai', 'Judo', 'Wrestling', 'Karate', 'Taekwondo', 'Iniciante']" 
                 placeholder = 'Modalidade'                
                 (optionSelected)="onOptionSelected($event)"
                 />
@@ -145,12 +146,6 @@
             <li> <app-button textoBtn="Cancelar" backgroundColor="var(--vermelho)" /> </li>
         </ul>
     </section>
-
-    <!--     
-    DESCRIÇÃO
-    EXPERIENCIA
-    -->
-
 </form>
 
 <app-footer />

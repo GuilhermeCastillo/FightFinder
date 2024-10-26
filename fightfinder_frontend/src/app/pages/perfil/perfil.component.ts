@@ -8,40 +8,41 @@ import { ButtonComponent } from '../../components/button/button.component';
 import { BotaoPequenoComponent } from '../../components/botao-pequeno/botao-pequeno.component';
 import { DropdownComponent } from '../../components/dropdown/dropdown.component';
 import { CommonModule } from '@angular/common';
-import { ControlValueAccessor, FormBuilder, FormGroup, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
-import { title } from 'process';
 import { TokenService } from '../../services/token/token.service';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 @Component({
   selector: 'app-perfil',
   standalone: true,
   imports: [CommonModule, HeaderComponent, FooterComponent, InputSenhaComponent, InputTextoComponent, InputRadioComponent,
-    ButtonComponent, BotaoPequenoComponent, DropdownComponent, FormsModule, ReactiveFormsModule, HttpClientModule],
+    ButtonComponent, BotaoPequenoComponent, DropdownComponent, FormsModule, ReactiveFormsModule, HttpClientModule, NgxMaskDirective],
   templateUrl: './perfil.component.html',
   styleUrl: './perfil.component.css',
-  providers: [{
+  providers: [
+    provideNgxMask(),
+    {
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => PerfilComponent),
     multi: true
   }]
 })
+
 export class PerfilComponent {
   semFoto: boolean = false;
   campoBloqueado: boolean = true;
-  imageUrl: string | ArrayBuffer | null = null; 
+  imageUrl: string | ArrayBuffer | null = null;
   respostaApi: any;
   form: FormGroup;
+  siglaModalidade: string = "";
 
   constructor(private title: Title, private http: HttpClient, private tokenService: TokenService, private fb: FormBuilder) { 
 
     this.form = this.fb.group({
       nomeUser: ['', [Validators.required, Validators.maxLength(30), Validators.pattern('^[a-zA-Z]+$')]], // apenas letras
       cpf: ['', [Validators.required, Validators.maxLength(11)]],
-      // email: ['', [Validators.required, Validators.email]],
-      // senha1: ['', [Validators.required, Validators.minLength(8), Validators.pattern('^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]*$')]],
-      // senha2: ['', [Validators.required, Validators.minLength(8), Validators.pattern('^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]*$')]],
       peso: ['', Validators.required],
       altura: ['', Validators.required],
       cidade: ['', Validators.required],
@@ -52,8 +53,7 @@ export class PerfilComponent {
       genero: ['', Validators.required],
       telefone: ['', Validators.required],
       academia: ['', Validators.required],
-    });
-  
+    }); 
   }
 
   escolherFotoPerfil(event: Event) {
@@ -132,21 +132,24 @@ export class PerfilComponent {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}` // ou 'Token ${token}' dependendo da sua API
     });
+
+    this.pegaSiglaModalidade();
+    let dataFormatada = this.formataData();
  
     const dados = {
       // photoUser: this.form.controls['fotoUser'].value,
       cpf: this.form.controls['cpf'].value,
-      genero: 'M', //this.form.controls['genero'].value,
+      genero:  this.form.get('genero')?.value[0],
       peso: this.form.controls['peso'].value,
       altura: this.form.controls['altura'].value,
       telefone: this.form.controls['telefone'].value,
       cidade: this.form.controls['cidade'].value,
       estado: this.form.controls['estado'].value,
       pais: this.form.controls['pais'].value,
-      data_nascimento: '2000-11-11', // this.form.controls['dataNascimento'].value,
+      data_nascimento: dataFormatada, // this.form.controls['dataNascimento'].value,
       nome: this.form.controls['nomeUser'].value,
       academia: this.form.controls['academia'].value,
-      modalidade:  'BJJ', //this.form.controls['modalidade'].value
+      modalidade: this.siglaModalidade
     };
 
     console.log('DADOS ', dados);
@@ -154,11 +157,34 @@ export class PerfilComponent {
     this.http.post<any>(url, dados, { headers }).subscribe({
       next: (response) => {
         this.respostaApi = response;   
-        this.tokenService.setToken(this.respostaApi['access']);
+        // this.tokenService.setToken(this.respostaApi['access']);
       },
       error: (err) => {
         console.error('Erro ao enviar dados', err);
       }
     });
+  }
+
+  pegaSiglaModalidade() {
+    switch(this.form.get('modalidade')?.value) {
+      case 'Brazilian Jiu-Jitsu': this.siglaModalidade = "BJJ"; break;
+      case 'Mixed Martial Arts': this.siglaModalidade = "MMA"; break;
+      case 'Boxing': this.siglaModalidade = "BOX"; break;
+      case 'Muay Thai': this.siglaModalidade = "MT"; break;
+      case 'Judo': this.siglaModalidade = "JUDO"; break;
+      case 'Wrestling': this.siglaModalidade = "WREST"; break;
+      case 'Karate': this.siglaModalidade = "KARATE"; break;
+      case 'Taekwondo': this.siglaModalidade = "TKD"; break;
+      case 'Iniciante': this.siglaModalidade = "INI"; break;
+      default: this.siglaModalidade = "Nenhuma"; break;
+    }
+  }
+
+  formataData(): string {
+    var data = this.form.controls['dataNascimento'].value;
+    let dia = data.substring(0,2);
+    let mes = data.substring(3,5);
+    let ano = data.substring(6,10);
+    return ano + '-' + mes + '-' + dia;
   }
 }

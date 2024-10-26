@@ -6,8 +6,10 @@ import { ButtonComponent } from '../../components/button/button.component';
 import { BotaoPequenoComponent } from '../../components/botao-pequeno/botao-pequeno.component';
 import { CommonModule } from '@angular/common'; 
 import { LoadingCircleComponent } from '../../components/loading-circle/loading-circle.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
+import { url } from 'inspector';
+import { TokenService } from '../../services/token/token.service';
 
 @Component({
   selector: 'app-match-luta',
@@ -25,8 +27,9 @@ export class MatchLutaComponent {
   carregarAdversarios = false;
   valorPadraoDropdown: string = 'Modalidade';
   dados: any;
+  respostaApi: any;
 
-  constructor(private http: HttpClient) {  }
+  constructor(private http: HttpClient, private tokenService: TokenService) {  }
 
   onOptionSelected(option: string) {  
     // limpar ou sobreescrever valores do adversário ao chamar a função 
@@ -39,29 +42,28 @@ export class MatchLutaComponent {
   }
 
   buscarAdversarios() { 
-    // não trazer nada
-    if (this.modalidadeSelecionada == this.valorPadraoDropdown) { 
-      this.carregarAdversarios = false;
-      return;
-    } 
-    //buscar adversários
-    let carregando = document.querySelector('botoes')?.textContent;
+    // if (this.modalidadeSelecionada == this.valorPadraoDropdown) { 
+    //   this.carregarAdversarios = false;
+    //   return;
+    // } 
     this.carregarAdversarios = true;
  
-    this.getDados().subscribe({
+    const url = 'http://127.0.0.1:8000/api/v1/recommend/';
+    let token = this.tokenService.getToken();
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}` // ou 'Token ${token}' dependendo da sua API
+    });
+
+    this.http.get<any>(url, { headers }).subscribe({
       next: (response) => {
-        this.dados = response; // Processa a resposta
-        console.log(this.dados);
+        this.respostaApi = response;
+        console.log("RETORNO", this.respostaApi);
       },
       error: (err) => {
-        console.error('Erro ao obter dados', err); // Lida com erros
+        console.error('Erro ao enviar dados', err);
       }
-    }); 
-  } 
-  
-  getDados(): Observable<any> {
-    const apiUrl = 'https://api.exemplo.com/endpoint'; // URL da API
-    return this.http.get<any>(apiUrl);
+    });
   }
 
 } 
