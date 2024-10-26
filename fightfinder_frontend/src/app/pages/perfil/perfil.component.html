@@ -8,8 +8,7 @@
         <input type="file"
         #fileInput
         (change)="escolherFotoPerfil($event)"
-        style="display: none"
-        
+        style="display: none"    
         /> 
         
         <app-botao-pequeno (click)="fileInput.click()" id="uploadFoto">
@@ -147,12 +146,6 @@
             <li> <app-button textoBtn="Cancelar" backgroundColor="var(--vermelho)" /> </li>
         </ul>
     </section>
-
-    <!--     
-    DESCRIÇÃO
-    EXPERIENCIA
-    -->
-
 </form>
 
 <app-footer />
