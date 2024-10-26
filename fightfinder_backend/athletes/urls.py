@@ -10,7 +10,7 @@ urlpatterns = [
         views.AthleteRetrieveUpdateDestroyView.as_view(),
         name="athlete-detail-view",
     ),
-    path('athlete/profile/', views.AthleteProfileView.as_view(), name='athlete-profile'),
+    path('athlete/profile/', views. AthleteProfileView.as_view(), name='athlete-profile'),
     path('recommend/', views.RecommendForAuthenticatedUserView.as_view(), name='recommend_for_user'),
     path('athletes/connections/', views.AthleteConnectionsListView.as_view(), name='athlete-connections'),
     path('athlete-profile-status/', views.CheckAthleteProfileView.as_view(), name='athlete_profile_status'),
