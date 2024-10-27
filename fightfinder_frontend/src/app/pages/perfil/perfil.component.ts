@@ -13,6 +13,7 @@ import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http'
 import { Title } from '@angular/platform-browser';
 import { TokenService } from '../../services/token/token.service';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-perfil',
@@ -132,12 +133,13 @@ export class PerfilComponent {
         console.log('Dados do usuário: ', this.dadosPerfil);
         this.genero = this.generoPorExtenso(this.dadosPerfil.genero);
         this.nomeModalidade = this.pegaNomeModalidadePorSigla(this.dadosPerfil.modalidade);
+  
         this.imagemPerfilUrl = this.dadosPerfil.imagem;
 
         const dadosUser = {
           // photoUser: this.dadosPerfil.imagem,
           nomeUser: this.dadosPerfil.nome,
-          cpf: this.dadosPerfil.cpf,
+          cpf: this.formatarCpf(this.dadosPerfil.cpf),
           peso: this.dadosPerfil.peso,
           altura: this.dadosPerfil.altura,
           cidade: this.dadosPerfil.cidade,
@@ -146,7 +148,7 @@ export class PerfilComponent {
           dataNascimento: this.formataDataBR(this.dadosPerfil.data_nascimento),
           modalidade: this.pegaNomeModalidadePorSigla(this.dadosPerfil.modalidade),
           genero: this.generoPorExtenso(this.dadosPerfil.genero),
-          telefone: this.dadosPerfil.telefone,
+          telefone: this.formatarTelefone(this.dadosPerfil.telefone),
           academia: this.dadosPerfil.academia,
         };  
         this.form.patchValue(dadosUser);
@@ -172,11 +174,11 @@ export class PerfilComponent {
 
     const dados = {
      // imagem: this.form.controls['photoUser'].value,
-      cpf: this.form.controls['cpf'].value,
+      cpf: this.removerMascara(this.form.controls['cpf'].value),
       genero:  this.form.get('genero')?.value[0],
       peso: this.form.controls['peso'].value,
       altura: this.form.controls['altura'].value,
-      telefone: this.form.controls['telefone'].value,
+      telefone: this.removerMascara(this.form.controls['telefone'].value),
       cidade: this.form.controls['cidade'].value,
       estado: this.form.controls['estado'].value,
       pais: this.form.controls['pais'].value,
@@ -186,15 +188,12 @@ export class PerfilComponent {
       modalidade: this.siglaModalidade
     };
 
-
     Object.entries(dados).forEach(([key, value]) => {
       formData.append(key, value as string);
     });
   
     // Adicione o arquivo de imagem, se houver
     // this.selectedFile.name = this.getNomeOriginal(this.selectedFile.name);
-
-
     // console.log('DADOS ', this.selectedFile.name);
 
     if (this.selectedFile) {
@@ -207,11 +206,17 @@ export class PerfilComponent {
     this.http.post<any>(url, formData, { headers }).subscribe({
       next: (response) => {
         this.respostaApi = response;
+        this.modalDadosSalvosSucesso();
       },
       error: (err) => {
         console.error('Erro ao enviar dados', err);
       }
     });
+  }
+
+  limparDados() {
+    
+    console.log('LIMPAR DADOS ');
   }
 
   getNomeOriginal(nomeComSujeira: string): string {
@@ -273,5 +278,26 @@ export class PerfilComponent {
     }
     genero = "Feminino";
     return genero; 
+  }
+
+  removerMascara(valor: string): string {
+    return valor.replace(/\D/g, ''); // Remove qualquer caractere não numérico
+  }
+
+  formatarCpf(cpf: string): string {
+    return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+  }
+
+  formatarTelefone(telefone: string): string {
+    return telefone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+  }
+
+  modalDadosSalvosSucesso() {
+    Swal.fire({
+      title: 'Dados salvos',
+      text: 'Seu dados foram atualizados com sucesso!',
+      icon: 'success',
+      confirmButtonText: 'OK'
+    });
   }
 }

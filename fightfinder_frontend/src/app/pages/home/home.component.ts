@@ -5,7 +5,8 @@ import { ButtonComponent } from '../../components/button/button.component';
 import { Title } from '@angular/platform-browser';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { HttpClient, HttpClientModule } from '@angular/common/http'; 
+import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http'; 
+import { TokenService } from '../../services/token/token.service';
 
 @Component({
   selector: 'app-home',
@@ -15,37 +16,42 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  retorno!: boolean;
+  retorno: any;
+  completouCadastro: boolean = false;
 
-  constructor(private title: Title, private router: Router, private http: HttpClient) {  }
+  constructor(private title: Title, private router: Router, private http: HttpClient, private tokenService: TokenService) {  }
 
   ngOnInit(): void {
     this.title.setTitle('Home'); 
-
-    // this.verificaSeCompletouCadastro();
+    this.verificaSeCompletouCadastro();
   }
 
   verificaSeCompletouCadastro() {
     const url = "http://127.0.0.1:8000/api/v1/athlete-profile-status/"; 
+    let token = this.tokenService.getToken();
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
 
-    this.http.get<any>(url).subscribe({
+    this.http.get<any>(url, { headers }).subscribe({
       next: (response) => {
-        this.retorno = response; // Processa a resposta da API
-        console.log(this.retorno); 
-        this.router.navigate(['/home']);
+        this.retorno = response; // Processa a resposta da API 
+        this.completouCadastro = this.retorno['athlete_profile_complete'];
+        console.log('Completou cadastro?', this.completouCadastro);
+        if (!this.completouCadastro) {
+          this.alertaCompletarCadastro();
+        }
       },
       error: (err) => {
         console.error('Erro ao enviar dados', err); // Lida com erros
       }
     });
-    console.log('completou cadastro? ', this.retorno);
-    this.retorno ? this.alertaCadastroPreenchido() : this.alertaCompletarCadastro();
   }
 
   alertaCompletarCadastro() {
     Swal.fire({
       title: 'Dica',
-      text: 'Para usar as funcionalidades é preciso completar o cadastro em seu Perfil.',
+      text: 'Complete seu cadastro na página de Perfil para acessar todas funcionalidades',
       icon: 'info', 
       confirmButtonText: 'Ok'}).then((result) => {
         if (result.isConfirmed) { 

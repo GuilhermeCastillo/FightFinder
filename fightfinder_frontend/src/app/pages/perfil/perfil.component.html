@@ -1,6 +1,6 @@
 <app-header />
 
-<form id="fundo" [formGroup]="form" (ngSubmit)="atualizarDados()"> 
+<form id="fundo" [formGroup]="form"> 
     <section id="foto">
         <i *ngIf="!imagemPerfilUrl" class="fa-solid fa-circle-user"></i> 
         <img *ngIf="imagemPerfilUrl" [src]="imagemPerfilUrl" alt="Imagem Selecionada" />
@@ -29,6 +29,7 @@
                 <app-input-texto
                 formControlName="cpf" 
                 placeholder="CPF"
+                mask="000.000.000-00"
                 />
                 <p> * </p>
             </li>
@@ -46,6 +47,7 @@
                 formControlName="dataNascimento"
                 id="inputDataNascimento" 
                 placeholder="Data de Nascimento"
+                mask="00/00/0000"
                 />
                 <p> * </p>
             </li> 
@@ -54,7 +56,7 @@
             <li>
                 <app-input-texto
                 formControlName="peso"
-                id="selectPeso" 
+                id="inputPeso" 
                 placeholder="Peso"
                 />
                 <p> * </p>
@@ -64,6 +66,7 @@
                 formControlName="altura"
                 id="inputAltura" 
                 placeholder="Altura"
+                mask="0.00"
                 />
                 <p> * </p>
             </li>
@@ -73,8 +76,8 @@
                 id="inputTelefone" 
                 placeholder="Telefone"
                 mask="(00) 00000-0000"
-                /> 
-                <input type="text" mask="(00) 00000-0000" />
+                />
+                <p> * </p>
             </li>
             <li>   
                 <app-dropdown
@@ -141,8 +144,8 @@
 
     <section id="botoes">
         <ul>
-            <li> <app-button textoBtn="Salvar" backgroundColor="var(--azul)" /> </li>
-            <li> <app-button textoBtn="Cancelar" backgroundColor="var(--vermelho)" /> </li>
+            <li> <app-button textoBtn="Salvar" backgroundColor="var(--azul)" type="submit" (click)="atualizarDados();"/> </li>
+            <li> <app-button textoBtn="Limpar" backgroundColor="var(--vermelho)" type="button" (click)="limparDados();" />  </li>
         </ul>
     </section>
 </form>

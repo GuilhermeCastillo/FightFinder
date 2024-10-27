@@ -30,6 +30,7 @@ export class InputTextoComponent {
   @Input() borderColor: string = 'var(--vermelho)';
   @Input() maxLength: number = 60;
   @Input() width: string = '18rem';
+  @Input() mask: string = '';
   @Output() valueChange = new EventEmitter<string>(); 
 
   ngOnInit(): void {  }
