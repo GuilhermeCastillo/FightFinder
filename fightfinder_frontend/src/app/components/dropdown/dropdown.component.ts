@@ -25,10 +25,7 @@ export class DropdownComponent implements ControlValueAccessor {
 
   @Output() optionSelected = new EventEmitter<string>(); // Evento para emitir a opção selecionada
    
-  ngOnInit() {
-    if (this.options.length > 0) {
-      this.selectedOption = this.options[0];
-    }
+  ngOnInit() { 
   }
 
   onSelect(event: Event) {

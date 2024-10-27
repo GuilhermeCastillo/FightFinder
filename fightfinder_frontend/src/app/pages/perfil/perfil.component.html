@@ -2,13 +2,14 @@
 
 <form id="fundo" [formGroup]="form" (ngSubmit)="atualizarDados()"> 
     <section id="foto">
-        <i *ngIf="!imageUrl" class="fa-solid fa-circle-user"></i> 
-        <img *ngIf="imageUrl" [src]="imageUrl" alt="Imagem Selecionada" src="assets\teste2.jpeg" />
+        <i *ngIf="!imagemPerfilUrl" class="fa-solid fa-circle-user"></i> 
+        <img *ngIf="imagemPerfilUrl" [src]="imagemPerfilUrl" alt="Imagem Selecionada" />
          
         <input type="file"
         #fileInput
         (change)="escolherFotoPerfil($event)"
-        style="display: none"    
+        style="display: none" 
+        formControlName="photoUser"
         /> 
         
         <app-botao-pequeno (click)="fileInput.click()" id="uploadFoto">
@@ -22,7 +23,7 @@
                 formControlName="nomeUser"
                 id="inputNome"
                 placeholder="Nome" 
-                /> 
+                value="dadosPerfil.nome" />
                 <p> * </p>
             <li>
                 <app-input-texto
@@ -34,10 +35,9 @@
             <li>   
                 <app-dropdown 
                 formControlName="genero"
-                id="selectGenero" 
-                [options]="['Gênero', 'Masculino', 'Feminino']" 
-                placeholder = 'Gênero'
-                (optionSelected)="onOptionSelected($event)"
+                id="selectGenero"
+                [options]="['Gênero', 'Masculino', 'Feminino']"
+                [selectedOption]="genero"
                 />  
                 <p> * </p>
             </li> 
@@ -81,8 +81,7 @@
                 formControlName="modalidade"
                 id="selectModalidade" 
                 [options]="['Modalidade', 'Brazilian Jiu-Jitsu', 'Mixed Martial Arts', 'Boxing', 'Muay Thai', 'Judo', 'Wrestling', 'Karate', 'Taekwondo', 'Iniciante']" 
-                placeholder = 'Modalidade'                
-                (optionSelected)="onOptionSelected($event)"
+                [selectedOption]="nomeModalidade"
                 />
                 <p> * </p>
             </li>
