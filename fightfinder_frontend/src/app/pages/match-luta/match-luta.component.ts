@@ -42,46 +42,49 @@ export class MatchLutaComponent {
   adversarioAtual: any;
   indiceAtual: number = 0;
 
-  constructor(private http: HttpClient, private tokenService: TokenService) { }
+  constructor(private http: HttpClient, private tokenService: TokenService) {}
 
-  onOptionSelected(option: string) {  
-      this.modalidadeSelecionada = option;
-      this.botaoDesabilitado = option === this.valorPadraoDropdown;
+  onOptionSelected(option: string) {
+    this.modalidadeSelecionada = option;
+    this.botaoDesabilitado = option === this.valorPadraoDropdown;
   }
 
-  buscarAdversarios() { 
-      this.carregarAdversarios = true;
-  
-      const url = 'http://127.0.0.1:8000/api/v1/recommend/';
-      let token = this.tokenService.getToken();
+  buscarAdversarios() {
+    this.carregarAdversarios = true;
 
-      const headers = new HttpHeaders({
-          'Authorization': `Bearer ${token}`
-      });
+    const url = 'http://127.0.0.1:8000/api/v1/recommend/';
+    let token = this.tokenService.getToken();
 
-      this.http.get<any>(url, { headers }).subscribe({
-          next: (response) => {
-              this.respostaApi = response;
-              this.indiceAtual = 0;
-              this.atualizarAdversarioAtual();
-          },
-          error: (err) => {
-              console.error('Erro ao carregar adversários', err);
-          }
-      });
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    this.http.get<any>(url, { headers }).subscribe({
+      next: (response) => {
+        this.respostaApi = response;
+        this.indiceAtual = 0;
+        this.atualizarAdversarioAtual();
+      },
+      error: (err) => {
+        console.error('Erro ao carregar adversários', err);
+      },
+    });
   }
 
   atualizarAdversarioAtual() {
-      // Verifica se há mais recomendações a serem exibidas
-      if (this.respostaApi.recommendations && this.indiceAtual < this.respostaApi.recommendations.length) {
-          this.adversarioAtual = this.respostaApi.recommendations[this.indiceAtual];
-      } else {
-          this.adversarioAtual = null; // Não há mais adversários para exibir
-      }
+    // Verifica se há mais recomendações a serem exibidas
+    if (
+      this.respostaApi.recommendations &&
+      this.indiceAtual < this.respostaApi.recommendations.length
+    ) {
+      this.adversarioAtual = this.respostaApi.recommendations[this.indiceAtual];
+    } else {
+      this.adversarioAtual = null; // Não há mais adversários para exibir
+    }
   }
 
   proximoAdversario() {
-      this.indiceAtual++;
-      this.atualizarAdversarioAtual();
+    this.indiceAtual++;
+    this.atualizarAdversarioAtual();
   }
 }

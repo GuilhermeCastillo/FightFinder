@@ -85,8 +85,14 @@
 
 #botoes {
    display: flex;
-   text-align: center;
-   justify-content: center;
-   gap: 8.5rem;
-   margin-left: 20rem;
+   justify-content: center; /* Centraliza os botões horizontalmente */
+   gap: 2rem; /* Espaço entre os botões */
+   margin-top: 2rem; /* Espaço acima dos botões */
+}
+
+#botoes app-button {
+   flex: 1; /* Permite que os botões cresçam igualmente */
+   min-width: 150px; /* Largura mínima dos botões */
+   padding: 10px 20px; /* Padding para tornar os botões maiores */
+   max-width: 200px; /* Largura máxima dos botões para não ficarem muito largos */
 }
