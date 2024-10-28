@@ -12,42 +12,54 @@
     </div>
     
     <section id="main">
-        <div id="voce">
+        <!-- Card do atleta "Você" -->
+        <div id="voce" *ngIf="respostaApi && respostaApi.athlete">
             <div id="foto">
-                <i *ngIf="semFoto == true" class="fa-solid fa-user"></i> <img src="assets\teste7.jpeg" />
+                <i *ngIf="semFoto" class="fa-solid fa-user"></i> 
+                <img *ngIf="!semFoto" src="assets/teste7.jpeg" />
             </div>
             <div class="descricaoAtleta">
                 <ul style="font-size: 2rem;">
-                    Você 
+                    <li>{{ respostaApi.athlete.nome }}</li>
+                    <li>{{ respostaApi.athlete.peso }} kg</li>
+                    <li>{{ respostaApi.athlete.altura }} m</li>
+                    <li>{{ respostaApi.athlete.modalidade }}</li>
+                    <li>{{ respostaApi.athlete.cidade }}, {{ respostaApi.athlete.estado }}</li>
                 </ul>
             </div>
         </div>
-
+    
+        <!-- Separador "VS" -->
         <p style="font-size: 10rem; font-weight: bold;" id="vs"> X </p>
-        <div id="adversario">
+    
+        <!-- Card do adversário atual -->
+        <div id="adversario" *ngIf="adversarioAtual">
             <div id="foto">
-                <i *ngIf="!carregarAdversarios" class="fa-solid fa-question"></i>  
-                 <img *ngIf="carregarAdversarios" src="assets\teste5.jpeg" /> 
+                <img src="assets/teste5.jpeg" />
             </div>
             <div class="descricaoAtleta">
-                <ul *ngIf="carregarAdversarios">
-                    <li id="nomeAdversario">João Santos</li>  
-                    <li>32 anos</li>  
-                    <li>81 kg</li>
-                    <li>Pouco Experiente</li>
+                <ul>
+                    <li>{{ adversarioAtual.nome }}</li>
+                    <li>{{ adversarioAtual.peso }} kg</li>
+                    <li>{{ adversarioAtual.altura }} m</li>
+                    <li>{{ adversarioAtual.modalidade }}</li>
+                    <li>{{ adversarioAtual.cidade }}, {{ adversarioAtual.estado }}</li>
                 </ul>
-            </div>  
+            </div>
         </div>
-
+    
+        <!-- Mensagem de "Carregando adversários" -->
+        <ng-template #loading>
+            <p>Carregando adversários...</p>
+        </ng-template>
     </section>
-
-    <section id="botoes"> 
-        <app-button *ngIf="carregarAdversarios" textoBtn="FIGHT!" backgroundColor="var(--vermelho)">
-        
-        </app-button>
-        <app-button *ngIf="carregarAdversarios" textoBtn="Próximo"></app-button>
+    
+    <!-- Botões de interação estilo Tinder -->
+    <section id="botoes" *ngIf="adversarioAtual">
+        <app-button textoBtn="FIGHT!" backgroundColor="var(--vermelho)"></app-button>
+        <app-button textoBtn="Próximo" (click)="proximoAdversario()"></app-button>
     </section>
-
+    
 </section> 
 
 <app-footer />
