@@ -1,42 +1,46 @@
 <header id="header">
-    <div id="menu">
-        <section id="logo">
-            <a href="/home"><img src="assets\logoFundoBranco.jpg"></a>  
-        </section>
+  <div id="menu">
+    <section id="logo">
+      <a href="/home"><img src="assets\logoFundoBranco.jpg" /></a>
+    </section>
 
-        <ul id="listaLinks"> 
-            <li><a href="#">Home</a></li>
-            <li><a href="/ranking">Ranking</a></li>
-            <li><a href="/match-luta">Match</a></li> 
-            <li><a href="/match-treino">Treinar</a></li> 
-            <li><a href="/sobre-nos">Sobre nós</a></li> 
-        </ul>
-    
-        <div *ngIf="!usuarioLogado" id="login">
-            <a href="/login">Login</a>
-        </div>
-            
-        <div *ngIf="usuarioLogado" id="foto"> 
-            <a *ngIf="usuarioLogado" (click)="abrirLista();">
-                <i *ngIf="semFoto" class="fa-solid fa-circle-user"></i>
-                <img *ngIf="!semFoto" alt="Imagem Selecionada" src="assets\teste5.jpeg" />
-            </a> 
-            <ul id="listaOpcoes" *ngIf="mostraLista">
-                <li>
-                    <a href="/perfil">Perfil</a>
-                </li> 
-                <li>
-                    <a href="#">Cartel</a>
-                </li> 
-                <li>
-                    <label (click)="logout()">Sair</label>
-                </li>
-            </ul>
-        </div> 
+    <ul id="listaLinks">
+      <li><a href="#">Home</a></li>
+      <li><a href="/ranking">Ranking</a></li>
+      <li><a href="/match-luta">Match</a></li>
+      <li><a href="/match-treino">Treinar</a></li>
+      <li><a href="/sobre-nos">Sobre nós</a></li>
+    </ul>
+
+    <div *ngIf="!usuarioLogado" id="login">
+      <a href="/login">Login</a>
     </div>
 
-    <div id="linhaDupla">
-        <hr id="linhaAzul" />  
-        <hr id="linhaVermelha" /> 
+    <div *ngIf="usuarioLogado" id="foto">
+      <a *ngIf="usuarioLogado" (click)="abrirLista()">
+        <i *ngIf="semFoto" class="fa-solid fa-circle-user"></i>
+        <img
+          *ngIf="!semFoto"
+          alt="Imagem Selecionada"
+          src="assets\teste5.jpeg"
+        />
+      </a>
+      <ul id="listaOpcoes" *ngIf="mostraLista">
+        <li>
+          <a href="/perfil">Perfil</a>
+        </li>
+        <li>
+          <a href="/cartel-profile">Cartel</a>
+        </li>
+        <li>
+          <label (click)="logout()">Sair</label>
+        </li>
+      </ul>
     </div>
-</header> 
+  </div>
+
+  <div id="linhaDupla">
+    <hr id="linhaAzul" />
+    <hr id="linhaVermelha" />
+  </div>
+</header>
