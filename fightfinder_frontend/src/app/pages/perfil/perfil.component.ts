@@ -150,7 +150,7 @@ export class PerfilComponent {
           genero: this.generoPorExtenso(this.dadosPerfil.genero),
           telefone: this.formatarTelefone(this.dadosPerfil.telefone),
           academia: this.dadosPerfil.academia,
-        };  
+        };
         this.form.patchValue(dadosUser);
       },
       error: (err) => {
@@ -215,8 +215,18 @@ export class PerfilComponent {
   }
 
   limparDados() {
-    
-    console.log('LIMPAR DADOS ');
+    this.form.get('nomeUser')?.setValue("");
+    this.form.get('cpf')?.setValue("");
+    this.form.get('genero')?.setValue("Gênero");
+    this.form.get('peso')?.setValue("");
+    this.form.get('altura')?.setValue("");
+    this.form.get('telefone')?.setValue("");
+    this.form.get('cidade')?.setValue("");
+    this.form.get('estado')?.setValue("");
+    this.form.get('pais')?.setValue("");
+    this.form.get('dataNascimento')?.setValue("");
+    this.form.get('academia')?.setValue("");
+    this.form.get('modalidade')?.setValue("Modalidade");
   }
 
   getNomeOriginal(nomeComSujeira: string): string {

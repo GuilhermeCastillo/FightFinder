@@ -1,17 +1,15 @@
-<div class="container">
-  <div class="search-box">
-    <input type="text" placeholder="Nome do Lutador" />
-    <button>Buscar lutador</button>
-  </div>
+<app-header />
+<form class="container" [formGroup]="form">
+
   <div class="profile">
     <div class="profile-header">
       <div>
-        <h2>JOSE ALDO</h2>
+        <h2>{{ form.get('nomeUser')?.value }}</h2>
         <span>"Junior"</span>
       </div>
       <div style="text-align: right">
-        <span>Brasil</span><br />
-        <span>Manaus, Amazonas</span><br />
+        <span>{{ form.get('pais')?.value }}</span><br />
+        <span>{{ form.get('cidade')?.value }}, {{ form.get('estado')?.value }}</span><br />
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"
           alt="Bandeira do Brasil"
@@ -21,31 +19,26 @@
     </div>
 
     <div class="info-box">
-      <div><strong>IDADE</strong> 38 anos <small>(09/09/1986)</small></div>
+      <div>Idade: {{ form.get('idade')?.value }} anos</div>
+      <div>Gênero: {{ form.get('genero')?.value }}</div>
       <div>
-        <strong>Altura</strong> 1,70m &nbsp; | &nbsp;
-        <strong>Peso</strong> 61,23kg
+        Altura: {{ form.get('altura')?.value }}m &nbsp; | &nbsp;
+        Peso:  {{ form.get('peso')?.value }}kg
       </div>
-      <div><strong>Equipe</strong> Nova Uniao</div>
+      <div>Academia: {{ form.get('academia')?.value }}</div>
     </div>
 
     <div class="stats">
       <div class="win">
-        VITÓRIA <span>32</span>
-        <div class="stats-details">
-          <div>KO / TKO<br />17 <small>(53%)</small></div>
-          <div>FINALIZAÇÕES<br />1 <small>(3%)</small></div>
-          <div>DEC. JUÍZES<br />14 <small>(44%)</small></div>
-        </div>
+        VITÓRIAS <span>14</span>
+      </div>
+      <div class="draw">
+        EMPATES <span>3</span>
       </div>
       <div class="loss">
         DERROTAS <span>9</span>
-        <div class="stats-details">
-          <div>KO / TKO<br />4 <small>(44%)</small></div>
-          <div>FINALIZAÇÕES<br />1 <small>(11%)</small></div>
-          <div>DEC. JUÍZES<br />4 <small>(44%)</small></div>
-        </div>
       </div>
     </div>
   </div>
-</div>
+</form>
+<app-footer />

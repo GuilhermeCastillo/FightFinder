@@ -6,9 +6,6 @@ import { Injectable } from '@angular/core';
 export class TokenService {  
   private authTokenKey = 'authToken';
 
-  private isLocalStorageAvailable(): boolean {
-    return typeof localStorage !== 'undefined';
-  }
 
   hasToken(): boolean {
       if (localStorage.getItem(this.authTokenKey)) {
@@ -19,21 +16,14 @@ export class TokenService {
   }
 
   getToken(): string | null {
-    if (this.isLocalStorageAvailable()) {
-      return localStorage.getItem(this.authTokenKey);
-    }
-    return null;
+    return localStorage.getItem(this.authTokenKey);
   }
 
   setToken(token: string): void {
-    if (this.isLocalStorageAvailable()) {
-      localStorage.setItem(this.authTokenKey, token);
-    }
+    localStorage.setItem(this.authTokenKey, token);
   }
 
   clearToken(): void {
-    if (this.isLocalStorageAvailable()) {
       localStorage.removeItem(this.authTokenKey);
-    }
   }
 }
