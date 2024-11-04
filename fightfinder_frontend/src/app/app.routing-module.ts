@@ -13,14 +13,15 @@ import { AuthGuard } from './guard/auth.guard';
 import { NgModule } from '@angular/core'; 
 
 export const routes: Routes = [
-    { path: 'sobre-nos', component: SobreNosComponent, canActivate: [AuthGuard] },       
+    { path: 'cartel-profile', component: CartelProfileComponent, canActivate: [AuthGuard] },
+    { path: 'sobre-nos', component: SobreNosComponent, canActivate: [AuthGuard] },
     { path: 'match-luta', component: MatchLutaComponent, canActivate: [AuthGuard] },
     { path: 'match-treino', component: MatchTreinoComponent, canActivate: [AuthGuard] },
     { path: 'ranking', component: RankingComponent, canActivate: [AuthGuard] },
-    { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard] }, 
+    { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard] },
     { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'cadastro', component: CadastroComponent },
-    { path: 'login', component: LoginComponent }, 
+    { path: 'login', component: LoginComponent },
     { path: 'cartel-profile', component: CartelProfileComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' }, // Rota padrão
     { path: '**', component: PaginaNaoEncontradaComponent, canActivate: [AuthGuard] }, // Rota para URLs desconhecidas

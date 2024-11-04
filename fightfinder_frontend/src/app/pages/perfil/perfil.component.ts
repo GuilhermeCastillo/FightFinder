@@ -41,8 +41,8 @@ export class PerfilComponent {
   nomeModalidade: string = "";
   dadosPerfil: any;
   genero: any;
-  selectedFile: any;
-  imagemPerfilUrl: string | null = null;
+  selectedFile: File | null = null;
+  imagemPerfilUrl: string | ArrayBuffer | null = null;
   completouCadastro: boolean = false;
 
   constructor(private title: Title, private http: HttpClient, private tokenService: TokenService, private fb: FormBuilder) { 
@@ -58,10 +58,10 @@ export class PerfilComponent {
       pais: ['', Validators.required],
       dataNascimento: ['', Validators.required],
       modalidade: ['', Validators.required],
-      genero: ['', Validators.required],
+      genero: [['Gênero', 'Masculino', 'Feminino'], Validators.required],
       telefone: ['', Validators.required],
       academia: ['', Validators.required],
-    }); 
+    });
   }
 
   ngOnInit() {
@@ -70,31 +70,30 @@ export class PerfilComponent {
 
   escolherFotoPerfil(event: Event) {
     const fileInput = event.target as HTMLInputElement;
+    
     if (fileInput.files && fileInput.files.length > 0) {
-      const file = fileInput.files[0];
-      this.selectedFile = fileInput.files[0];;
-
+      this.selectedFile = fileInput.files[0];
+  
       const maxSizeInMB = 5; // Limite de tamanho em MB
       const maxSizeInBytes = maxSizeInMB * 1024 * 1024;
-
-      if (file.size > maxSizeInBytes) {
+  
+      if (this.selectedFile.size > maxSizeInBytes) {
         alert(`O arquivo é muito grande. O tamanho máximo permitido é ${maxSizeInMB} MB.`);
-        fileInput.value = ''; // Limpa o input
+        
+        // Limpa o input e o selectedFile
+        this.selectedFile = null; 
+        fileInput.value = '';
+        fileInput.parentNode?.replaceChild(fileInput.cloneNode(true), fileInput);
         return;
-      } else { // Continue com o processamento do arquivo
+
+      } else {
         const reader = new FileReader();
-
         reader.onload = () => {
-          this.imageUrl = reader.result;
+          this.imagemPerfilUrl = reader.result;
         };
-
-        reader.readAsDataURL(file); 
-      } 
+        reader.readAsDataURL(this.selectedFile);
+      }
     }
-  }
-
-  onOptionSelected(option: string) {
-    console.log('Opção selecionada:', option); 
   }
 
   verificaSeCompletouCadastro() {
@@ -129,15 +128,11 @@ export class PerfilComponent {
     this.http.get<any>(url, { headers } ).subscribe({
       next: (response) => {
         this.dadosPerfil = response;
-
-        console.log('Dados do usuário: ', this.dadosPerfil);
         this.genero = this.generoPorExtenso(this.dadosPerfil.genero);
         this.nomeModalidade = this.pegaNomeModalidadePorSigla(this.dadosPerfil.modalidade);
-  
-        this.imagemPerfilUrl = this.dadosPerfil.imagem;
+        this.imagemPerfilUrl = `http://127.0.0.1:8000${this.dadosPerfil.imagem}`;
 
         const dadosUser = {
-          // photoUser: this.dadosPerfil.imagem,
           nomeUser: this.dadosPerfil.nome,
           cpf: this.formatarCpf(this.dadosPerfil.cpf),
           peso: this.dadosPerfil.peso,
@@ -164,16 +159,14 @@ export class PerfilComponent {
     let token = this.tokenService.getToken();
 
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}` // ou 'Token ${token}' dependendo da sua API
+      'Authorization': `Bearer ${token}`
     });
 
     this.pegaSiglaModalidade();
     let dataFormatada = this.formataDataUSA();
-    
     const formData = new FormData();
-
+    
     const dados = {
-     // imagem: this.form.controls['photoUser'].value,
       cpf: this.removerMascara(this.form.controls['cpf'].value),
       genero:  this.form.get('genero')?.value[0],
       peso: this.form.controls['peso'].value,
@@ -192,16 +185,9 @@ export class PerfilComponent {
       formData.append(key, value as string);
     });
   
-    // Adicione o arquivo de imagem, se houver
-    // this.selectedFile.name = this.getNomeOriginal(this.selectedFile.name);
-    // console.log('DADOS ', this.selectedFile.name);
-
     if (this.selectedFile) {
-      console.log('ENTREI NO IF');
       formData.append('imagem', this.selectedFile, this.selectedFile.name);
     }
-
-    console.log('DADOS ', formData);
 
     this.http.post<any>(url, formData, { headers }).subscribe({
       next: (response) => {
@@ -215,25 +201,25 @@ export class PerfilComponent {
   }
 
   limparDados() {
-    this.form.get('nomeUser')?.setValue("");
-    this.form.get('cpf')?.setValue("");
-    this.form.get('genero')?.setValue("Gênero");
-    this.form.get('peso')?.setValue("");
-    this.form.get('altura')?.setValue("");
-    this.form.get('telefone')?.setValue("");
-    this.form.get('cidade')?.setValue("");
-    this.form.get('estado')?.setValue("");
-    this.form.get('pais')?.setValue("");
-    this.form.get('dataNascimento')?.setValue("");
-    this.form.get('academia')?.setValue("");
-    this.form.get('modalidade')?.setValue("Modalidade");
-  }
+    this.genero = "Gênero";
+    this.nomeModalidade = "Modalidade";
 
-  getNomeOriginal(nomeComSujeira: string): string {
-    // Usando regex para remover a parte "sujeira" do nome
-    const nomeOriginal = nomeComSujeira.replace(/(-[a-z0-9]+)?(\.[a-z]{3,4})?$/, '');
-    return nomeOriginal;
-}
+    const dadosUser = {
+      nomeUser: "",
+      cpf: "",
+      peso: "",
+      altura: "",
+      cidade: "",
+      estado: "",
+      pais: "",
+      dataNascimento: "",
+      modalidade: "Modalidade",
+      genero: "Gênero",
+      telefone: "",
+      academia: "",
+    };
+    this.form.patchValue(dadosUser);
+  }
 
   pegaSiglaModalidade() {
     switch(this.form.get('modalidade')?.value) {

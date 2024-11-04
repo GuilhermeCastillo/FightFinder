@@ -12,17 +12,13 @@
       <li><a href="/sobre-nos">Sobre nós</a></li>
     </ul>
 
-    <div *ngIf="!usuarioLogado" id="login">
-      <a href="/login">Login</a>
-    </div>
-
-    <div *ngIf="usuarioLogado" id="foto">
-      <a *ngIf="usuarioLogado" (click)="abrirLista()">
-        <i *ngIf="semFoto" class="fa-solid fa-circle-user"></i>
+    <div id="foto">
+      <a (click)="abrirLista()">
+        <i *ngIf="!imagemPerfilUrl" class="fa-solid fa-circle-user"></i>
         <img
-          *ngIf="!semFoto"
+          *ngIf="imagemPerfilUrl"
           alt="Imagem Selecionada"
-          src="assets\teste5.jpeg"
+          [src]="imagemPerfilUrl" alt="Imagem de Perfil"
         />
       </a>
       <ul id="listaOpcoes" *ngIf="mostraLista">

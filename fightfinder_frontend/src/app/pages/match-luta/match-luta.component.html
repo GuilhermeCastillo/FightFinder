@@ -54,12 +54,10 @@
         </ng-template>
     </section>
     
-    <!-- Botões de interação estilo Tinder -->
     <section id="botoes" *ngIf="adversarioAtual">
         <app-button textoBtn="FIGHT!" backgroundColor="var(--vermelho)"></app-button>
         <app-button textoBtn="Próximo" (click)="proximoAdversario()"></app-button>
     </section>
-    
 </section> 
 
 <app-footer />

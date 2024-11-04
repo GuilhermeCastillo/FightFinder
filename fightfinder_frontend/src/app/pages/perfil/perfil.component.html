@@ -3,13 +3,14 @@
 <form id="fundo" [formGroup]="form"> 
     <section id="foto">
         <i *ngIf="!imagemPerfilUrl" class="fa-solid fa-circle-user"></i> 
-        <img *ngIf="imagemPerfilUrl" [src]="imagemPerfilUrl" alt="Imagem Selecionada" />
+        <img *ngIf="imagemPerfilUrl" [src]="imagemPerfilUrl" alt="Imagem de Perfil" />
          
         <input type="file"
         #fileInput
         (change)="escolherFotoPerfil($event)"
         style="display: none"
         formControlName="photoUser"
+        accept="image/*"
         /> 
         
         <app-botao-pequeno (click)="fileInput.click()" id="uploadFoto">
@@ -139,7 +140,7 @@
                 />
             </li>  -->
         </ul> 
-    </section> 
+    </section>
 
     <section id="botoes">
         <ul>
