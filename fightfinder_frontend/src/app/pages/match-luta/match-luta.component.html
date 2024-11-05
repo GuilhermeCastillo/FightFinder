@@ -13,18 +13,19 @@
     
     <section id="main">
         <!-- Card do atleta "Você" -->
-        <div id="voce" *ngIf="respostaApi && respostaApi.athlete">
+        <div id="voce">
             <div id="foto">
-                <i *ngIf="semFoto" class="fa-solid fa-user"></i> 
-                <img *ngIf="!semFoto" src="assets/teste7.jpeg" />
+                <i *ngIf="!imagemPerfilUrl" class="fa-solid fa-user"></i> 
+                <img *ngIf="imagemPerfilUrl" [src]="imagemPerfilUrl" />
             </div>
-            <div class="descricaoAtleta">
+            <div class="descricaoAtleta" *ngIf="completouCadastro">
                 <ul style="font-size: 2rem;">
-                    <li>{{ respostaApi.athlete.nome }}</li>
-                    <li>{{ respostaApi.athlete.peso }} kg</li>
-                    <li>{{ respostaApi.athlete.altura }} m</li>
-                    <li>{{ respostaApi.athlete.modalidade }}</li>
-                    <li>{{ respostaApi.athlete.cidade }}, {{ respostaApi.athlete.estado }}</li>
+                    <li>{{ form.get('nomeUser')?.value }}</li>
+                    <li>{{ form.get('idade')?.value }} anos</li>
+                    <li>{{ form.get('peso')?.value }} kg</li>
+                    <li>{{ form.get('altura')?.value }} m</li>
+                    <li>{{ form.get('modalidade')?.value }}</li>
+                    <li>{{ form.get('cidade')?.value }}, {{ form.get('estado')?.value }}</li>
                 </ul>
             </div>
         </div>
@@ -33,6 +34,9 @@
         <p style="font-size: 10rem; font-weight: bold;" id="vs"> X </p>
     
         <!-- Card do adversário atual -->
+        <div id="adversario" *ngIf="!adversarioAtual">
+            <i class="fa-regular fa-question"></i>
+        </div>
         <div id="adversario" *ngIf="adversarioAtual">
             <div id="foto">
                 <img src="assets/teste5.jpeg" />

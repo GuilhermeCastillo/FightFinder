@@ -133,7 +133,7 @@ export class CartelProfileComponent {
 
   converterParaData(dataString: string): Date {
     const [dia, mes, ano] = dataString.split('/').map(Number);
-    return new Date(ano, mes - 1, dia); // Lembre-se que o mês começa do zero (Janeiro = 0)
+    return new Date(ano, mes - 1, dia); // (Janeiro = 0)
   }
 
   calcularIdade(dataNascimento: Date): number {

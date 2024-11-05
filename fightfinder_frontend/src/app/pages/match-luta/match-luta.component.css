@@ -60,9 +60,22 @@
    background-color: gray;
 }
 
+.fa-user {
+   display: flex;
+   font-size: 12rem;
+   justify-content: center;
+}
+
 .fa-question {
    display: flex;
-   font-size: 15rem;
+   font-size: 18rem;
+   justify-content: center;
+   margin-left: 4rem;
+}
+
+.fa-face-angry {
+   display: flex;
+   font-size: 21rem;
    justify-content: center;
 }
 
