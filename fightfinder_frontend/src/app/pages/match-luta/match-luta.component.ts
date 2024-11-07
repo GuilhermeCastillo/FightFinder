@@ -94,6 +94,7 @@ export class MatchLutaComponent {
     this.http.get<any>(url, { headers }).subscribe({
       next: (response) => {
         this.respostaApi = response;
+        console.log("RECOMENDAÇÕES: ", this.respostaApi);
         this.indiceAtual = 0;
         this.atualizarAdversarioAtual();
       },

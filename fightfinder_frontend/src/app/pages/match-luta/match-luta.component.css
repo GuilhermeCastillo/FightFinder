@@ -11,7 +11,7 @@
    display: flex;
    justify-content: center;
    align-items: center;
-   margin: 2rem 2rem 4rem 2rem; 
+   margin: 2rem 2rem 9rem 2rem; 
 }
 
 #voce {
@@ -84,28 +84,28 @@
    flex-direction: column;
    justify-content: center;
    text-align: center;
-   font-size: 1.5rem;
+   font-size: 2rem;
    text-decoration: dotted;
 }
 
 .descricaoAtleta ul li {
-   padding: 0.5rem 0;
+   padding: 0.7rem 0;
 }
  
-#voce, #nomeAdversario {
+.descricaoAtleta ul li:nth-child(1) {
    font-weight: bold;
 }
 
 #botoes {
    display: flex;
-   justify-content: center; /* Centraliza os botões horizontalmente */
-   gap: 2rem; /* Espaço entre os botões */
-   margin-top: 2rem; /* Espaço acima dos botões */
+   justify-content: center;
+   gap: 2rem;
+   padding-bottom: 5rem;
 }
 
 #botoes app-button {
    flex: 1; /* Permite que os botões cresçam igualmente */
-   min-width: 150px; /* Largura mínima dos botões */
-   padding: 10px 20px; /* Padding para tornar os botões maiores */
-   max-width: 200px; /* Largura máxima dos botões para não ficarem muito largos */
+   min-width: 150px; 
+   padding: 10px 20px;
+   max-width: 200px; 
 }

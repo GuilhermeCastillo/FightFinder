@@ -2,12 +2,6 @@
 
 <section>  
     <div id="cabecalhoMatch">
-        <!-- <app-dropdown 
-        id="listaModalidades"
-        [options]="['Modalidade', 'Judo', 'Karatê', 'Jiu-Jitsu', 'Boxe', 'Muay Thai', 'Taekwondo', 'Capoeira ', 'Kung Fu', 'Krav Maga']" 
-        value = ''  
-        (optionSelected)="onOptionSelected($event)" 
-        />   -->
         <app-button textoBtn="Buscar" id="btnBuscar"  backgroundColor="var(--vermelho)" (click)="buscarAdversarios()" />
     </div>
     
@@ -19,7 +13,7 @@
                 <img *ngIf="imagemPerfilUrl" [src]="imagemPerfilUrl" />
             </div>
             <div class="descricaoAtleta" *ngIf="completouCadastro">
-                <ul style="font-size: 2rem;">
+                <ul>
                     <li>{{ form.get('nomeUser')?.value }}</li>
                     <li>{{ form.get('idade')?.value }} anos</li>
                     <li>{{ form.get('peso')?.value }} kg</li>
@@ -39,14 +33,15 @@
         </div>
         <div id="adversario" *ngIf="adversarioAtual">
             <div id="foto">
-                <img src="assets/teste5.jpeg" />
+                <img src="assets/IMG_1314.jpg" />
             </div>
             <div class="descricaoAtleta">
                 <ul>
                     <li>{{ adversarioAtual.nome }}</li>
+                    <li>23 anos</li>
                     <li>{{ adversarioAtual.peso }} kg</li>
                     <li>{{ adversarioAtual.altura }} m</li>
-                    <li>{{ adversarioAtual.modalidade }}</li>
+                    <li>Karate</li>
                     <li>{{ adversarioAtual.cidade }}, {{ adversarioAtual.estado }}</li>
                 </ul>
             </div>

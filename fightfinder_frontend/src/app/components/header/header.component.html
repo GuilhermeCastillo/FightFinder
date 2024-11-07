@@ -5,11 +5,13 @@
     </section>
 
     <ul id="listaLinks">
-      <li><a href="#">Home</a></li>
-      <li><a href="/ranking">Ranking</a></li>
-      <li><a href="/match-luta">Match</a></li>
-      <li><a href="/match-treino">Treinar</a></li>
-      <li><a href="/sobre-nos">Sobre nós</a></li>
+      <li 
+      *ngFor="let page of pages"
+      [routerLink]="page.link"
+      routerLinkActive="active"
+      [ngClass]="{ 'active-title': isCurrentPage(page.link) }">
+        {{ page.title }} 
+      </li>
     </ul>
 
     <div id="foto">

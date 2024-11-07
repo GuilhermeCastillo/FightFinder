@@ -36,18 +36,20 @@
 }
 
 #menu #listaLinks li {
-    padding: 1rem 1.5rem; 
-}
-
-#menu #listaLinks li a { 
-    color: black;
-    text-decoration: none;
     font-weight: 600; 
+    padding: 1rem 1.5rem; 
+    cursor: pointer;
 }
 
-#menu #listaLinks li a:hover { 
-    color: var(--azul);
-    text-decoration: none;
+#menu #listaLinks li:hover {
+    transform: scale(1.05);
+}
+
+#menu #listaLinks li:active {
+    transform: scale(1.0);
+}
+
+.active-title {
     text-decoration: underline;
 }
 

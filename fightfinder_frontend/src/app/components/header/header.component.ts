@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { TokenService } from '../../services/token/token.service'; 
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule, RouterModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
@@ -19,12 +19,23 @@ export class HeaderComponent {
   respostaApi: any;
   imagemPerfilUrl: string | ArrayBuffer | null = null;
 
+  pages = [
+    { title: 'Home', link: '/home' },
+    { title: 'Ranking', link: '/ranking' },
+    { title: 'Match', link: '/match-luta' },
+    { title: 'Treinar', link: '/match-treino' },
+    { title: 'Sobre nós', link: '/sobre-nos' }
+  ];
+
   constructor(private router: Router, private tokenService: TokenService, private http: HttpClient) {}
 
   ngOnInit() {
     this.verificaSeCompletouCadastro();
   }
 
+  isCurrentPage(link: string): boolean {
+    return this.router.url === link;
+  }
 
   abrirLista() {
     this.mostraLista = !this.mostraLista;
