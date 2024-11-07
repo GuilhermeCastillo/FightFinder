@@ -73,6 +73,14 @@ class AthleteProfileView(APIView):
         return Response(serializer.data, status=200)
 
 
+from django.http import JsonResponse
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
+from .models import Athlete
+
+
 class RecommendForAuthenticatedUserView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -114,6 +122,9 @@ class RecommendForAuthenticatedUserView(APIView):
                     "estado": rec_athlete.estado,
                     "pais": rec_athlete.pais,
                     "modalidade": rec_athlete.modalidade,
+                    "imagem_url": (
+                        rec_athlete.imagem.url if rec_athlete.imagem else None
+                    ),  # Converte para URL
                 }
             )
 
@@ -130,6 +141,9 @@ class RecommendForAuthenticatedUserView(APIView):
                     "estado": athlete.estado,
                     "pais": athlete.pais,
                     "modalidade": athlete.modalidade,
+                    "imagem_url": (
+                        athlete.imagem.url if athlete.imagem else None
+                    ),  # Converte para URL
                 },
                 "recommendations": recommendations,
             }
