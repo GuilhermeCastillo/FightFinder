@@ -25,8 +25,8 @@
    text-align: center;
    padding: 0;
    margin: 0;
-   color: white; /* Cor do texto */
-  text-shadow: 
+   color: white;
+   text-shadow: 
     -1px -5px 0 var(--azul),  /* Borda superior esquerda */
     5px -1px 0 var(--azul),   /* Borda superior direita */
     -1px 5px 0 var(--vermelho),   /* Borda inferior esquerda */

@@ -57,12 +57,12 @@ table {
 }  
 
 body {
-    background-color: #f0f0f0; /* Exemplo de cor em hexadecimal */
-	line-height: 1; /* Ou o valor que preferir */
+    background-color: #f0f0f0;
+	line-height: 1;
 }
 
 p, h1, h2, h3, h4, h5, h6, span {
-	line-height: 1.5; /* Ou outro valor */
+	line-height: 1.5;
   }
 
  
@@ -76,7 +76,7 @@ p, h1, h2, h3, h4, h5, h6, span {
 	background: #f1f1f1; /* Cor do trilho */
 }
   
-/* Estiliza o "polegar" (thumb) da barra de rolagem */
+/* Estiliza o "polegar" da barra de rolagem */
 ::-webkit-scrollbar-thumb {
 	overflow-y: auto;
 	background-color: #888; /* Cor do polegar */
@@ -90,7 +90,6 @@ p, h1, h2, h3, h4, h5, h6, span {
 	background-color: #555; /* Cor mais escura ao passar o mouse */
 }
   
-
 .mat-form-field-appearance-fill .mat-form-field-flex {
 	background-color: #e0e0e0; /* Alterar cor de fundo no modo fill */
   }
@@ -103,7 +102,6 @@ p, h1, h2, h3, h4, h5, h6, span {
   .mat-calendar-body-selected {
 	background-color: #ff4081 !important; /* Dia selecionado */
   }
-  
 
 
 /* CORES */

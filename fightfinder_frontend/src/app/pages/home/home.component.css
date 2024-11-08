@@ -87,7 +87,6 @@ section ul li a img {
     height: 30rem;
     background-color: var(--azul);
     padding: 5rem;
-    /* background: linear-gradient(to bottom, #f0f0f0, var(--azul)); */
     color: white; 
 }
 

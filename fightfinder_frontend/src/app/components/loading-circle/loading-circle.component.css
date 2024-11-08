@@ -1,6 +1,6 @@
 .loading-circle {
-    border: 6px solid rgba(0, 0, 0, 0.1); /* Borda do círculo */
-    border-top: 6px solid var(--azul); /* Cor da borda superior */
+    border: 6px solid rgba(0, 0, 0, 0.1);
+    border-top: 6px solid var(--azul);
     border-radius: 50%; /* Deixa o elemento redondo */
     width: 1.5rem; /* Largura do círculo */
     height: 1.5rem; /* Altura do círculo */

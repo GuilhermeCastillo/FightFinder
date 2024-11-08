@@ -42,16 +42,10 @@ export class CheckboxComponent implements ControlValueAccessor {
       this.onTouched = fn;
     }
   
-    // Habilita/desabilita o componente
-    // setDisabledState?(isDisabled: boolean): void {
-    //   this.disabled = isDisabled;
-    // }
-  
     // Método que será chamado quando o checkbox for clicado
     toggleCheckbox() {
       this.checked = !this.checked;
       this.onChange(this.checked);  // Atualiza o valor no formulário
       this.onTouched();             // Marca o campo como tocado
     }
-
 }

@@ -24,9 +24,9 @@
 #filtros i {
     position: absolute;
     top: 45%;
-    left: 22rem; /* Ajuste conforme necessário */
+    left: 22rem;
     transform: translateY(-10%);
-    pointer-events: none; /* Para não interferir no clique do input */
+    pointer-events: none;
     color: #707575;
 }
 

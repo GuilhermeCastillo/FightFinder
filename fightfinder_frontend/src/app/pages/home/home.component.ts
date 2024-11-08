@@ -35,7 +35,7 @@ export class HomeComponent {
 
     this.http.get<any>(url, { headers }).subscribe({
       next: (response) => {
-        this.retorno = response; // Processa a resposta da API 
+        this.retorno = response;
         this.completouCadastro = this.retorno['athlete_profile_complete'];
         console.log('Completou cadastro?', this.completouCadastro);
         if (!this.completouCadastro) {
@@ -43,7 +43,7 @@ export class HomeComponent {
         }
       },
       error: (err) => {
-        console.error('Erro ao enviar dados', err); // Lida com erros
+        console.error('Erro ao enviar dados', err);
       }
     });
   }
