@@ -25,7 +25,7 @@
         Altura: {{ form.get('altura')?.value }}m &nbsp; | &nbsp;
         Peso:  {{ form.get('peso')?.value }}kg
       </div>
-      <div>Academia: {{ form.get('academia')?.value }}</div>
+      <div>Academia: {{ form.get('academia')?.value || "-"}}</div>
     </div>
 
     <div class="stats">

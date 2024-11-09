@@ -44,13 +44,24 @@ export class PerfilComponent {
   selectedFile: File | null = null;
   imagemPerfilUrl: string | ArrayBuffer | null = null;
   completouCadastro: boolean = false;
+  erroNome: boolean = false; 
+  erroCpf: boolean = false;
+  erroGenero: boolean = false;
+  erroData: boolean = false; 
+  erroPeso: boolean = false; 
+  erroAltura: boolean = false; 
+  erroTelefone: boolean = false; 
+  erroModalidade: boolean = false; 
+  erroPais: boolean = false; 
+  erroEstado: boolean = false; 
+  erroCidade: boolean = false;  
 
   constructor(private title: Title, private http: HttpClient, private tokenService: TokenService, private fb: FormBuilder) { 
 
     this.form = this.fb.group({
       photoUser: [''],
-      nomeUser: ['', [Validators.required, Validators.maxLength(30), Validators.pattern('^[a-zA-Z]+$')]], // apenas letras
-      cpf: ['', [Validators.required, Validators.maxLength(11)]],
+      nomeUser: ['', [Validators.required, Validators.maxLength(50)]], // apenas letras
+      cpf: ['', [Validators.required, Validators.maxLength(15)]],
       peso: ['', Validators.required],
       altura: ['', Validators.required],
       cidade: ['', Validators.required],
@@ -58,9 +69,9 @@ export class PerfilComponent {
       pais: ['', Validators.required],
       dataNascimento: ['', Validators.required],
       modalidade: ['', Validators.required],
-      genero: [['Gênero', 'Masculino', 'Feminino'], Validators.required],
+      genero: ['', Validators.required],
       telefone: ['', Validators.required],
-      academia: ['', Validators.required],
+      academia: [''],
     });
   }
 
@@ -154,6 +165,22 @@ export class PerfilComponent {
     });
   }
 
+  validaForm() {
+    if (this.form.valid) { 
+      this.atualizarDados();
+    } else {
+      this.form.controls['nomeUser'].invalid ? this.erroNome = true : this.erroNome = false;
+      this.form.controls['cpf'].invalid ? this.erroCpf = true : this.erroCpf = false;
+      this.form.controls['dataNascimento'].invalid ? this.erroData = true : this.erroData = false;
+      this.form.controls['peso'].invalid ? this.erroPeso = true : this.erroPeso = false;
+      this.form.controls['altura'].invalid ? this.erroAltura = true : this.erroAltura = false;
+      this.form.controls['telefone'].invalid ? this.erroTelefone = true : this.erroTelefone = false;
+      this.form.controls['pais'].invalid ? this.erroPais = true : this.erroPais = false;
+      this.form.controls['estado'].invalid ? this.erroEstado = true : this.erroEstado = false;
+      this.form.controls['cidade'].invalid ? this.erroCidade = true : this.erroCidade = false;
+    }
+  }
+
   atualizarDados() {
     const url = 'http://127.0.0.1:8000/api/v1/complete-athlete-profile/';
     let token = this.tokenService.getToken();
@@ -196,6 +223,8 @@ export class PerfilComponent {
       },
       error: (err) => {
         console.error('Erro ao enviar dados', err);
+        err.error.genero == '"G" não é um escolha válido.' ? this.erroGenero = true : this.erroGenero = false;
+        err.error.modalidade == "\"Nenhuma\" não é um escolha válido." ? this.erroModalidade = true : this.erroModalidade = false;
       }
     });
   }

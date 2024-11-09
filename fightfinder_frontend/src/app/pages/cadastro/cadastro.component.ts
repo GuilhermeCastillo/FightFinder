@@ -80,9 +80,7 @@ export class CadastroComponent {
 
         this.enviarDadosCadastro();
 
-    } else { 
-      console.log("Formulário inválido"); 
-      // this.form.controls['radio'].invalid ? this.erroRadio = true : this.erroRadio = false;
+    } else {
       this.form.controls['nomeUser'].invalid ? this.erroNomeUser = true : this.erroNomeUser = false;
       this.form.controls['email'].invalid ? this.erroEmail = true : this.erroEmail = false;
       this.form.controls['senha1'].invalid ? this.erroSenha1 = true : this.erroSenha1 = false;

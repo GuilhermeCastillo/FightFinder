@@ -23,25 +23,39 @@
                 <app-input-texto
                 formControlName="nomeUser"
                 id="inputNome"
-                placeholder="Nome" />
-                <p> * </p>
+                placeholder="Nome" 
+                />
+                <p class="obrigatorio"> * </p>
+            </li>
+            <div *ngIf="erroNome">
+                <p class="erro">nome inválido!</p>
+            </div>
+
             <li>
                 <app-input-texto
                 formControlName="cpf" 
                 placeholder="CPF"
                 mask="000.000.000-00"
                 />
-                <p> * </p>
+                <p class="obrigatorio"> * </p>
             </li>
+            <div *ngIf="erroCpf">
+                <p class="erro">CPF inválido</p>
+            </div>
+
             <li>   
                 <app-dropdown 
                 formControlName="genero"
                 id="selectGenero"
                 [options]="['Gênero', 'Masculino', 'Feminino']"
                 [selectedOption]="genero"
-                />  
-                <p> * </p>
-            </li> 
+                />
+                <p class="obrigatorio"> * </p>
+            </li>
+            <div *ngIf="erroGenero">
+                <p class="erro">Selecione uma opção!</p>
+            </div>
+
             <li>
                 <app-input-texto 
                 formControlName="dataNascimento"
@@ -49,8 +63,11 @@
                 placeholder="Data de Nascimento"
                 mask="00/00/0000"
                 />
-                <p> * </p>
-            </li> 
+                <p class="obrigatorio"> * </p>
+            </li>
+            <div *ngIf="erroData">
+                <p class="erro">Data inválida!</p>
+            </div>
         </ul>
         <ul> <!-- LISTA 2 -->
             <li>
@@ -59,8 +76,12 @@
                 id="inputPeso" 
                 placeholder="Peso"
                 />
-                <p> * </p>
-            </li> 
+                <p class="obrigatorio"> * </p>
+            </li>
+            <div *ngIf="erroPeso">
+                <p class="erro">Peso inválido!</p>
+            </div>
+
             <li>
                 <app-input-texto 
                 formControlName="altura"
@@ -68,8 +89,12 @@
                 placeholder="Altura"
                 mask="0.00"
                 />
-                <p> * </p>
+                <p class="obrigatorio"> * </p>
             </li>
+            <div *ngIf="erroAltura">
+                <p class="erro">Altura inválida!</p>
+            </div>
+
             <li>
                 <app-input-texto 
                 formControlName="telefone"
@@ -77,8 +102,12 @@
                 placeholder="Telefone"
                 mask="(00) 00000-0000"
                 />
-                <p> * </p>
+                <p class="obrigatorio"> * </p>
             </li>
+            <div *ngIf="erroTelefone">
+                <p class="erro">Número de telefone inválido!</p>
+            </div>
+
             <li>   
                 <app-dropdown
                 formControlName="modalidade"
@@ -86,8 +115,11 @@
                 [options]="['Modalidade', 'Brazilian Jiu-Jitsu', 'Mixed Martial Arts', 'Boxing', 'Muay Thai', 'Judo', 'Wrestling', 'Karate', 'Taekwondo', 'Iniciante']" 
                 [selectedOption]="nomeModalidade"
                 />
-                <p> * </p>
+                <p class="obrigatorio"> * </p>
             </li>
+            <div *ngIf="erroModalidade">
+                <p class="erro">Selecione uma opção!</p>
+            </div>
         </ul>
         <ul> <!-- LISTA 3 -->
             <li>
@@ -96,24 +128,36 @@
                 id="inputPais" 
                 placeholder="País"
                 />
-                <p> * </p>
-            </li> 
+                <p class="obrigatorio"> * </p>
+            </li>
+            <div *ngIf="erroPais">
+                <p class="erro">Campo obrigatorio!</p>
+            </div>
+
             <li>
                 <app-input-texto 
                 formControlName="estado"
                 id="inputEstado" 
                 placeholder="Estado"
                 />
-                <p> * </p>
+                <p class="obrigatorio"> * </p>
             </li>
+            <div *ngIf="erroEstado">
+                <p class="erro">Campo obrigatório</p>
+            </div>
+
             <li>
                 <app-input-texto 
                 formControlName="cidade"
                 id="inputCidade" 
                 placeholder="Cidade"
                 />
-                <p> * </p>
+                <p class="obrigatorio"> * </p>
             </li>
+            <div *ngIf="erroCidade">
+                <p class="erro">Campo obrigatório</p>
+            </div>
+            
             <li>
                 <app-input-texto
                 formControlName="academia"
@@ -135,7 +179,7 @@
 
     <section id="botoes">
         <ul>
-            <li> <app-button textoBtn="Salvar" backgroundColor="var(--azul)" type="submit" (click)="atualizarDados();"/> </li>
+            <li> <app-button textoBtn="Salvar" backgroundColor="var(--azul)" type="submit" (click)="validaForm();"/> </li>
             <li> <app-button textoBtn="Limpar" backgroundColor="var(--vermelho)" type="button" (click)="limparDados();" />  </li>
         </ul>
     </section>

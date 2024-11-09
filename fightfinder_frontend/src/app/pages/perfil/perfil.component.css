@@ -56,10 +56,14 @@
     width: 21rem;
 }
 
-#infoPessoal ul li p {
+.obrigatorio {
     color: red;
     font-size: 1.5rem;
     margin-left: 0.5rem;
+}
+
+.erro {
+    margin: 0.5rem;
 }
 
 #avisoCampos {
@@ -79,7 +83,7 @@
 }
 
 #botoes ul li { 
-    margin: 2rem;
+    margin: 1.5rem;
 }
 
 #idade {

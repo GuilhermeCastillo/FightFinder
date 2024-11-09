@@ -38,8 +38,7 @@ export class LoginComponent {
         this.erroSenha1 = false;
         this.enviarDadosLogin();
 
-    } else { 
-      console.log("Formulário inválido"); 
+    } else {
       this.form.controls['nomeUser'].invalid ? this.erroNomeUser = true : this.erroNomeUser = false;
       this.form.controls['senha1'].invalid ? this.erroSenha1 = true : this.erroSenha1 = false;
     }

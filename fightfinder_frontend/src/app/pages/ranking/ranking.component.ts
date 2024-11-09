@@ -68,7 +68,6 @@ export class RankingComponent implements OnInit {
   }
 
   onOptionSelected(option: string) {
-    console.log('Opção selecionada: ', option); 
   }
 
 }
