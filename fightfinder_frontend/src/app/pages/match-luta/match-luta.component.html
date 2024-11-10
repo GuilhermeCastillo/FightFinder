@@ -32,16 +32,19 @@
             <i class="fa-regular fa-question"></i>
         </div>
         <div id="adversario" *ngIf="adversarioAtual">
-            <div id="foto">
-                <img src="assets/IMG_1314.jpg" />
+            <div *ngIf="imgAdversarioAtualPerfilUrl" id="foto">
+                <img [src]="imgAdversarioAtualPerfilUrl" />
+            </div>
+            <div *ngIf="!imgAdversarioAtualPerfilUrl" id="foto">
+                <i *ngIf="!imagemPerfilUrl" class="fa-solid fa-user"></i> 
             </div>
             <div class="descricaoAtleta">
                 <ul>
                     <li>{{ adversarioAtual.nome }}</li>
-                    <li>23 anos</li>
+                    <li> anos</li>
                     <li>{{ adversarioAtual.peso }} kg</li>
                     <li>{{ adversarioAtual.altura }} m</li>
-                    <li>Karate</li>
+                    <li>modalidade</li>
                     <li>{{ adversarioAtual.cidade }}, {{ adversarioAtual.estado }}</li>
                 </ul>
             </div>

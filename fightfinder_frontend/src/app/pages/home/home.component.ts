@@ -37,7 +37,6 @@ export class HomeComponent {
       next: (response) => {
         this.retorno = response;
         this.completouCadastro = this.retorno['athlete_profile_complete'];
-        console.log('Completou cadastro?', this.completouCadastro);
         if (!this.completouCadastro) {
           this.alertaCompletarCadastro();
         }

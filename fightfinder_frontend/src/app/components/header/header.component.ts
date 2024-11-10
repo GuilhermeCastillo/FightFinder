@@ -79,8 +79,11 @@ export class HeaderComponent {
     this.http.get<any>(url, { headers } ).subscribe({
       next: (response) => {
         this.respostaApi = response;
-        
-        this.imagemPerfilUrl = `http://127.0.0.1:8000${this.respostaApi.imagem}`;
+        if (this.respostaApi.imagem) {
+          this.imagemPerfilUrl = `http://127.0.0.1:8000${this.respostaApi.imagem}`;
+        } else {
+          this.imagemPerfilUrl = null;
+        }
       },
       error: (err) => {
         console.error('Erro ao enviar dados', err);

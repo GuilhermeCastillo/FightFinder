@@ -61,7 +61,7 @@ export class PerfilComponent {
     this.form = this.fb.group({
       photoUser: [''],
       nomeUser: ['', [Validators.required, Validators.maxLength(50)]], // apenas letras
-      cpf: ['', [Validators.required, Validators.maxLength(15)]],
+      cpf: ['', [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
       peso: ['', Validators.required],
       altura: ['', Validators.required],
       cidade: ['', Validators.required],

@@ -28,7 +28,10 @@
                 <div *ngIf="erroSenha1">
                     <p class="erro">mín. 8 caracteres com letras e números</p>
                 </div>
-
+                <div *ngIf="erroUsuarioSenhaInvaldos">
+                    <p class="erro">Usuário ou senha inválidos!</p>
+                </div>
+                
                 <!-- <span id="esqueci-a-senha">
                     <a href="/#">Esqueceu a senha?</a>
                 </span> -->

@@ -11,8 +11,6 @@ import {
   HttpClientModule,
   HttpHeaders,
 } from '@angular/common/http';
-import { Observable } from 'rxjs/internal/Observable';
-import { url } from 'inspector';
 import { TokenService } from '../../services/token/token.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import Swal from 'sweetalert2';
@@ -46,6 +44,7 @@ export class MatchLutaComponent {
   dadosPerfil: any;
   nomeModalidade: string = "";
   imagemPerfilUrl: string | ArrayBuffer | null = null;
+  imgAdversarioAtualPerfilUrl: string | ArrayBuffer | null = null;
   genero: any;
   completouCadastro: boolean = false;
   form: FormGroup;
@@ -95,6 +94,10 @@ export class MatchLutaComponent {
       next: (response) => {
         this.respostaApi = response;
         console.log("RECOMENDAÇÕES: ", this.respostaApi);
+        if (this.respostaApi.recommendations.length == 0) {
+          this.alertaNaoHaRecomendacoes();
+          return;
+        }
         this.indiceAtual = 0;
         this.atualizarAdversarioAtual();
       },
@@ -111,6 +114,11 @@ export class MatchLutaComponent {
       this.indiceAtual < this.respostaApi.recommendations.length
     ) {
       this.adversarioAtual = this.respostaApi.recommendations[this.indiceAtual];
+      if (this.respostaApi.recommendations[this.indiceAtual].imagem_url) {
+        this.imgAdversarioAtualPerfilUrl = `http://127.0.0.1:8000${this.respostaApi.recommendations[this.indiceAtual].imagem_url}`;
+      } else {
+        this.imgAdversarioAtualPerfilUrl = null;
+      }
     } else {
       this.adversarioAtual = null; // Não há mais adversários para exibir
     }
@@ -121,12 +129,10 @@ export class MatchLutaComponent {
     this.atualizarAdversarioAtual();
   }
 
-  adversarioAnterior() {
-    this.indiceAtual--;
-    this.atualizarAdversarioAtual();
-
-
-  }
+  // adversarioAnterior() {
+  //   this.indiceAtual--;
+  //   this.atualizarAdversarioAtual();
+  // }
 
   verificaSeCompletouCadastro() {
     const url = "http://127.0.0.1:8000/api/v1/athlete-profile-status/"
@@ -162,7 +168,11 @@ export class MatchLutaComponent {
         this.dadosPerfil = response;
         this.genero = this.generoPorExtenso(this.dadosPerfil.genero);
         this.nomeModalidade = this.pegaNomeModalidadePorSigla(this.dadosPerfil.modalidade);
-        this.imagemPerfilUrl = `http://127.0.0.1:8000${this.dadosPerfil.imagem}`;
+        if (this.dadosPerfil.imagem) {
+          this.imagemPerfilUrl = `http://127.0.0.1:8000${this.dadosPerfil.imagem}`;
+        } else {
+          this.imagemPerfilUrl = null;
+        }
 
         const dadosUser = {
           nomeUser: this.dadosPerfil.nome,
@@ -178,6 +188,7 @@ export class MatchLutaComponent {
         var dataNascimentoDATE = this.converterParaData(dadosUser.dataNascimento);
         this.form.get('idade')?.setValue(this.calcularIdade(new Date(dataNascimentoDATE)));
         this.form.patchValue(dadosUser);
+        console.log("imagemPerfilUrl", this.imagemPerfilUrl)
       },
       error: (err) => {
         console.error('Erro ao enviar dados', err);
@@ -243,5 +254,14 @@ export class MatchLutaComponent {
           this.router.navigate(['/perfil']);
         } 
     }); 
+  }
+
+  alertaNaoHaRecomendacoes() {
+    Swal.fire({
+      title: 'Aviso',
+      text: 'Não foi encontrado nenhuma pessoa com características semelhantes as suas. Veja se seus dados estão corretos e tente novamente.',
+      icon: 'info', 
+      confirmButtonText: 'Ok'
+    }) 
   }
 }

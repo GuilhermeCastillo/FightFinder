@@ -21,6 +21,7 @@ export class LoginComponent {
   userPassword: string = '';
   erroNomeUser: boolean = false;
   erroSenha1: boolean = false; 
+  erroUsuarioSenhaInvaldos: boolean = false;
   respostaApi: any;
   form: FormGroup; 
 
@@ -60,6 +61,9 @@ export class LoginComponent {
       },
       error: (err) => {
         console.error('Erro ao enviar dados', err);
+        if (err.error.detail == "Usuário e/ou senha incorreto(s)") {
+          this.erroUsuarioSenhaInvaldos = true;
+        }
       }
     });
   }
