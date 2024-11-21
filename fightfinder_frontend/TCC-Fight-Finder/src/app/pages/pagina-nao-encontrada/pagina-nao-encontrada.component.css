@@ -1,0 +1,12 @@
+#titulo {
+    margin-top: 10rem;
+    font-size: 3rem;
+    text-align: center;
+}
+
+#mensagem {
+    margin-top: 3rem;
+    margin-bottom: 10rem;
+    font-size: 2rem;
+    text-align: center;
+}
