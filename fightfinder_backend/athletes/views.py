@@ -122,6 +122,7 @@ class RecommendForAuthenticatedUserView(APIView):
                     "estado": rec_athlete.estado,
                     "pais": rec_athlete.pais,
                     "modalidade": rec_athlete.modalidade,
+                    "data_nascimento": rec_athlete.data_nascimento,
                     "imagem_url": (
                         rec_athlete.imagem.url if rec_athlete.imagem else None
                     ),  # Converte para URL
