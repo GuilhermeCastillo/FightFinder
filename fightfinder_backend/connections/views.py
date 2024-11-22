@@ -75,21 +75,48 @@ class UpdateConnectionView(APIView):
         except Connection.DoesNotExist:
             return Response({'message': 'Connection not found or already responded'}, status=status.HTTP_404_NOT_FOUND)
 
+# class ListConnectionsView(APIView):
+#     permission_classes = [IsAuthenticated]
+#     def get(self, request, cpf):
+#         athlete = Athlete.objects.get(cpf=cpf)
+#         connections = Connection.objects.filter(
+#             models.Q(requester=athlete) | models.Q(requested=athlete),
+#             status='accepted'
+#         )
+#         response = [
+#             {
+#                 'id': connection.id,
+#                 'status': connection.status,
+#                 'connected_with': connection.requested.nome if connection.requester == athlete else connection.requester.nome,
+#             }
+#             for connection in connections
+#         ]
+#         return Response(response, status=status.HTTP_200_OK)
+
 class ListConnectionsView(APIView):
     permission_classes = [IsAuthenticated]
-    def get(self, request, cpf):
-        athlete = Athlete.objects.get(cpf=cpf)
-        connections = Connection.objects.filter(
-            models.Q(requester=athlete) | models.Q(requested=athlete),
-            status='accepted'
-        )
-        response = [
-            {
-                'id': connection.id,
-                'status': connection.status,
-                'connected_with': connection.requested.nome if connection.requester == athlete else connection.requester.nome,
-            }
-            for connection in connections
-        ]
-        return Response(response, status=status.HTTP_200_OK)
 
+    def get(self, request):
+        try:
+            # Obter o atleta relacionado ao usuário logado
+            athlete = Athlete.objects.get(user=request.user)
+            
+            # Buscar conexões relacionadas ao atleta
+            connections = Connection.objects.filter(
+                models.Q(requester=athlete) | models.Q(requested=athlete),
+                status='accepted'
+            )
+
+            # Construir a resposta
+            response = [
+                {
+                    'id': connection.id,
+                    'status': connection.status,
+                    'connected_with': connection.requested.nome if connection.requester == athlete else connection.requester.nome,
+                }
+                for connection in connections
+            ]
+
+            return Response(response, status=status.HTTP_200_OK)
+        except Athlete.DoesNotExist:
+            return Response({'message': 'Athlete profile not found for the logged-in user'}, status=status.HTTP_404_NOT_FOUND)
