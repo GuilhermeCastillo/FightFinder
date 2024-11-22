@@ -1,9 +1,12 @@
-# connections/urls.py
 from django.urls import path
-from .views import ListConnectionsView, AcceptConnectionView, CreateConnectionView
+from .views import CreateConnectionView, UpdateConnectionView, ListConnectionsView
 
 urlpatterns = [
-    path('connections/', ListConnectionsView.as_view(), name='list-connections'),
-    path('connections/accept/<int:connection_id>/', AcceptConnectionView.as_view(), name='accept-connection'),
-    path('connections/create/', CreateConnectionView.as_view(), name='create-connections'),
+    path("create/", CreateConnectionView.as_view(), name="create_connection"),
+    path(
+        "<int:connection_id>/update/",
+        UpdateConnectionView.as_view(),
+        name="update_connection",
+    ),
+    path('<str:cpf>/list/', ListConnectionsView.as_view(), name='list_connections')
 ]
