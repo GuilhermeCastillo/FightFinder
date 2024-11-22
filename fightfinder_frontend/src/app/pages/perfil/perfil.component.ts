@@ -76,7 +76,8 @@ export class PerfilComponent {
   }
 
   ngOnInit() {
-    this.verificaSeCompletouCadastro(); 
+    this.title.setTitle('Perfil');
+    this.verificaSeCompletouCadastro();
   }
 
   escolherFotoPerfil(event: Event) {

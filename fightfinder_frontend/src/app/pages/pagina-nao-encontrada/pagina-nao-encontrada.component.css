@@ -1,12 +1,13 @@
 #titulo {
-    margin-top: 10rem;
+    margin-top: 15rem;
     font-size: 3rem;
     text-align: center;
+    text-decoration: underline;
 }
 
 #mensagem {
-    margin-top: 3rem;
-    margin-bottom: 10rem;
+    margin-top: 5rem;
+    padding-bottom: 15rem;
     font-size: 2rem;
     text-align: center;
 }

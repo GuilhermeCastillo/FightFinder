@@ -15,6 +15,11 @@
         <app-botao-pequeno (click)="fileInput.click()" id="uploadFoto">
             <i style="width: 0.8rem; height: 0.8rem;" class="fa-solid fa-file-arrow-up"></i>
         </app-botao-pequeno>
+        <!-- remover foto -->
+        <!-- <app-botao-pequeno (click)="removerFoto()" backgroundColor="var(--vermelho)">
+            <i class="fa-regular fa-trash-can" style="width: 0.8rem; height: 0.8rem;"></i>
+        </app-botao-pequeno> --> 
+       
     </section> 
     <section id="infoPessoal">
         <ul> <!-- LISTA 1 -->
@@ -27,7 +32,7 @@
                 <p class="obrigatorio"> * </p>
             </li>
             <div *ngIf="erroNome">
-                <p class="erro">nome inválido!</p>
+                <p class="erro">Nome inválido!</p>
             </div>
 
             <li>

@@ -5,12 +5,12 @@
     <div class="profile-header">
       <div>
         <h2>{{ form.get('nomeUser')?.value }}</h2>
-        <span>"Junior"</span>
+        <span *ngIf="completouCadastro">"Junior"</span>
       </div>
       <div style="text-align: right">
-        <span>{{ form.get('pais')?.value }}</span><br />
-        <span>{{ form.get('cidade')?.value }}, {{ form.get('estado')?.value }}</span><br />
-        <img
+        <span *ngIf="completouCadastro">{{ form.get('pais')?.value }}</span><br />
+        <span *ngIf="completouCadastro">{{ form.get('cidade')?.value }}, {{ form.get('estado')?.value }}</span><br />
+        <img *ngIf="completouCadastro"
           src="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"
           alt="Bandeira do Brasil"
           width="30"
@@ -19,24 +19,24 @@
     </div>
 
     <div class="info-box">
-      <div>Idade: {{ form.get('idade')?.value }} anos</div>
-      <div>Gênero: {{ form.get('genero')?.value }}</div>
+      <div >Idade: <label *ngIf="completouCadastro">{{ form.get('idade')?.value }} anos</label></div>
+      <div>Gênero: <label *ngIf="completouCadastro">{{ form.get('genero')?.value }}</label></div>
       <div>
-        Altura: {{ form.get('altura')?.value }}m &nbsp; | &nbsp;
-        Peso:  {{ form.get('peso')?.value }}kg
+        Altura: <label *ngIf="completouCadastro">{{ form.get('altura')?.value }}m</label> &nbsp; | &nbsp;
+        Peso: <label *ngIf="completouCadastro">{{ form.get('peso')?.value }}kg</label>
       </div>
-      <div>Academia: {{ form.get('academia')?.value || "-"}}</div>
+      <div>Academia: <label *ngIf="completouCadastro">{{ form.get('academia')?.value || "-"}}</label></div>
     </div>
 
     <div class="stats">
       <div class="win">
-        VITÓRIAS <span>14</span>
+        VITÓRIAS <span *ngIf="completouCadastro">14</span>
       </div>
       <div class="draw">
-        EMPATES <span>3</span>
+        EMPATES <span *ngIf="completouCadastro">3</span>
       </div>
       <div class="loss">
-        DERROTAS <span>9</span>
+        DERROTAS <span *ngIf="completouCadastro">9</span>
       </div>
     </div>
   </div>

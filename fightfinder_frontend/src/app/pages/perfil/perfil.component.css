@@ -64,6 +64,7 @@
 
 .erro {
     margin: 0.5rem;
+    color: red;
 }
 
 #avisoCampos {

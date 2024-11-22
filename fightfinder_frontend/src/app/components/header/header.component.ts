@@ -4,7 +4,6 @@ import { TokenService } from '../../services/token/token.service';
 import { Router, RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 
-
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -69,7 +68,6 @@ export class HeaderComponent {
   }
 
   loadUserPhoto() {
-
     const url = "http://127.0.0.1:8000/api/v1/athlete/profile/"
     let token = this.tokenService.getToken();
     const headers = new HttpHeaders({

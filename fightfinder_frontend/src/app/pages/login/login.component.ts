@@ -33,6 +33,10 @@ export class LoginComponent {
     });
   }
 
+  ngOnInit() {
+    this.title.setTitle('Login');
+  }
+
   onSubmit() { 
     if (this.form.valid) { 
         this.erroNomeUser = false;

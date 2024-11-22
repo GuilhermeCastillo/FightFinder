@@ -7,6 +7,7 @@ import { DropdownComponent } from '../../components/dropdown/dropdown.component'
 import { CommonModule } from '@angular/common';
 import { TableComponent } from '../../components/table/table.component'; 
 import { LoadingCircleComponent } from '../../components/loading-circle/loading-circle.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-ranking',
@@ -22,8 +23,7 @@ export class RankingComponent implements OnInit {
   erroMsg: boolean = false;
   loading: boolean = false;
 
-  constructor() { 
-  } 
+  constructor(private title: Title) { } 
   
   columns = [
     { header: 'Rank', field: 'Rank' },
@@ -33,7 +33,8 @@ export class RankingComponent implements OnInit {
     { header: 'Vitórias', field: 'Vitorias' }  // ou lutas e treinos
   ]; 
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
+    this.title.setTitle('Ranking')
     this.fetchDataFromBackend();
   }
 

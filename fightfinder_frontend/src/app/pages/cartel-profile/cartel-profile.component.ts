@@ -5,6 +5,9 @@ import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http'
 import { TokenService } from '../../services/token/token.service';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cartel-profile',
@@ -26,7 +29,8 @@ export class CartelProfileComponent {
   form: FormGroup;
   idade: any;
 
-  constructor(private http: HttpClient, private tokenService: TokenService, private fb: FormBuilder) {
+  constructor(private http: HttpClient, private tokenService: TokenService, private fb: FormBuilder, private title: Title,
+    private router: Router) {
 
     this.form = this.fb.group({
       photoUser: [''],
@@ -47,6 +51,7 @@ export class CartelProfileComponent {
   }
 
   ngOnInit() {
+    this.title.setTitle('Cartel de Lutas')
     this.verificaSeCompletouCadastro();
   }
 
@@ -64,7 +69,9 @@ export class CartelProfileComponent {
 
           if (this.completouCadastro) {
             this.loadUserData();
+            return
           }
+          this.alertaCompletarCadastro();
         },
         error: (err) => {
           console.error('Erro ao enviar dados', err);
@@ -145,6 +152,18 @@ export class CartelProfileComponent {
       idade--;
     }
     return idade;
+  }
+
+  alertaCompletarCadastro() {
+    Swal.fire({
+      title: 'Dica',
+      text: 'Complete seu cadastro na página de Perfil para utilizar todas funcionalidades',
+      icon: 'info',
+      confirmButtonText: 'Ok'}).then((result) => {
+        if (result.isConfirmed) { 
+          this.router.navigate(['/perfil']);
+        }
+    }); 
   }
 
 }

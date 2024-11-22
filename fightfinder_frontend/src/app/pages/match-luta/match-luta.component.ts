@@ -15,6 +15,7 @@ import { TokenService } from '../../services/token/token.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-match-luta',
@@ -53,7 +54,8 @@ export class MatchLutaComponent {
   idadeAdversario: number | undefined;
   qtdRecomendacoes: number = 10;
 
-  constructor(private http: HttpClient, private tokenService: TokenService, private fb: FormBuilder, private router: Router) {
+  constructor(private http: HttpClient, private tokenService: TokenService, private fb: FormBuilder, private router: Router,
+     private title: Title) {
     this.form = this.fb.group({
       photoUser: [''],
       nomeUser: [''],
@@ -73,6 +75,7 @@ export class MatchLutaComponent {
   }
 
   ngOnInit() {
+    this.title.setTitle('Match')
     this.verificaSeCompletouCadastro();
   }
 

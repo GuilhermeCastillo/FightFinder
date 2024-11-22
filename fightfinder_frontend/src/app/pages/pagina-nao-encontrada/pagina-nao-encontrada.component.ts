@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-pagina-nao-encontrada',
@@ -11,4 +12,9 @@ import { FooterComponent } from '../../components/footer/footer.component';
 })
 export class PaginaNaoEncontradaComponent {
 
+  constructor(private title: Title) {}
+
+  ngOnInit() {
+    this.title.setTitle('Página não encontrada')
+  }
 }

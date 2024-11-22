@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { CommonModule } from '@angular/common';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-sobre-nos',
@@ -14,6 +15,12 @@ export class SobreNosComponent {
   dropdown1: boolean = false;
   dropdown2: boolean = false;
   dropdown3: boolean = false;
+
+  constructor(private title: Title) {}
+
+  ngOnInit() {
+    this.title.setTitle('Sobre Nós')
+  }
 
   mostraDesc(numero: number): void { 
     if (numero === 1) { 
