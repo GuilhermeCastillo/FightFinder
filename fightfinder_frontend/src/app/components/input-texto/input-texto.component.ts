@@ -20,12 +20,12 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 })
 
 export class InputTextoComponent {
-  @Input() type: string = 'text'; // Tipo de input (text, checkbox, password, etc.)
+  @Input() type: string = 'text';
   @Input() isEditable: boolean = false;
    value: string = '';
-  @Input() inputText: string = '';  
-  @Input() placeholder: string = ''; // Placeholder para o input 
-  @Input() disabled: boolean = false; // Define se o input está desabilitado
+  @Input() inputText: string = '';
+  @Input() placeholder: string = '';
+  @Input() disabled: boolean = false;
   @Input() id: string = '';
   @Input() borderColor: string = 'var(--vermelho)';
   @Input() maxLength: number = 60;

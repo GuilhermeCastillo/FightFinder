@@ -2,7 +2,7 @@
 
 <section>  
     <div id="cabecalhoMatch">
-        <app-button textoBtn="Buscar" id="btnBuscar"  backgroundColor="var(--vermelho)" (click)="buscarAdversarios()" />
+        <app-button [style.display]="mostrarBotaoBuscar ? 'inline-block' : 'none'" textoBtn="Buscar" id="btnBuscar" backgroundColor="var(--vermelho)" (click)="buscarAdversarios()" />
     </div>
     
     <section id="main">
@@ -41,10 +41,10 @@
             <div class="descricaoAtleta">
                 <ul>
                     <li>{{ adversarioAtual.nome }}</li>
-                    <li> anos</li>
+                    <li> {{ idadeAdversario }} anos</li>
                     <li>{{ adversarioAtual.peso }} kg</li>
                     <li>{{ adversarioAtual.altura }} m</li>
-                    <li>modalidade</li>
+                    <li>{{ adversarioAtual.modalidade }}</li>
                     <li>{{ adversarioAtual.cidade }}, {{ adversarioAtual.estado }}</li>
                 </ul>
             </div>
@@ -55,10 +55,17 @@
             <p>Carregando adversários...</p>
         </ng-template>
     </section>
+
+    <div id="fight" *ngIf="adversarioAtual">
+        <app-button textoBtn="FIGHT!" backgroundColor="var(--vermelho)" (click)="createFight()"></app-button>
+    </div>
     
     <section id="botoes" *ngIf="adversarioAtual">
-        <app-button textoBtn="FIGHT!" backgroundColor="var(--vermelho)"></app-button>
-        <app-button textoBtn="Próximo" (click)="proximoAdversario()"></app-button>
+        <app-button *ngIf="indiceAtual==0" textoBtn="Anterior" backgroundColor="var(--cinza-escuro)"></app-button>
+        <app-button *ngIf="indiceAtual!=0" textoBtn="Anterior" (click)="adversarioAnterior()"></app-button>
+        
+        <app-button *ngIf="indiceAtual+1==qtdRecomendacoes" textoBtn="Próximo" backgroundColor="var(--cinza-escuro)"></app-button>
+        <app-button *ngIf="indiceAtual+1!=qtdRecomendacoes" textoBtn="Próximo" (click)="proximoAdversario()"></app-button>
     </section>
 </section> 
 

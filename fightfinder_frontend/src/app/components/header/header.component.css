@@ -14,11 +14,11 @@
 }
  
 #logo {
-    width: 6.5rem;
+    width: 7.5rem;
     height: 6rem;
     margin: 0;
     padding: 0;
-    margin-left: 2rem;
+    margin-left: 2.5rem;
 } 
   
 #logo a img {
@@ -31,13 +31,13 @@
     list-style-type: none;
     justify-content: center; 
     align-items: center;
-    width: 90%;
+    width: 95%;
     padding: 1rem 0;
 }
 
 #menu #listaLinks li {
     font-weight: 600; 
-    padding: 1rem 1.5rem; 
+    padding: 1rem 2rem; 
     cursor: pointer;
 }
 

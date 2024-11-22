@@ -16,9 +16,7 @@ export class ButtonComponent {
 
   @Output() valueChange = new EventEmitter<string>();
 
-  ngOnInit(): void {
-     
-  }
+  ngOnInit(): void { }
 
   onInputChange(event: Event) {
     const inputElement = (event.target as HTMLInputElement).value;

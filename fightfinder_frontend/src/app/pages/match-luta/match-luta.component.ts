@@ -32,6 +32,7 @@ import { Router } from '@angular/router';
   templateUrl: './match-luta.component.html',
   styleUrl: './match-luta.component.css',
 })
+
 export class MatchLutaComponent {
   modalidadeSelecionada: string = 'option';
   botaoDesabilitado: boolean = true;
@@ -48,11 +49,15 @@ export class MatchLutaComponent {
   genero: any;
   completouCadastro: boolean = false;
   form: FormGroup;
+  mostrarBotaoBuscar: boolean = true;
+  idadeAdversario: number | undefined;
+  qtdRecomendacoes: number = 10;
 
   constructor(private http: HttpClient, private tokenService: TokenService, private fb: FormBuilder, private router: Router) {
     this.form = this.fb.group({
       photoUser: [''],
-      nomeUser: [''], // apenas letras
+      nomeUser: [''],
+      cpf: [''],
       peso: [''],
       altura: [''],
       cidade: [''],
@@ -93,13 +98,15 @@ export class MatchLutaComponent {
     this.http.get<any>(url, { headers }).subscribe({
       next: (response) => {
         this.respostaApi = response;
-        console.log("RECOMENDAÇÕES: ", this.respostaApi);
+        console.log(this.respostaApi)
         if (this.respostaApi.recommendations.length == 0) {
           this.alertaNaoHaRecomendacoes();
           return;
         }
         this.indiceAtual = 0;
+        this.qtdRecomendacoes = this.respostaApi.recommendations.length;
         this.atualizarAdversarioAtual();
+        this.mostrarBotaoBuscar = false;
       },
       error: (err) => {
         console.error('Erro ao carregar adversários', err);
@@ -114,6 +121,10 @@ export class MatchLutaComponent {
       this.indiceAtual < this.respostaApi.recommendations.length
     ) {
       this.adversarioAtual = this.respostaApi.recommendations[this.indiceAtual];
+      this.respostaApi.recommendations[this.indiceAtual].modalidade = this.pegaNomeModalidadePorSigla(this.respostaApi.recommendations[this.indiceAtual].modalidade);
+      var dataNascimentoDATE = this.converterParaData(this.formataDataBR(this.respostaApi.recommendations[this.indiceAtual].data_nascimento));
+      this.idadeAdversario = this.calcularIdade(new Date(dataNascimentoDATE));
+
       if (this.respostaApi.recommendations[this.indiceAtual].imagem_url) {
         this.imgAdversarioAtualPerfilUrl = `http://127.0.0.1:8000${this.respostaApi.recommendations[this.indiceAtual].imagem_url}`;
       } else {
@@ -129,10 +140,10 @@ export class MatchLutaComponent {
     this.atualizarAdversarioAtual();
   }
 
-  // adversarioAnterior() {
-  //   this.indiceAtual--;
-  //   this.atualizarAdversarioAtual();
-  // }
+  adversarioAnterior() {
+    this.indiceAtual--;
+    this.atualizarAdversarioAtual();
+  }
 
   verificaSeCompletouCadastro() {
     const url = "http://127.0.0.1:8000/api/v1/athlete-profile-status/"
@@ -176,6 +187,7 @@ export class MatchLutaComponent {
 
         const dadosUser = {
           nomeUser: this.dadosPerfil.nome,
+          cpf: this.dadosPerfil.cpf,
           peso: this.dadosPerfil.peso,
           altura: this.dadosPerfil.altura,
           cidade: this.dadosPerfil.cidade,
@@ -186,9 +198,9 @@ export class MatchLutaComponent {
           genero: this.generoPorExtenso(this.dadosPerfil.genero),
         };
         var dataNascimentoDATE = this.converterParaData(dadosUser.dataNascimento);
+        console.log('dataNascimentoDATE original: ', dadosUser.dataNascimento)
         this.form.get('idade')?.setValue(this.calcularIdade(new Date(dataNascimentoDATE)));
         this.form.patchValue(dadosUser);
-        console.log("imagemPerfilUrl", this.imagemPerfilUrl)
       },
       error: (err) => {
         console.error('Erro ao enviar dados', err);
@@ -264,4 +276,33 @@ export class MatchLutaComponent {
       confirmButtonText: 'Ok'
     }) 
   }
+
+  primeiraLetraMaiuscula(text: string): string {
+    if (!text) return '';
+    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+  }
+
+  createFight() {
+    const url = "http://127.0.0.1:8000/api/v1/create/"
+    let token = this.tokenService.getToken(); //parei aqui
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    const dados = {
+      requesterCpf: this.dadosPerfil.cpf,
+      requestedCpf: this.respostaApi.recommendations[this.indiceAtual].cpf,
+    };
+
+    this.http.post<any>(url, { headers } ).subscribe({
+      next: (response) => {
+        this.dados = response;
+   
+      },
+      error: (err) => {
+        console.error('Erro ao enviar dados', err);
+      }
+    });
+  }
+  
 }
