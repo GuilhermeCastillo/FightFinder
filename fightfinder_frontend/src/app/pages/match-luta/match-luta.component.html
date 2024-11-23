@@ -36,7 +36,7 @@
                 <img [src]="imgAdversarioAtualPerfilUrl" />
             </div>
             <div *ngIf="!imgAdversarioAtualPerfilUrl" id="foto">
-                <i *ngIf="!imagemPerfilUrl" class="fa-solid fa-user"></i> 
+                <i *ngIf="!imgAdversarioAtualPerfilUrl" class="fa-solid fa-user"></i> 
             </div>
             <div class="descricaoAtleta">
                 <ul>
@@ -57,7 +57,7 @@
     </section>
 
     <div id="fight" *ngIf="adversarioAtual">
-        <app-button textoBtn="FIGHT!" backgroundColor="var(--vermelho)" (click)="createFight()"></app-button>
+        <app-button textoBtn="FIGHT!" backgroundColor="var(--vermelho)" (click)="verificaSeJaMarcouMatch()"></app-button>
     </div>
     
     <section id="botoes" *ngIf="adversarioAtual">

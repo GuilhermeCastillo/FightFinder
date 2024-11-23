@@ -54,6 +54,7 @@ app-button {
 #linkCadastro, #esqueci-a-senha {
     margin-top: 1rem;
     font-weight: bold;
+    font-size: 1rem;
 }
 
 #linkCadastro a, #esqueci-a-senha a {

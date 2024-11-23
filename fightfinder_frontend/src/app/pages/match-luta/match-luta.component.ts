@@ -101,7 +101,7 @@ export class MatchLutaComponent {
     this.http.get<any>(url, { headers }).subscribe({
       next: (response) => {
         this.respostaApi = response;
-        console.log(this.respostaApi)
+        
         if (this.respostaApi.recommendations.length == 0) {
           this.alertaNaoHaRecomendacoes();
           return;
@@ -201,7 +201,6 @@ export class MatchLutaComponent {
           genero: this.generoPorExtenso(this.dadosPerfil.genero),
         };
         var dataNascimentoDATE = this.converterParaData(dadosUser.dataNascimento);
-        console.log('dataNascimentoDATE original: ', dadosUser.dataNascimento)
         this.form.get('idade')?.setValue(this.calcularIdade(new Date(dataNascimentoDATE)));
         this.form.patchValue(dadosUser);
       },
@@ -285,27 +284,88 @@ export class MatchLutaComponent {
     return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
   }
 
-  createFight() {
+  verificaSeJaMarcouMatch() { // retorna conexões do usuário atual
+    const url = "http://127.0.0.1:8000/api/v1/connections/"
+    let token = this.tokenService.getToken();
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    this.http.get<any>(url, { headers } ).subscribe({
+      next: (response) => {
+        this.dados = response;
+        console.log('cpfsConectados ', this.dados);
+        if (this.dados.length == 0) {
+          this.createConnection();
+        } else {
+          this.dados.forEach((element: { connected_with_cpf: any; }) => {
+            if (element.connected_with_cpf == this.respostaApi.recommendations[this.indiceAtual].cpf) {
+              this.alertaMatchMarcadoSucesso();
+              return;
+            }
+            
+          });
+        }
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
+  }
+
+  createConnection() {
     const url = "http://127.0.0.1:8000/api/v1/create/"
-    let token = this.tokenService.getToken(); //parei aqui
+    let token = this.tokenService.getToken();
+    
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
 
     const dados = {
-      requesterCpf: this.dadosPerfil.cpf,
-      requestedCpf: this.respostaApi.recommendations[this.indiceAtual].cpf,
+      requested_cpf: this.respostaApi.recommendations[this.indiceAtual].cpf,
     };
 
-    this.http.post<any>(url, { headers } ).subscribe({
+    this.http.post<any>(url, dados, { headers } ).subscribe({
       next: (response) => {
         this.dados = response;
-   
+        if (response.message == 'Connection already exists') {
+          this.alertaAdversarioJaSelecionado();
+          return;
+        }
+        this.alertaPedidoEnviado();
       },
       error: (err) => {
-        console.error('Erro ao enviar dados', err);
+        console.error(err);
       }
     });
+  }
+
+  alertaMatchMarcadoSucesso() {
+    Swal.fire({
+      title: 'MATCH!',
+      text: 'O adversário também quer lutar com você!',
+      icon: 'success', 
+      confirmButtonText: 'Ok'
+    }) 
+  }
+
+  alertaAdversarioJaSelecionado() {
+    Swal.fire({
+      title: 'Adversário já selecionado!',
+      text: 'Você já selecionou esse adversário para lutar',
+      icon: 'warning', 
+      confirmButtonText: 'Ok'
+    }) 
+  }
+
+  alertaPedidoEnviado() {
+    Swal.fire({
+      title: 'Solicitação enviada',
+      text: 'Sua solicitação para lutar foi enviada!',
+      icon: 'success', 
+      confirmButtonText: 'Ok'
+    }) 
   }
   
 }
