@@ -100,6 +100,11 @@ class ListConnectionsView(APIView):
                         if connection.requester == athlete
                         else connection.requester.nome
                     ),
+                    "connected_with_cpf": (
+                        connection.requested.cpf
+                        if connection.requester == athlete
+                        else connection.requester.cpf
+                    ),
                 }
                 for connection in connections
             ]
