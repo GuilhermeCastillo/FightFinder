@@ -24,14 +24,24 @@ class CreateConnectionView(APIView):
             # Obter o atleta solicitado
             requested = Athlete.objects.get(cpf=requested_cpf)
 
-            # Verificar se já existe uma conexão entre os dois atletas (em qualquer direção)
-            if Connection.objects.filter(
-                models.Q(requester=requester, requested=requested) |
-                models.Q(requester=requested, requested=requester)
-            ).exists():
+            # Verificar se já existe uma conexão entre os dois atletas
+            connection = Connection.objects.filter(
+                (models.Q(requester=requester, requested=requested) | 
+                 models.Q(requester=requested, requested=requester)) &
+                (models.Q(status='pending') | models.Q(status='accepted'))
+            ).first()
+
+            if connection:
+                # Se a conexão já existe com status "pending", vamos atualizar o status para "accepted"
+                if connection.status == 'pending':
+                    connection.status = 'accepted'
+                    connection.save()
+                    return Response({'message': 'Connection request accepted'}, status=status.HTTP_200_OK)
+
+                # Caso a conexão já esteja aceita, retornamos uma mensagem indicando que não há mudanças
                 return Response({'message': 'Connection already exists'}, status=status.HTTP_200_OK)
 
-            # Criar uma nova solicitação de conexão
+            # Caso não exista nenhuma conexão, cria-se uma nova solicitação
             Connection.objects.create(requester=requester, requested=requested)
             return Response({'message': 'Connection request sent'}, status=status.HTTP_201_CREATED)
 
