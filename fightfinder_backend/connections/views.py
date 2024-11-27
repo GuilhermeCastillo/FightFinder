@@ -32,11 +32,15 @@ class CreateConnectionView(APIView):
             ).first()
 
             if connection:
-                # Se a conexão já existe com status "pending", vamos atualizar o status para "accepted"
+                # Se a conexão já existe com status "pending" e o usuário logado não for o solicitante
                 if connection.status == 'pending':
-                    connection.status = 'accepted'
-                    connection.save()
-                    return Response({'message': 'Connection request accepted'}, status=status.HTTP_200_OK)
+                    # Verifica se o usuário logado é o solicitado (requester não pode aceitar a solicitação)
+                    if connection.requested == requester:
+                        connection.status = 'accepted'
+                        connection.save()
+                        return Response({'message': 'Connection request accepted'}, status=status.HTTP_200_OK)
+                    else:
+                        return Response({'message': 'You can only accept the connection request from the other athlete'}, status=status.HTTP_400_BAD_REQUEST)
 
                 # Caso a conexão já esteja aceita, retornamos uma mensagem indicando que não há mudanças
                 return Response({'message': 'Connection already exists'}, status=status.HTTP_200_OK)
@@ -47,6 +51,7 @@ class CreateConnectionView(APIView):
 
         except Athlete.DoesNotExist:
             return Response({'message': 'Athlete not found'}, status=status.HTTP_404_NOT_FOUND)
+
 
 
 class UpdateConnectionView(APIView):
