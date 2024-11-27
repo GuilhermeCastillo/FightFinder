@@ -18,9 +18,9 @@ profile_url = "http://localhost:8000/api/v1/complete-athlete-profile/"  # URL pa
 
 
 # Função para salvar os dados do usuário em um arquivo txt
-def save_user_to_file(username, email, password):
+def save_user_to_file(username, email, password, token):
     with open("fake_users.txt", "a") as file:  # Abre o arquivo em modo append
-        file.write(f"Username: {username}, Email: {email}, Password: {password}\n")
+        file.write(f"Username: {username}, Email: {email}, Password: {password}, Token: {token}\n")
 
 
 def get_user_token(username, password):
@@ -88,7 +88,7 @@ def complete_user_profile(token):
 # Função para gerar um usuário, obter o token e completar o perfil
 def create_fake_user():
     username = fake.user_name()
-    password = fake.password(length=10)
+    password = "takai@1234"
     email = fake.email()
 
     # Dados para a requisição de registro
@@ -104,11 +104,13 @@ def create_fake_user():
 
     if response.status_code == 201:
         print(f"Usuário {username} criado com sucesso!")
-        save_user_to_file(username, email, password)
-
+        
         # Gerar token JWT para o usuário
         token = get_user_token(username, password)
         if token:
+            # Salvar dados do usuário e token no arquivo
+            save_user_to_file(username, email, password, token)
+
             # Completar o cadastro do atleta com o token
             complete_user_profile(token)
     else:

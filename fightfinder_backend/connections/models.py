@@ -12,3 +12,12 @@ class Connection(models.Model):
 
     class Meta:
         unique_together = ('requester', 'requested')
+
+    @staticmethod
+    def are_connected(athlete_a, athlete_b):
+        return Connection.objects.filter(
+            (models.Q(requester=athlete_a, requested=athlete_b) | 
+             models.Q(requester=athlete_b, requested=athlete_a)) & 
+            models.Q(status='accepted')
+        ).exists()
+

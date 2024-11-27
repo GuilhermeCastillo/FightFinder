@@ -2,14 +2,14 @@ from rest_framework import generics, status, serializers
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from .recommender import recommend_opponents, recommend_athletes
+from .recommender import recommend_athletes
 from connections.models import Connection
 from connections.serializers import ConnectionSerializer
 from athletes.models import Athlete
 from athletes.serializers import AthleteSerializer, AthleteProfileSerializer
 from django.http import JsonResponse
 from django.views.decorators.cache import cache_page
-from .functions import convert_to_dataframe, calcular_idade
+from .functions import convert_to_dataframe
 from datetime import date
 
 
