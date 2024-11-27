@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { TokenService } from '../../services/token/token.service'; 
 import { Router, RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
+import { UserPhotoService } from '../../services/UserPhoto/userPhotoService.service';
 
 @Component({
   selector: 'app-header',
@@ -26,10 +27,12 @@ export class HeaderComponent {
     { title: 'Sobre nós', link: '/sobre-nos' }
   ];
 
-  constructor(private router: Router, private tokenService: TokenService, private http: HttpClient) {}
+  constructor(private router: Router, private tokenService: TokenService, private http: HttpClient, private userPhotoService: UserPhotoService) {}
 
   ngOnInit() {
-    this.verificaSeCompletouCadastro();
+    this.imagemPerfilUrl = this.userPhotoService.getPhotoUrl();
+ 
+    console.log(this.imagemPerfilUrl);
   }
 
   isCurrentPage(link: string): boolean {
@@ -58,7 +61,7 @@ export class HeaderComponent {
           this.completouCadastro = this.respostaApi['athlete_profile_complete']
           
           if (this.completouCadastro) {
-            this.loadUserPhoto();
+            // this.loadUserPhoto();
           }
         },
         error: (err) => {
@@ -66,28 +69,4 @@ export class HeaderComponent {
         }
     });
   }
-
-  loadUserPhoto() {
-    const url = "http://127.0.0.1:8000/api/v1/athlete/profile/"
-    let token = this.tokenService.getToken();
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-
-    this.http.get<any>(url, { headers } ).subscribe({
-      next: (response) => {
-        this.respostaApi = response;
-        if (this.respostaApi.imagem) {
-          this.imagemPerfilUrl = `http://127.0.0.1:8000${this.respostaApi.imagem}`;
-        } else {
-          this.imagemPerfilUrl = null;
-        }
-      },
-      error: (err) => {
-        console.error('Erro ao enviar dados', err);
-      }
-    });
-
-  }
-
 }

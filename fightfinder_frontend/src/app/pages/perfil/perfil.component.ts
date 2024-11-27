@@ -14,6 +14,7 @@ import { Title } from '@angular/platform-browser';
 import { TokenService } from '../../services/token/token.service';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import Swal from 'sweetalert2';
+import { UserPhotoService } from '../../services/UserPhoto/userPhotoService.service';
 
 @Component({
   selector: 'app-perfil',
@@ -54,9 +55,11 @@ export class PerfilComponent {
   erroModalidade: boolean = false; 
   erroPais: boolean = false; 
   erroEstado: boolean = false; 
-  erroCidade: boolean = false;  
+  erroCidade: boolean = false;
 
-  constructor(private title: Title, private http: HttpClient, private tokenService: TokenService, private fb: FormBuilder) { 
+  constructor(private title: Title, private http: HttpClient, private tokenService: TokenService, private fb: FormBuilder,
+    private userPhotoService: UserPhotoService
+  ) { 
 
     this.form = this.fb.group({
       photoUser: [''],
@@ -118,7 +121,7 @@ export class PerfilComponent {
     this.http.get<any>(url, { headers } ).subscribe({
         next: (response) => {
           this.respostaApi = response;
-          this.completouCadastro = this.respostaApi['athlete_profile_complete']
+          this.completouCadastro = this.respostaApi['athlete_profile_complete'];
           
           if (this.completouCadastro) {
             this.loadUserData();
@@ -142,7 +145,9 @@ export class PerfilComponent {
         this.dadosPerfil = response;
         this.genero = this.generoPorExtenso(this.dadosPerfil.genero);
         this.nomeModalidade = this.pegaNomeModalidadePorSigla(this.dadosPerfil.modalidade);
+
         this.imagemPerfilUrl = `http://127.0.0.1:8000${this.dadosPerfil.imagem}`;
+        this.userPhotoService.setPhotoUrl(this.imagemPerfilUrl.toString());
 
         const dadosUser = {
           nomeUser: this.dadosPerfil.nome,
@@ -215,12 +220,15 @@ export class PerfilComponent {
   
     if (this.selectedFile) {
       formData.append('imagem', this.selectedFile, this.selectedFile.name);
+      if (this.imagemPerfilUrl) {
+        this.userPhotoService.setPhotoUrl(String(this.imagemPerfilUrl));
+      }
     }
 
     this.http.post<any>(url, formData, { headers }).subscribe({
       next: (response) => {
         this.respostaApi = response;
-        this.modalDadosSalvosSucesso();
+        this.modalDadosSalvosSucesso();        
       },
       error: (err) => {
         console.error('Erro ao enviar dados', err);

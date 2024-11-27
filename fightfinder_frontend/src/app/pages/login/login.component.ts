@@ -28,7 +28,7 @@ export class LoginComponent {
   constructor(private router: Router, private title: Title, private fb: FormBuilder, private http: HttpClient,
     private tokenService: TokenService) { 
     this.form = this.fb.group({
-      nomeUser: ['', [Validators.required, Validators.maxLength(30), Validators.pattern('^[a-zA-Z]+$')]], // apenas letras
+      nomeUser: ['', [Validators.required, Validators.maxLength(30)]], // apenas letras
       senha1: ['', [Validators.required, Validators.minLength(8), Validators.pattern('^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]*$')]]
     });
   }

@@ -57,7 +57,7 @@
     </section>
 
     <div id="fight" *ngIf="adversarioAtual">
-        <app-button textoBtn="FIGHT!" backgroundColor="var(--vermelho)" (click)="verificaSeJaMarcouMatch()"></app-button>
+        <app-button textoBtn="FIGHT!" backgroundColor="var(--vermelho)" (click)="createConnection()"></app-button>
     </div>
     
     <section id="botoes" *ngIf="adversarioAtual">
