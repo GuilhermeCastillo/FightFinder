@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     "connections",
     "users",
     "corsheaders",
+    "ranking"
 ]
 
 MIDDLEWARE = [
