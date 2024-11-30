@@ -16,20 +16,20 @@
 
     <div id="foto">
       <a (click)="abrirLista()">
-        <i *ngIf="!imagemPerfilUrl" class="fa-solid fa-circle-user"></i>
+        <i *ngIf="!photoUrl" class="fa-solid fa-circle-user"></i>
         <img
-          *ngIf="imagemPerfilUrl"
+          *ngIf="photoUrl"
           alt="Imagem Selecionada"
-          [src]="imagemPerfilUrl" alt="Imagem de Perfil"
+          [src]="photoUrl" alt="Imagem de Perfil"
         />
       </a>
       <ul id="listaOpcoes" *ngIf="mostraLista">
-        <li>
+        <!-- <li>
           <a href="/perfil">Perfil</a>
         </li>
         <li>
           <a href="/cartel-profile">Cartel</a>
-        </li>
+        </li> -->
         <li>
           <label (click)="logout()">Sair</label>
         </li>

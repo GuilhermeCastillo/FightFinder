@@ -1,20 +1,49 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserPhotoService {
-  private photoUrl: string | null = null;
+
+  private photoUrlSubject = new BehaviorSubject<string | null>(null);
+  photoUrl$ = this.photoUrlSubject.asObservable();
+
+  constructor(private http: HttpClient) {
+    // Chama automaticamente ao instanciar o serviço
+    this.loadInitialPhoto();
+  }
+
+  private loadInitialPhoto() {
+    // Tenta carregar do localStorage primeiro
+    const storedPhotoUrl = localStorage.getItem('photoUrl');
+    if (storedPhotoUrl) {
+      this.photoUrlSubject.next(storedPhotoUrl);
+    } else {
+      // Caso não exista no localStorage, busca no backend
+      this.http.get<{ photoUrl: string }>('api/user/photo').subscribe({
+        next: (res) => {
+          this.photoUrlSubject.next(res.photoUrl);
+          localStorage.setItem('photoUrl', res.photoUrl); // Salva no localStorage
+        },
+        error: () => this.photoUrlSubject.next(null),
+      });
+    }
+  }
 
   setPhotoUrl(url: string) {
-    this.photoUrl = url;
+    this.photoUrlSubject.next(url);
+    localStorage.setItem('photoUrl', url);
   }
 
   getPhotoUrl(): string | null {
-    return this.photoUrl;
+    return this.photoUrlSubject.value;
   }
 
-  clearPhotoUrl() {
-    this.photoUrl = null;
-  }
+ clearPhotoUrl() {
+  this.photoUrlSubject.next(null);
+  localStorage.removeItem('photoUrl');
+}
+
 }

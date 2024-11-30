@@ -58,16 +58,5 @@ export class HomeComponent {
         } 
     }); 
   }
-
-  alertaCadastroPreenchido() {
-    Swal.fire({
-      title: 'Parabéns!',
-      text: 'Seu Cadastro está completo e agora você pode utilizar todo sistema',
-      icon: 'success',
-      confirmButtonText: 'OK'
-    });
-     
-    this.router.navigate(['/perfil']); 
-  }
 }
 

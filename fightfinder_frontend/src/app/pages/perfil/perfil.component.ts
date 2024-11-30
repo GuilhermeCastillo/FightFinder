@@ -44,6 +44,7 @@ export class PerfilComponent {
   genero: any;
   selectedFile: File | null = null;
   imagemPerfilUrl: string | ArrayBuffer | null = null;
+  imagemPerfilEscolhida: string | ArrayBuffer | null = null;
   completouCadastro: boolean = false;
   erroNome: boolean = false; 
   erroCpf: boolean = false;
@@ -55,7 +56,7 @@ export class PerfilComponent {
   erroModalidade: boolean = false; 
   erroPais: boolean = false; 
   erroEstado: boolean = false; 
-  erroCidade: boolean = false;
+  erroCidade: boolean = false;  
 
   constructor(private title: Title, private http: HttpClient, private tokenService: TokenService, private fb: FormBuilder,
     private userPhotoService: UserPhotoService
@@ -105,6 +106,7 @@ export class PerfilComponent {
         const reader = new FileReader();
         reader.onload = () => {
           this.imagemPerfilUrl = reader.result;
+          this.imagemPerfilEscolhida = reader.result;
         };
         reader.readAsDataURL(this.selectedFile);
       }
@@ -147,7 +149,6 @@ export class PerfilComponent {
         this.nomeModalidade = this.pegaNomeModalidadePorSigla(this.dadosPerfil.modalidade);
 
         this.imagemPerfilUrl = `http://127.0.0.1:8000${this.dadosPerfil.imagem}`;
-        this.userPhotoService.setPhotoUrl(this.imagemPerfilUrl.toString());
 
         const dadosUser = {
           nomeUser: this.dadosPerfil.nome,
@@ -174,6 +175,7 @@ export class PerfilComponent {
   validaForm() {
     if (this.form.valid) { 
       this.atualizarDados();
+      this.limpaCamposErro();
     } else {
       this.form.controls['nomeUser'].invalid ? this.erroNome = true : this.erroNome = false;
       this.form.controls['cpf'].invalid ? this.erroCpf = true : this.erroCpf = false;
@@ -185,6 +187,20 @@ export class PerfilComponent {
       this.form.controls['estado'].invalid ? this.erroEstado = true : this.erroEstado = false;
       this.form.controls['cidade'].invalid ? this.erroCidade = true : this.erroCidade = false;
     }
+  }
+
+  limpaCamposErro() {
+    this.erroNome = false;
+    this.erroCpf = false;
+    this.erroData = false;
+    this.erroPeso = false;
+    this.erroAltura = false;
+    this.erroTelefone = false;
+    this.erroPais = false;
+    this.erroEstado = false;
+    this.erroCidade = false;
+    this.erroGenero = false;
+    this.erroModalidade = false;
   }
 
   atualizarDados() {
@@ -220,9 +236,7 @@ export class PerfilComponent {
   
     if (this.selectedFile) {
       formData.append('imagem', this.selectedFile, this.selectedFile.name);
-      if (this.imagemPerfilUrl) {
         this.userPhotoService.setPhotoUrl(String(this.imagemPerfilUrl));
-      }
     }
 
     this.http.post<any>(url, formData, { headers }).subscribe({
@@ -234,6 +248,7 @@ export class PerfilComponent {
         console.error('Erro ao enviar dados', err);
         err.error.genero == '"G" não é um escolha válido.' ? this.erroGenero = true : this.erroGenero = false;
         err.error.modalidade == "\"Nenhuma\" não é um escolha válido." ? this.erroModalidade = true : this.erroModalidade = false;
+        err.error.cpf == "athlete com este cpf já existe." ? this.erroCpf = true : this.erroCpf = false;
       }
     });
   }
