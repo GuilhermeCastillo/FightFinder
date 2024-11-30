@@ -332,13 +332,19 @@ export class MatchLutaComponent {
     this.http.post<any>(url, dados, { headers } ).subscribe({
       next: (response) => {
         this.dados = response;
-        if (response.message == 'Connection already exists') {
-          this.alertaAdversarioJaSelecionado();
+        if (response.message == 'Connection request accepted') {
+          this.alertaMatchMarcadoSucesso();
           return;
+        } else if (response.message == 'Connection already exists'){
+          this.alertaMatchJaFoiMarcado();
+        } else {
+          this.alertaPedidoEnviado();
         }
-        this.alertaPedidoEnviado();
       },
       error: (err) => {
+        if (err.error.message == 'You can only accept the connection request from the other athlete') {
+          this.alertaAdversarioJaSelecionado();
+        }
         console.error(err);
       }
     });
@@ -367,6 +373,15 @@ export class MatchLutaComponent {
       title: 'Solicitação enviada',
       text: 'Sua solicitação para lutar foi enviada!',
       icon: 'success', 
+      confirmButtonText: 'Ok'
+    }) 
+  }
+  
+  alertaMatchJaFoiMarcado() {
+    Swal.fire({
+      title: 'Match já marcado',
+      text: 'O Match já foi marcado com este(a) lutador(a)!',
+      icon: 'error', 
       confirmButtonText: 'Ok'
     }) 
   }
