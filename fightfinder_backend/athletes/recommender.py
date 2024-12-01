@@ -1,6 +1,5 @@
 from math import sqrt, radians, cos, sin, asin
 from athletes.models import Athlete
-from fights.models import Fight, FightHistoric
 from django.db.models import Q
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.neighbors import NearestNeighbors
