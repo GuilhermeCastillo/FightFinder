@@ -1,23 +1,20 @@
 # Etapa 1: Construir o projeto Angular
 FROM node:alpine AS build
 
-WORKDIR /usr/src/app
+WORKDIR app
 
-COPY . /usr/src/app
-
-RUN npm install -g @angular/cli
+COPY *package*.json ./
 RUN npm install
 
 # Fazendo o build da aplicação
-RUN ng build --prod
+RUN npx ngcc --properties es2023 browser modele main --first only --create-ivy-entry-points
 
-# Etapa 2: Servir os arquivos com NGINX
-FROM nginx:alpine
+COPY . .
 
-# Copiar os arquivos do build para o diretório do NGINX
-COPY --from=build /usr/src/app/dist/[nome-do-seu-projeto] /usr/share/nginx/html
+RUN npm run build
 
-# Expor a porta 80 para o NGINX
+FROM nginx:stable
+
+COPY --from=build /app/dist/tcc-fight-finder/ /usr/share/nginx/html
+
 EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
