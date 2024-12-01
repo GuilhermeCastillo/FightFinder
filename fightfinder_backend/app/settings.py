@@ -30,6 +30,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200",  # Domínio do Angular
+    ".vercel.app"
 ]
 
 CORS_ALLOW_CREDENTIALS = True
