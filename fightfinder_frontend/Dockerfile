@@ -15,7 +15,7 @@ RUN ng build --configuration production
 FROM nginx:alpine
 
 # Copiar os arquivos do build para o diretório do NGINX
-COPY --from=build /usr/src/app/dist/[nome-do-seu-projeto] /usr/share/nginx/html
+COPY --from=build /usr/src/app/dist/fightfinder_frontend /usr/share/nginx/html
 
 # Expor a porta 80 para o NGINX
 EXPOSE 80
