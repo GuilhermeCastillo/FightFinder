@@ -1,34 +1,21 @@
 <app-header />
     <section id="main">
-
-        <div id="filtros"> 
-            <ul>
-                <li>
-                    <app-input-texto [maxLength]="50" id="inputText" placeholder="Nome do(a) atleta" [width]="'22rem'"/> 
-                    <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
-                </li> 
-
-                <li>
-                    <app-input-texto [maxLength]="3" id="inputTextPeso" placeholder="Peso" [width]="'8rem'" />  
-                </li>
-
-                <li>
-                    <app-dropdown 
-                    [options]="['Modalidade', 'Judo', 'Karatê', 'Jiu-Jitsu', 'Boxe', 'Muay Thai', 'Taekwondo', 'Capoeira ', 'Kung Fu', 'Krav Maga']" 
-                    placeholder = 'Modalidade'  
-                    (optionSelected)="onOptionSelected($event)"
-                    /> 
-                    <!-- <p *ngIf="erroMsg" id="erroMsg">Selecione uma modalidade!</p> -->
-                </li>
-                <li> 
-                    <app-button  *ngIf="!loading" backgroundColor="var(--vermelho)" textoBtn="Buscar" (click)="buscarLutadores()" />  
-                    <app-loading-circle *ngIf="loading"></app-loading-circle>
-                </li> 
-            </ul>
-        </div>
             
         <div id="divTabela">
-            <app-table id="tabelaRanking" [columns]="columns" [data]="data"></app-table>
+            <app-table id="tabelaRanking" [columns]="columns" [data]="dados">
+                <thead>
+                    <tr>
+                      <th *ngFor="let column of columns">{{ column.header }}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let row of data; let i = index">
+                      <td *ngFor="let column of columns">
+                        {{ row[column.field] }}
+                      </td>
+                    </tr>
+                  </tbody>
+            </app-table>
         </div> 
     </section>
 

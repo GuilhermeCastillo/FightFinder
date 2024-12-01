@@ -16,7 +16,7 @@ interface TableColumn {
 
 export class TableComponent implements OnInit {
   @Input() columns: TableColumn[] = []; 
-  
+
   @Input() data:[] = [];
 
   constructor() {}

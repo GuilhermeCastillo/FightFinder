@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { CheckboxComponent } from '../../components/checkbox/checkbox.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TokenService } from '../../services/token/token.service'; 
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cadastro',
@@ -112,5 +113,19 @@ export class CadastroComponent {
       }
     });
   }
-      
+
+  mostrarLGPD() {
+    Swal.fire({
+      title: 'Consentimento para Tratamento de Dados Pessoais',
+      html: `
+        <p>Ao prosseguir com o cadastro, você concorda com a nossa Política de Privacidade
+        e consente com o tratamento dos seus dados pessoais, incluindo nome, e-mail, e outras informações fornecidas, para fins de cadastro, comunicação e acesso aos serviços oferecidos em nossa plataforma.</p>
+        <p>Seus dados serão armazenados de forma segura e utilizados apenas para os fins descritos. Você pode revogar este consentimento ou exercer seus direitos como titular de dados a qualquer momento, conforme previsto na LGPD.</p>
+      `,
+      icon: 'info',
+      showCancelButton: false,
+      showCloseButton: true,
+      confirmButtonText: 'Ok',
+    });
+  }
 }

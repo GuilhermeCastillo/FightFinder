@@ -1,12 +1,14 @@
 <table>
-    <thead>
-      <tr>
-        <th *ngFor="let column of columns">{{ column.header }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let row of data">
-        <td *ngFor="let column of columns">{{ row[column.field] }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <thead>
+    <tr>
+      <th>#</th> <!-- Coluna para o índice -->
+      <th *ngFor="let column of columns">{{ column.header }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of data; let i = index">
+      <td id="index">{{ i + 1 }}</td> <!-- Exibe o índice (começando de 1) -->
+      <td *ngFor="let column of columns">{{ row[column.field] }}</td>
+    </tr>
+  </tbody>
+</table>

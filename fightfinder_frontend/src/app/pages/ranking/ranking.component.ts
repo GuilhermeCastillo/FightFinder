@@ -8,6 +8,8 @@ import { CommonModule } from '@angular/common';
 import { TableComponent } from '../../components/table/table.component'; 
 import { LoadingCircleComponent } from '../../components/loading-circle/loading-circle.component';
 import { Title } from '@angular/platform-browser';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { TokenService } from '../../services/token/token.service';
 
 @Component({
   selector: 'app-ranking',
@@ -22,42 +24,25 @@ export class RankingComponent implements OnInit {
   valorPadraoSelect: string = 'Modalidade';
   erroMsg: boolean = false;
   loading: boolean = false;
-
-  constructor(private title: Title) { } 
+  dados: any;
+  
+  constructor(private title: Title, private tokenService: TokenService, private http: HttpClient) { } 
   
   columns = [
-    { header: 'Rank', field: 'Rank' },
-    { header: 'Nome', field: 'Nome' }, 
-    { header: 'Peso (Kg)', field: 'Peso' },
-    { header: 'Modalidade', field: 'Modalidade' },
-    { header: 'Vitórias', field: 'Vitorias' }  // ou lutas e treinos
-  ]; 
+    { header: 'Nome', field: 'athlete' }, 
+    { header: 'Peso (Kg)', field: 'peso' },
+    { header: 'Altura (m)', field: 'altura' },
+    { header: 'Modalidade', field: 'modalidade' },
+    { header: 'Matchs', field: 'total_connections' }
+  ];
 
   ngOnInit(): void {
-    this.title.setTitle('Ranking')
-    this.fetchDataFromBackend();
-  }
+    this.title.setTitle('Ranking');
+    this.buscarDadosRank();
 
-  fetchDataFromBackend(): void {
-    // Simulação de dados recebidos do backend
-    this.data = [ 
-    ];
-  }
-
-  buscarLutadores(): void { 
-    this.validaFiltros();
-  }
-
-  validaFiltros(): void {
-    // if (dropdown.value === valorPadraoSelect) {}
-    //  this.erroMsg = true; 
-    //   this.erro = true; 
-  
-
-    // if (ok) {  
-      this.buscarDadosFiltrados(); 
-    // }
- 
+    this.dados = this.data.map((item: IAtleta, index) => ({
+      ...item, index
+    }));
   }
 
   buscarDadosFiltrados() { 
@@ -71,4 +56,29 @@ export class RankingComponent implements OnInit {
   onOptionSelected(option: string) {
   }
 
+  buscarDadosRank(): void {
+    const url: string = "http://127.0.0.1:8000/api/v1/ranking/";
+    let token = this.tokenService.getToken();
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    this.http.get<any>(url, { headers } ).subscribe({
+      next: (response) => {
+        this.dados = response;
+      },
+      error: (err) => {
+        console.error('Erro ao buscar dados', err);
+      }
+    });
+  }
+}
+
+export interface IAtleta {
+  athlete: string;
+  peso: number;
+  modalidade: string;
+  altura: number;
+  total_connections: number;
 }
