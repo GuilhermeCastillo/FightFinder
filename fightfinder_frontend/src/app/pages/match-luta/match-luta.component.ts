@@ -111,14 +111,12 @@ export class MatchLutaComponent {
         this.atualizarAdversarioAtual();
         this.mostrarBotaoBuscar = false;
       },
-      error: (err) => {
-        console.error('Erro ao carregar adversários', err);
-      },
+      error: () => {},
     });
   }
 
   atualizarAdversarioAtual() {
-    // Verifica se há mais recomendações a serem exibidas
+    // Verifica se há mais recomendações
     if (
       this.respostaApi.recommendations &&
       this.indiceAtual < this.respostaApi.recommendations.length
@@ -128,15 +126,13 @@ export class MatchLutaComponent {
       var dataNascimentoDATE = this.converterParaData(this.formataDataBR(this.respostaApi.recommendations[this.indiceAtual].data_nascimento));
       this.idadeAdversario = this.calcularIdade(new Date(dataNascimentoDATE));
 
-      console.log(this.respostaApi.recommendations)
-
       if (this.respostaApi.recommendations[this.indiceAtual].imagem_url) {
         this.imgAdversarioAtualPerfilUrl = `http://127.0.0.1:8000${this.respostaApi.recommendations[this.indiceAtual].imagem_url}`;
       } else {
         this.imgAdversarioAtualPerfilUrl = null;
       }
     } else {
-      this.adversarioAtual = null; // Não há mais adversários para exibir
+      this.adversarioAtual = null; // Não há mais adversários
     }
   }
 
@@ -166,9 +162,7 @@ export class MatchLutaComponent {
             this.loadUserData();
           }
         },
-        error: (err) => {
-          console.error('Erro ao enviar dados', err);
-        }
+        error: () => {}
     });
   }
 
@@ -206,9 +200,7 @@ export class MatchLutaComponent {
         this.form.get('idade')?.setValue(this.calcularIdade(new Date(dataNascimentoDATE)));
         this.form.patchValue(dadosUser);
       },
-      error: (err) => {
-        console.error('Erro ao enviar dados', err);
-      }
+      error: () => {}
     });
   }
 
@@ -286,37 +278,6 @@ export class MatchLutaComponent {
     return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
   }
 
-  // verificaSeJaMarcouMatch() { // retorna conexões do usuário atual
-  //   const url = "http://127.0.0.1:8000/api/v1/connections/"
-  //   let token = this.tokenService.getToken();
-
-  //   const headers = new HttpHeaders({
-  //     'Authorization': `Bearer ${token}`
-  //   });
-
-  //   this.http.get<any>(url, { headers } ).subscribe({
-  //     next: (response) => {
-  //       this.dados = response;
-  //       //console.log('cpfsConectados ', this.dados);
-  //       if (this.dados.length == 0 || this.dados == null) {
-  //         this.createConnection();
-  //       } else {
-  //         this.dados.forEach((element: { connected_with_cpf: any; }) => {
-  //           console.log(element.connected_with_cpf + ' == ', this.respostaApi.recommendations[this.indiceAtual].cpf);
-  //           if (element.connected_with_cpf == this.respostaApi.recommendations[this.indiceAtual].cpf) {
-  //             this.alertaMatchMarcadoSucesso();
-  //             return;
-  //           }
-            
-  //         });
-  //       }
-  //     },
-  //     error: (err) => {
-  //       console.error(err);
-  //     }
-  //   });
-  // }
-
   createConnection() {
     const url = "http://127.0.0.1:8000/api/v1/create/"
     let token = this.tokenService.getToken();
@@ -345,7 +306,6 @@ export class MatchLutaComponent {
         if (err.error.message == 'You can only accept the connection request from the other athlete') {
           this.alertaAdversarioJaSelecionado();
         }
-        console.error(err);
       }
     });
   }

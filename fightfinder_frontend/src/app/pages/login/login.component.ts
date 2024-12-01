@@ -88,7 +88,6 @@ export class LoginComponent {
         next: (response) => {
           this.respostaApi = response;
           let completouCadastro = this.respostaApi['athlete_profile_complete'];
-          console.log('completou cadastro?? ', completouCadastro);
           if (completouCadastro) {
             this.loadUserPhoto()
           } else {
@@ -123,9 +122,12 @@ export class LoginComponent {
     this.http.get<any>(url, { headers } ).subscribe({
       next: (response) => {
         this.dadosPerfil = response;
-
-        this.imagemPerfilUrl = `http://127.0.0.1:8000${this.dadosPerfil.imagem}`;
-        this.userPhotoService.setPhotoUrl(this.imagemPerfilUrl);
+        if (this.dadosPerfil.imagem) {
+          this.imagemPerfilUrl = `http://127.0.0.1:8000/${this.dadosPerfil.imagem}`;
+          this.userPhotoService.setPhotoUrl(String(this.imagemPerfilUrl));
+        } else {
+          this.imagemPerfilUrl = null;
+        }
         const dadosUser = {
           nomeUser: this.dadosPerfil.nome
         };

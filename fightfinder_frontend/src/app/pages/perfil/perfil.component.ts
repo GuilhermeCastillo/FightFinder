@@ -74,7 +74,7 @@ export class PerfilComponent {
       dataNascimento: ['', Validators.required],
       modalidade: ['', Validators.required],
       genero: ['', Validators.required],
-      telefone: ['', Validators.required],
+      telefone: [''],
       academia: [''],
     });
   }
@@ -148,7 +148,11 @@ export class PerfilComponent {
         this.genero = this.generoPorExtenso(this.dadosPerfil.genero);
         this.nomeModalidade = this.pegaNomeModalidadePorSigla(this.dadosPerfil.modalidade);
 
-        this.imagemPerfilUrl = `http://127.0.0.1:8000${this.dadosPerfil.imagem}`;
+        if (this.dadosPerfil.imagem) {
+          this.imagemPerfilUrl = `http://127.0.0.1:8000/${this.dadosPerfil.imagem}`;
+        } else {
+          this.imagemPerfilUrl = null;
+        }
 
         const dadosUser = {
           nomeUser: this.dadosPerfil.nome,
@@ -236,7 +240,7 @@ export class PerfilComponent {
   
     if (this.selectedFile) {
       formData.append('imagem', this.selectedFile, this.selectedFile.name);
-        this.userPhotoService.setPhotoUrl(String(this.imagemPerfilUrl));
+      this.userPhotoService.setPhotoUrl(String(this.imagemPerfilUrl));
     }
 
     this.http.post<any>(url, formData, { headers }).subscribe({
@@ -249,6 +253,8 @@ export class PerfilComponent {
         err.error.genero == '"G" não é um escolha válido.' ? this.erroGenero = true : this.erroGenero = false;
         err.error.modalidade == "\"Nenhuma\" não é um escolha válido." ? this.erroModalidade = true : this.erroModalidade = false;
         err.error.cpf == "athlete com este cpf já existe." ? this.erroCpf = true : this.erroCpf = false;
+        err.error.data_nascimento == "Formato inválido para data. Use um dos formatos a seguir: YYYY-MM-DD." ? this.erroData = true : this.erroData = false;
+       
       }
     });
   }
@@ -330,7 +336,10 @@ export class PerfilComponent {
   }
 
   removerMascara(valor: string): string {
-    return valor.replace(/\D/g, ''); // Remove qualquer caractere não numérico
+    if (valor) {
+      return valor.replace(/\D/g, ''); // Remove qualquer caractere não numérico
+    }
+    return '';
   }
 
   formatarCpf(cpf: string): string {
