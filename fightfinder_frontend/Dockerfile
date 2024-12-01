@@ -8,8 +8,8 @@ COPY . /usr/src/app
 RUN npm install -g @angular/cli
 RUN npm install
 
-# Fazendo o build da aplicação
-RUN ng build --prod
+# Fazendo o build da aplicação com a configuração de produção
+RUN ng build --configuration production
 
 # Etapa 2: Servir os arquivos com NGINX
 FROM nginx:alpine
