@@ -31,7 +31,7 @@ class Athlete(models.Model):
     )
     peso = models.FloatField()
     altura = models.FloatField()
-    telefone = models.CharField(blank=True, null=True)
+    telefone = models.TextField(blank=True, null=True)
     cidade = models.CharField(max_length=100)
     estado = models.CharField(max_length=100)
     pais = models.CharField(max_length=100)
