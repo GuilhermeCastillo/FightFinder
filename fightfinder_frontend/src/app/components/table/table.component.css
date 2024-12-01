@@ -4,6 +4,7 @@ table {
     margin: 2rem 4rem;
     font-size: 1.2rem;
     text-align: center;
+    overflow-y: auto;  /* Ativa a barra de rolagem vertical */
   }
    
   thead tr {

@@ -68,9 +68,7 @@ export class RankingComponent implements OnInit {
       next: (response) => {
         this.dados = response;
       },
-      error: (err) => {
-        console.error('Erro ao buscar dados', err);
-      }
+      error: () => { }
     });
   }
 }

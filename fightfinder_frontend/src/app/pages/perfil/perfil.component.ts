@@ -1,7 +1,7 @@
 import { Component, forwardRef } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
-import { InputSenhaComponent } from '../../components/inputSenha/inputSenha.component';
+import { InputSenhaComponent } from '../../components/input-senha/inputSenha.component';
 import { InputTextoComponent } from '../../components/input-texto/input-texto.component';
 import { InputRadioComponent } from '../../components/input-radio/input-radio.component';
 import { ButtonComponent } from '../../components/button/button.component';
@@ -129,9 +129,7 @@ export class PerfilComponent {
             this.loadUserData();
           }
         },
-        error: (err) => {
-          console.error('Erro ao enviar dados', err);
-        }
+        error: (err) => { }
     });
   }
  
@@ -170,9 +168,7 @@ export class PerfilComponent {
         };
         this.form.patchValue(dadosUser);
       },
-      error: (err) => {
-        console.error('Erro ao enviar dados', err);
-      }
+      error: () => { }
     });
   }
 
@@ -249,7 +245,6 @@ export class PerfilComponent {
         this.modalDadosSalvosSucesso();        
       },
       error: (err) => {
-        console.error('Erro ao enviar dados', err);
         err.error.genero == '"G" não é um escolha válido.' ? this.erroGenero = true : this.erroGenero = false;
         err.error.modalidade == "\"Nenhuma\" não é um escolha válido." ? this.erroModalidade = true : this.erroModalidade = false;
         err.error.cpf == "athlete com este cpf já existe." ? this.erroCpf = true : this.erroCpf = false;

@@ -74,7 +74,6 @@ export class CartelProfileComponent {
           this.alertaCompletarCadastro();
         },
         error: (err) => {
-          console.error('Erro ao enviar dados', err);
         }
     });
   }
@@ -108,9 +107,7 @@ export class CartelProfileComponent {
         var dataNascimentoDATE = this.converterParaData(dadosUser.dataNascimento);
         this.form.get('idade')?.setValue(this.calcularIdade(new Date(dataNascimentoDATE)));
       },
-      error: (err) => {
-        console.error('Erro ao enviar dados', err);
-      }
+      error: (err) => { }
     });
   }
 

@@ -37,7 +37,6 @@ import { Title } from '@angular/platform-browser';
 export class MatchLutaComponent {
   modalidadeSelecionada: string = 'option';
   botaoDesabilitado: boolean = true;
-  carregarAdversarios = false;
   valorPadraoDropdown: string = 'Modalidade';
   dados: any;
   respostaApi: any;
@@ -53,6 +52,8 @@ export class MatchLutaComponent {
   mostrarBotaoBuscar: boolean = true;
   idadeAdversario: number | undefined;
   qtdRecomendacoes: number = 10;
+  treino: boolean = false;
+  combate: boolean = true;
 
   constructor(private http: HttpClient, private tokenService: TokenService, private fb: FormBuilder, private router: Router,
      private title: Title) {
@@ -84,12 +85,41 @@ export class MatchLutaComponent {
     this.botaoDesabilitado = option === this.valorPadraoDropdown;
   }
 
-  buscarAdversarios() {
+  buscarAdversariosCombate() {
     if (this.completouCadastro == false) {
       this.alertaCompletarCadastro();
       return;
-    } 
-    this.carregarAdversarios = true;
+    }
+
+    const url = 'http://127.0.0.1:8000/api/v1/recommend/';
+    let token = this.tokenService.getToken();
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    this.http.get<any>(url, { headers }).subscribe({
+      next: (response) => {
+        this.respostaApi = response;
+        
+        if (this.respostaApi.recommendations.length == 0) {
+          this.alertaNaoHaRecomendacoes();
+          return;
+        }
+        this.indiceAtual = 0;
+        this.qtdRecomendacoes = this.respostaApi.recommendations.length;
+        this.atualizarAdversarioAtual();
+        this.mostrarBotaoBuscar = false;
+      },
+      error: () => {},
+    });
+  }
+
+  buscarAdversariosTreino() {
+    if (this.completouCadastro == false) {
+      this.alertaCompletarCadastro();
+      return;
+    }
 
     const url = 'http://127.0.0.1:8000/api/v1/recommend/';
     let token = this.tokenService.getToken();
@@ -215,7 +245,7 @@ export class MatchLutaComponent {
       case "KARATE": this.nomeModalidade = 'Karate'; break;
       case "TKD": this.nomeModalidade = 'Taekwondo'; break;
       case "INI": this.nomeModalidade = 'Iniciante'; break;
-      default: this.nomeModalidade = "Nenhuma"; break;
+      default: break;
     }
     return this.nomeModalidade;
   }
@@ -345,5 +375,14 @@ export class MatchLutaComponent {
       confirmButtonText: 'Ok'
     }) 
   }
+
+  ativarCombate() {
+    this.treino = false;
+    this.combate = true;
+  }
   
+  ativarTreino() {
+    this.treino = true;
+    this.combate = false;
+  }
 }

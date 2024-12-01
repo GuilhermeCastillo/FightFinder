@@ -13,12 +13,12 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
       multi: true
     }
   ],
-  templateUrl: './InputSenha.component.html',
-  styleUrl: './InputSenha.component.css'
+  templateUrl: './input-senha.component.html',
+  styleUrl: './input-senha.component.css'
 })
 export class InputSenhaComponent {
   @Input() password: string = '';
-  @Input() type: string = 'password'; // Tipo do input  
+  @Input() type: string = 'password';  
   @Input() placeholder: string = '';  
   @Input() disabled: boolean = false;  
   @Output() valueChange = new EventEmitter<string>();

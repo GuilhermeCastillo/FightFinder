@@ -1,4 +1,3 @@
-
 #tituloPrincipal {
     font-size: 9.5rem;
     font-weight: bold;
@@ -97,4 +96,32 @@ section ul li a img {
 #faixaAzul p {
     margin-top: 3rem;
     font-size: 2rem;
+}
+
+/* Ajustes para dispositivos maiores */
+@media (min-width: 768px) {
+    #tituloPrincipal {
+        font-size: 6rem; 
+        margin: 4rem 2rem;
+    }
+
+    .cards {
+        width: 45%; /* Metade da largura em tablets */
+        height: auto;
+        margin: 2rem;
+    }
+}
+
+/* Ajustes para desktops */
+@media (min-width: 1200px) {
+    #tituloPrincipal {
+        font-size: 9.5rem; 
+        margin: 6rem 3rem;
+    }
+
+    .cards {
+        width: 27%; /* Volta ao tamanho original */
+        height: 30rem;
+        margin: 3rem;
+    }
 }

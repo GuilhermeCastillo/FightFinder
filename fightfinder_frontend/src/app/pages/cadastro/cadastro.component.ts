@@ -2,7 +2,7 @@ import { Component, forwardRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { ButtonComponent } from '../../components/button/button.component';
 import { InputTextoComponent } from '../../components/input-texto/input-texto.component';
-import { InputSenhaComponent } from '../../components/inputSenha/inputSenha.component';
+import { InputSenhaComponent } from '../../components/input-senha/inputSenha.component';
 import { InputRadioComponent } from '../../components/input-radio/input-radio.component';
 import { Title } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -108,7 +108,6 @@ export class CadastroComponent {
         this.router.navigate(['/home']); 
       },
       error: (err) => {
-        console.error('Erro ao enviar dados', err);
         err.error.username[0] === this.textoNomeJaExistente ? this.nomeJaExiste = true : this.nomeJaExiste = false;
       }
     });

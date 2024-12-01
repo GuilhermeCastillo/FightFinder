@@ -1,6 +1,63 @@
+#divCombateTreino {
+  text-align: center; 
+  padding: 1rem;
+}
+
+#opcaoCombate, #opcaoTreino {
+   height: 3.5rem;
+   width: 15rem;
+   background-color: var(--cinza);
+   font-size: 2rem;
+   cursor: pointer;
+   margin: 0 1rem;
+   font-weight: bold;
+}
+
+#opcaoCombate {
+   color: var(--vermelho);
+   border: 2px solid var(--vermelho);
+   border-radius: 15px 0 15px 0;
+}
+
+#opcaoTreino {
+   color: var(--azul);
+   border: 2px solid var(--azul);
+   border-radius: 0 15px 0 15px;
+}
+
+#opcaoCombate:hover, #opcaoTreino:hover {
+   transform: scale(1.05);
+}
+
+#opcaoCombateDesativado, #opcaoTreinoDesativado {
+   height: 3rem;
+   width: 13rem;
+   background-color: var(--cinza);
+   font-size: 1.9rem;
+   cursor: pointer;
+   margin: 0 1rem;
+   font-weight: bold;
+}
+
+#opcaoCombateDesativado {
+   color: var(--vermelho-escuro);
+   border: 2px solid var(--vermelho-escuro);
+   border-radius: 15px 0 15px 0;
+}
+
+#opcaoTreinoDesativado {
+   color: var(--azul-escuro);
+   border: 2px solid var(--azul-escuro);
+   border-radius: 0 15px 0 15px;
+}
+
+#opcaoCombateDesativado:hover, #opcaoTreinoDesativado:hover {
+   transform: scale(1.05);
+}
+
 #cabecalhoMatch {
    display: flex;
-   margin: 4rem 0 5.5rem 0;
+   margin: 0.5rem 0 3.5rem 0;
    text-align: center;
    justify-content: center; 
    align-items: flex-end;
@@ -99,7 +156,7 @@
 #fight {
    display: flex;
    justify-content: center;
-   padding-bottom: 4rem;
+   padding-bottom: 2rem;
 }
 
 #botoes {

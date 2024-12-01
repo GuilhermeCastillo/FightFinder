@@ -1,8 +1,20 @@
 <app-header />
 
-<section>  
+<section>
+    <div id="divCombateTreino">
+        <button *ngIf="combate" id="opcaoCombate" (click)="ativarCombate()">Combate</button>
+        <button *ngIf="!combate" id="opcaoCombateDesativado" (click)="ativarCombate()">Combate</button>
+
+        <button *ngIf="treino" id="opcaoTreino" (click)="ativarTreino()">Treino</button>
+        <button *ngIf="!treino" id="opcaoTreinoDesativado" (click)="ativarTreino()">Treino</button>
+    </div>
+
     <div id="cabecalhoMatch">
-        <app-button [style.display]="mostrarBotaoBuscar ? 'inline-block' : 'none'" textoBtn="Buscar" id="btnBuscar" backgroundColor="var(--vermelho)" (click)="buscarAdversarios()" />
+        <app-button *ngIf="combate"
+        textoBtn="Buscar" id="btnBuscar" backgroundColor="var(--vermelho)" (click)="buscarAdversariosCombate()" />
+
+        <app-button *ngIf="treino" textoBtn="Buscar" id="btnBuscar" (click)="buscarAdversariosTreino()" />
+    
     </div>
     
     <section id="main">

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { InputTextoComponent } from '../../components/input-texto/input-texto.component';
-import { InputSenhaComponent } from '../../components/inputSenha/inputSenha.component';
+import { InputSenhaComponent } from '../../components/input-senha/inputSenha.component';
 import { ButtonComponent } from '../../components/button/button.component'; 
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -69,7 +69,6 @@ export class LoginComponent {
         this.verificaSeCompletouCadastro();
       },
       error: (err) => {
-        console.error('Erro ao enviar dados', err);
         if (err.error.detail == "Usuário e/ou senha incorreto(s)") {
           this.erroUsuarioSenhaInvaldos = true;
         }
@@ -94,9 +93,7 @@ export class LoginComponent {
             this.alertaCompletarCadastro();
           }
         },
-        error: (err) => {
-          console.error('Erro ao enviar dados', err);
-        }
+        error: () => { }
     });
   }
 
@@ -133,9 +130,7 @@ export class LoginComponent {
         };
         this.form.patchValue(dadosUser);
       },
-      error: (err) => {
-        console.error('Erro ao enviar dados', err);
-      }
+      error: () => { }
     });
   }
 }

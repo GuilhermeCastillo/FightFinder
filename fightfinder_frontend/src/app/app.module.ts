@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { ButtonComponent } from './components/button/button.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { InputSenhaComponent } from './components/inputSenha/inputSenha.component';  
+import { InputSenhaComponent } from './components/input-senha/inputSenha.component';
 import { InputTextoComponent } from './components/input-texto/input-texto.component';
 import { InputRadioComponent } from './components/input-radio/input-radio.component'; 
 import { CommonModule } from '@angular/common';
@@ -24,11 +24,11 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
     BotaoPequenoComponent,
     HeaderComponent,
     FooterComponent,
-    InputSenhaComponent,
     InputTextoComponent,
     InputRadioComponent, 
     DropdownComponent,
     LoadingCircleComponent,
+    InputSenhaComponent
   ],
   imports: [ // importar módulos 
     BrowserModule, 

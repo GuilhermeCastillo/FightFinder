@@ -41,9 +41,7 @@ export class HomeComponent {
           this.alertaCompletarCadastro();
         }
       },
-      error: (err) => {
-        console.error('Erro ao enviar dados', err);
-      }
+      error: (err) => { }
     });
   }
 
