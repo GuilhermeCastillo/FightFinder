@@ -8,14 +8,14 @@ COPY . /usr/src/app
 RUN npm install -g @angular/cli
 RUN npm install
 
-# Fazendo o build da aplicação com a configuração de produção
-RUN ng build --configuration production
+# Fazendo o build da aplicação
+RUN ng build --prod
 
 # Etapa 2: Servir os arquivos com NGINX
 FROM nginx:alpine
 
 # Copiar os arquivos do build para o diretório do NGINX
-COPY --from=build /usr/src/app/dist/fightfinder_frontend /usr/share/nginx/html
+COPY --from=build /usr/src/app/dist/[nome-do-seu-projeto] /usr/share/nginx/html
 
 # Expor a porta 80 para o NGINX
 EXPOSE 80

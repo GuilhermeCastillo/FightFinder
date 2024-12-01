@@ -1,0 +1,8 @@
+runtime: python310
+api_version: 1
+handlers:
+  - url: /static
+    static_dir: dist/tcc-fight-finder
+  - url: /
+    static_files: dist/tcc-fight-finder/index.html
+    upload: dist/tcc-fight-finder/index.html
