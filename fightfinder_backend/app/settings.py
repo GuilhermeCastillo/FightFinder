@@ -27,7 +27,7 @@ SECRET_KEY = "django-insecure-#dyco4#%u$ug2j4t#lo*(te07c3@kipa6da89enpsfmo$f_sb3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1" ,".vercel.app"]
+ALLOWED_HOSTS = ["*"]
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200",  # Domínio do Angular
 ]
@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     "connections",
     "users",
     "corsheaders",
-    "ranking"
+    "ranking",
 ]
 
 MIDDLEWARE = [
@@ -159,7 +159,10 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated", "rest_framework.authentication.TokenAuthentication"),
+    "DEFAULT_PERMISSION_CLASSES": (
+        "rest_framework.permissions.IsAuthenticated",
+        "rest_framework.authentication.TokenAuthentication",
+    ),
 }
 
 SIMPLE_JWT = {
