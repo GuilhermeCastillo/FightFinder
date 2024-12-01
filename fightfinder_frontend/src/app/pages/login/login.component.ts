@@ -101,8 +101,10 @@ export class LoginComponent {
     Swal.fire({
       title: 'Dica',
       text: 'Complete seu cadastro na página de Perfil para acessar todas funcionalidades',
-      icon: 'info', 
-      confirmButtonText: 'Ok'}).then((result) => {
+      icon: 'info',
+      confirmButtonText: 'Ok',
+      showCloseButton: true,
+    }).then((result) => {
         if (result.isConfirmed) { 
           this.router.navigate(['/perfil']);
         } 

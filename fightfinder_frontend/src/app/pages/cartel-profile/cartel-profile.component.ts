@@ -156,6 +156,7 @@ export class CartelProfileComponent {
       title: 'Dica',
       text: 'Complete seu cadastro na página de Perfil para utilizar todas funcionalidades',
       icon: 'info',
+      showCloseButton: true,
       confirmButtonText: 'Ok'}).then((result) => {
         if (result.isConfirmed) { 
           this.router.navigate(['/perfil']);

@@ -41,7 +41,7 @@ export class HomeComponent {
           this.alertaCompletarCadastro();
         }
       },
-      error: (err) => { }
+      error: () => { }
     });
   }
 
@@ -49,7 +49,8 @@ export class HomeComponent {
     Swal.fire({
       title: 'Dica',
       text: 'Complete seu cadastro na página de Perfil para acessar todas funcionalidades',
-      icon: 'info', 
+      icon: 'info',
+      showCloseButton: true,
       confirmButtonText: 'Ok'}).then((result) => {
         if (result.isConfirmed) { 
           this.router.navigate(['/perfil']);

@@ -287,7 +287,9 @@ export class MatchLutaComponent {
       title: 'Dica',
       text: 'Complete seu cadastro na página de Perfil para utilizar todas funcionalidades',
       icon: 'info', 
-      confirmButtonText: 'Ok'}).then((result) => {
+      confirmButtonText: 'Ok',
+      showCloseButton: true,
+    }).then((result) => {
         if (result.isConfirmed) { 
           this.router.navigate(['/perfil']);
         } 
@@ -326,7 +328,7 @@ export class MatchLutaComponent {
         if (response.message == 'Connection request accepted') {
           this.alertaMatchMarcadoSucesso();
           return;
-        } else if (response.message == 'Connection already exists'){
+        } else if (response.message == 'Connection already exists') {
           this.alertaMatchJaFoiMarcado();
         } else {
           this.alertaPedidoEnviado();

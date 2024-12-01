@@ -14,7 +14,6 @@
         textoBtn="Buscar" id="btnBuscar" backgroundColor="var(--vermelho)" (click)="buscarAdversariosCombate()" />
 
         <app-button *ngIf="treino" textoBtn="Buscar" id="btnBuscar" (click)="buscarAdversariosTreino()" />
-    
     </div>
     
     <section id="main">
@@ -64,7 +63,9 @@
     </section>
 
     <div id="fight" *ngIf="adversarioAtual">
-        <app-button textoBtn="FIGHT!" backgroundColor="var(--vermelho)" (click)="createConnection()"></app-button>
+        <app-button *ngIf="combate" textoBtn="FIGHT!" backgroundColor="var(--vermelho)" (click)="createConnection()"></app-button>
+        <app-button *ngIf="treino" textoBtn="Quero Treinar!" backgroundColor="var(--vermelho)" (click)="createConnection()"></app-button>
+        
     </div>
     
     <section id="botoes" *ngIf="adversarioAtual">

@@ -249,7 +249,6 @@ export class PerfilComponent {
         err.error.modalidade == "\"Nenhuma\" não é um escolha válido." ? this.erroModalidade = true : this.erroModalidade = false;
         err.error.cpf == "athlete com este cpf já existe." ? this.erroCpf = true : this.erroCpf = false;
         err.error.data_nascimento == "Formato inválido para data. Use um dos formatos a seguir: YYYY-MM-DD." ? this.erroData = true : this.erroData = false;
-       
       }
     });
   }
@@ -334,7 +333,7 @@ export class PerfilComponent {
     if (valor) {
       return valor.replace(/\D/g, ''); // Remove qualquer caractere não numérico
     }
-    return '';
+    return '0';
   }
 
   formatarCpf(cpf: string): string {
@@ -342,6 +341,9 @@ export class PerfilComponent {
   }
 
   formatarTelefone(telefone: string): string {
+    if (telefone == '0') {
+      return '';
+    }
     return telefone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
   }
 
