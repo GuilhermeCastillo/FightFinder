@@ -27,7 +27,7 @@ SECRET_KEY = "django-insecure-#dyco4#%u$ug2j4t#lo*(te07c3@kipa6da89enpsfmo$f_sb3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [".vercel.app"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1" ,".vercel.app"]
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200",  # Domínio do Angular
 ]
